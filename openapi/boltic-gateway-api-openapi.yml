@@ -1,0 +1,783 @@
+openapi: 3.0.3
+info:
+  title: Boltic Gateway API
+  description: >-
+    The Boltic Gateway API provides a developer-friendly API gateway designed to
+    simplify and secure how services interact across your platform. It enables
+    seamless request routing, payload transformation, and enforcement of security
+    policies across diverse integration types including serverless functions,
+    workflows, tables, and proxy endpoints. The Gateway supports dynamic URL
+    rewriting, path parameter injection, fine-grained authentication, and
+    real-time observability.
+  version: 1.0.0
+  contact:
+    name: Boltic
+    url: https://www.boltic.io
+  license:
+    name: Proprietary
+    url: https://www.boltic.io/terms
+servers:
+  - url: https://gateway.boltic.io/v1
+    description: Boltic Gateway API
+security:
+  - bearerAuth: []
+tags:
+  - name: Routes
+    description: Manage API routes and request routing rules
+  - name: Services
+    description: Manage backend service configurations
+  - name: Plugins
+    description: Manage gateway plugins for transformation and security
+  - name: Consumers
+    description: Manage API consumers and access credentials
+  - name: Certificates
+    description: Manage SSL/TLS certificates
+paths:
+  /routes:
+    get:
+      operationId: listRoutes
+      summary: List all routes
+      description: Retrieve a list of all configured API routes in the gateway.
+      tags:
+        - Routes
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 1
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 20
+      responses:
+        '200':
+          description: A list of routes
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Route'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createRoute
+      summary: Create a new route
+      description: Create a new API route with specified routing rules and target service.
+      tags:
+        - Routes
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RouteInput'
+      responses:
+        '201':
+          description: Route created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Route'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /routes/{routeId}:
+    get:
+      operationId: getRoute
+      summary: Get a route by ID
+      description: Retrieve details of a specific route.
+      tags:
+        - Routes
+      parameters:
+        - name: routeId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Route details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Route'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateRoute
+      summary: Update a route
+      description: Update the configuration of an existing route.
+      tags:
+        - Routes
+      parameters:
+        - name: routeId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RouteInput'
+      responses:
+        '200':
+          description: Route updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Route'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteRoute
+      summary: Delete a route
+      description: Remove an existing route from the gateway.
+      tags:
+        - Routes
+      parameters:
+        - name: routeId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Route deleted successfully
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /services:
+    get:
+      operationId: listServices
+      summary: List all services
+      description: Retrieve a list of all backend services configured in the gateway.
+      tags:
+        - Services
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 1
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 20
+      responses:
+        '200':
+          description: A list of services
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Service'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+    post:
+      operationId: createService
+      summary: Create a new service
+      description: Register a new backend service in the gateway.
+      tags:
+        - Services
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServiceInput'
+      responses:
+        '201':
+          description: Service created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Service'
+  /services/{serviceId}:
+    get:
+      operationId: getService
+      summary: Get a service by ID
+      tags:
+        - Services
+      parameters:
+        - name: serviceId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Service details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Service'
+    put:
+      operationId: updateService
+      summary: Update a service
+      tags:
+        - Services
+      parameters:
+        - name: serviceId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServiceInput'
+      responses:
+        '200':
+          description: Service updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Service'
+    delete:
+      operationId: deleteService
+      summary: Delete a service
+      tags:
+        - Services
+      parameters:
+        - name: serviceId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Service deleted
+  /plugins:
+    get:
+      operationId: listPlugins
+      summary: List all plugins
+      description: Retrieve a list of all plugins configured in the gateway.
+      tags:
+        - Plugins
+      responses:
+        '200':
+          description: A list of plugins
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Plugin'
+    post:
+      operationId: createPlugin
+      summary: Create a new plugin
+      description: Add a plugin to the gateway for transformation, security, or observability.
+      tags:
+        - Plugins
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PluginInput'
+      responses:
+        '201':
+          description: Plugin created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Plugin'
+  /plugins/{pluginId}:
+    get:
+      operationId: getPlugin
+      summary: Get a plugin by ID
+      tags:
+        - Plugins
+      parameters:
+        - name: pluginId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Plugin details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Plugin'
+    put:
+      operationId: updatePlugin
+      summary: Update a plugin
+      tags:
+        - Plugins
+      parameters:
+        - name: pluginId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PluginInput'
+      responses:
+        '200':
+          description: Plugin updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Plugin'
+    delete:
+      operationId: deletePlugin
+      summary: Delete a plugin
+      tags:
+        - Plugins
+      parameters:
+        - name: pluginId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Plugin deleted
+  /consumers:
+    get:
+      operationId: listConsumers
+      summary: List all consumers
+      description: Retrieve a list of all API consumers.
+      tags:
+        - Consumers
+      responses:
+        '200':
+          description: A list of consumers
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Consumer'
+    post:
+      operationId: createConsumer
+      summary: Create a new consumer
+      tags:
+        - Consumers
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConsumerInput'
+      responses:
+        '201':
+          description: Consumer created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Consumer'
+  /consumers/{consumerId}:
+    get:
+      operationId: getConsumer
+      summary: Get a consumer by ID
+      tags:
+        - Consumers
+      parameters:
+        - name: consumerId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Consumer details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Consumer'
+    delete:
+      operationId: deleteConsumer
+      summary: Delete a consumer
+      tags:
+        - Consumers
+      parameters:
+        - name: consumerId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Consumer deleted
+  /certificates:
+    get:
+      operationId: listCertificates
+      summary: List all certificates
+      tags:
+        - Certificates
+      responses:
+        '200':
+          description: A list of certificates
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Certificate'
+    post:
+      operationId: createCertificate
+      summary: Upload a new certificate
+      tags:
+        - Certificates
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CertificateInput'
+      responses:
+        '201':
+          description: Certificate created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Certificate'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    Route:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the route
+        name:
+          type: string
+          description: Human-readable name for the route
+        methods:
+          type: array
+          items:
+            type: string
+            enum: [GET, POST, PUT, DELETE, PATCH, OPTIONS, HEAD]
+          description: HTTP methods this route responds to
+        paths:
+          type: array
+          items:
+            type: string
+          description: URL paths that match this route
+        serviceId:
+          type: string
+          description: ID of the backend service to route to
+        stripPath:
+          type: boolean
+          description: Whether to strip the matched path prefix
+        preserveHost:
+          type: boolean
+          description: Whether to preserve the original Host header
+        protocols:
+          type: array
+          items:
+            type: string
+            enum: [http, https]
+        plugins:
+          type: array
+          items:
+            type: string
+          description: List of plugin IDs applied to this route
+        status:
+          type: string
+          enum: [active, inactive]
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    RouteInput:
+      type: object
+      required:
+        - name
+        - paths
+        - serviceId
+      properties:
+        name:
+          type: string
+        methods:
+          type: array
+          items:
+            type: string
+        paths:
+          type: array
+          items:
+            type: string
+        serviceId:
+          type: string
+        stripPath:
+          type: boolean
+        preserveHost:
+          type: boolean
+        protocols:
+          type: array
+          items:
+            type: string
+        plugins:
+          type: array
+          items:
+            type: string
+        status:
+          type: string
+          enum: [active, inactive]
+    Service:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        type:
+          type: string
+          enum: [serverless, workflow, table, proxy]
+          description: The type of backend service
+        url:
+          type: string
+          format: uri
+          description: Target URL for proxy services
+        retries:
+          type: integer
+          description: Number of retries on failure
+        connectTimeout:
+          type: integer
+          description: Connection timeout in milliseconds
+        readTimeout:
+          type: integer
+          description: Read timeout in milliseconds
+        writeTimeout:
+          type: integer
+          description: Write timeout in milliseconds
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    ServiceInput:
+      type: object
+      required:
+        - name
+        - type
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        type:
+          type: string
+          enum: [serverless, workflow, table, proxy]
+        url:
+          type: string
+          format: uri
+        retries:
+          type: integer
+        connectTimeout:
+          type: integer
+        readTimeout:
+          type: integer
+        writeTimeout:
+          type: integer
+    Plugin:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+          enum:
+            - authentication
+            - transformation
+            - rate-limiting
+            - logging
+            - security
+            - cors
+            - custom
+        enabled:
+          type: boolean
+        config:
+          type: object
+          additionalProperties: true
+          description: Plugin-specific configuration
+        routeId:
+          type: string
+          description: Optional route this plugin is scoped to
+        serviceId:
+          type: string
+          description: Optional service this plugin is scoped to
+        createdAt:
+          type: string
+          format: date-time
+    PluginInput:
+      type: object
+      required:
+        - name
+        - type
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+        enabled:
+          type: boolean
+          default: true
+        config:
+          type: object
+          additionalProperties: true
+        routeId:
+          type: string
+        serviceId:
+          type: string
+    Consumer:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        email:
+          type: string
+          format: email
+        credentials:
+          type: array
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+                enum: [api-key, oauth2, jwt, basic-auth]
+              key:
+                type: string
+        tags:
+          type: array
+          items:
+            type: string
+        createdAt:
+          type: string
+          format: date-time
+    ConsumerInput:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+          format: email
+        tags:
+          type: array
+          items:
+            type: string
+    Certificate:
+      type: object
+      properties:
+        id:
+          type: string
+        snis:
+          type: array
+          items:
+            type: string
+          description: Server Name Indications for this certificate
+        cert:
+          type: string
+          description: PEM-encoded certificate
+        status:
+          type: string
+          enum: [active, expired, revoked]
+        expiresAt:
+          type: string
+          format: date-time
+        createdAt:
+          type: string
+          format: date-time
+    CertificateInput:
+      type: object
+      required:
+        - cert
+        - key
+      properties:
+        cert:
+          type: string
+        key:
+          type: string
+        snis:
+          type: array
+          items:
+            type: string
+    Pagination:
+      type: object
+      properties:
+        page:
+          type: integer
+        limit:
+          type: integer
+        total:
+          type: integer
+        totalPages:
+          type: integer
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        details:
+          type: string
+  responses:
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'

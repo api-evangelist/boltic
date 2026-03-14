@@ -1,0 +1,133 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/boltic/refs/heads/main/json-schema/boltic-workflow.json",
+  "title": "Boltic Workflow",
+  "description": "A Boltic automation workflow consisting of triggers, nodes, and execution configuration for orchestrating tasks across integrations.",
+  "type": "object",
+  "required": ["id", "name", "status", "trigger"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the workflow"
+    },
+    "name": {
+      "type": "string",
+      "description": "Human-readable name for the workflow"
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of what the workflow does"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["active", "inactive", "draft"],
+      "description": "Current status of the workflow"
+    },
+    "trigger": {
+      "$ref": "#/$defs/trigger"
+    },
+    "nodes": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/node"
+      },
+      "description": "Ordered list of action nodes in the workflow"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Tags for categorizing the workflow"
+    },
+    "executionCount": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Total number of times this workflow has been executed"
+    },
+    "lastExecutedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp of the last execution"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "$defs": {
+    "trigger": {
+      "type": "object",
+      "required": ["type"],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "enum": ["http", "schedule", "webhook", "copilot", "table-change", "manual"],
+          "description": "Type of trigger that initiates the workflow"
+        },
+        "config": {
+          "type": "object",
+          "additionalProperties": true,
+          "description": "Trigger-specific configuration"
+        },
+        "methods": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["GET", "POST", "PUT", "DELETE"]
+          },
+          "description": "HTTP methods for HTTP triggers"
+        }
+      }
+    },
+    "node": {
+      "type": "object",
+      "required": ["type", "name"],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "enum": ["integration", "transformation", "destination", "condition", "loop", "ai"],
+          "description": "Type of workflow node"
+        },
+        "name": {
+          "type": "string"
+        },
+        "integrationId": {
+          "type": "string",
+          "description": "Reference to the integration this node uses"
+        },
+        "config": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "position": {
+          "type": "object",
+          "properties": {
+            "x": { "type": "number" },
+            "y": { "type": "number" }
+          }
+        },
+        "connections": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "targetNodeId": { "type": "string" },
+              "condition": { "type": "string" }
+            }
+          }
+        }
+      }
+    }
+  }
+}

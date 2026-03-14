@@ -1,0 +1,78 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "boltic": "https://www.boltic.io/ns/",
+    "id": "@id",
+    "type": "@type",
+    "Workflow": "boltic:Workflow",
+    "Table": "boltic:Table",
+    "Pipe": "boltic:Pipe",
+    "Route": "boltic:Route",
+    "StreamEvent": "boltic:StreamEvent",
+    "Service": "boltic:Service",
+    "Plugin": "boltic:Plugin",
+    "Consumer": "boltic:Consumer",
+    "Execution": "boltic:Execution",
+    "SyncRun": "boltic:SyncRun",
+    "StreamSource": "boltic:StreamSource",
+    "name": "schema:name",
+    "description": "schema:description",
+    "status": "boltic:status",
+    "createdAt": {
+      "@id": "schema:dateCreated",
+      "@type": "schema:DateTime"
+    },
+    "updatedAt": {
+      "@id": "schema:dateModified",
+      "@type": "schema:DateTime"
+    },
+    "trigger": "boltic:trigger",
+    "nodes": "boltic:nodes",
+    "columns": "boltic:columns",
+    "source": "boltic:source",
+    "destination": "boltic:destination",
+    "schedule": "boltic:schedule",
+    "paths": "boltic:paths",
+    "methods": "boltic:methods",
+    "serviceId": {
+      "@id": "boltic:serviceId",
+      "@type": "@id"
+    },
+    "workflowId": {
+      "@id": "boltic:workflowId",
+      "@type": "@id"
+    },
+    "pipeId": {
+      "@id": "boltic:pipeId",
+      "@type": "@id"
+    },
+    "sourceId": {
+      "@id": "boltic:sourceId",
+      "@type": "@id"
+    },
+    "integrationId": {
+      "@id": "boltic:integrationId",
+      "@type": "@id"
+    },
+    "tags": "schema:keywords",
+    "url": {
+      "@id": "schema:url",
+      "@type": "@id"
+    },
+    "email": "schema:email",
+    "userId": "boltic:userId",
+    "anonymousId": "boltic:anonymousId",
+    "timestamp": {
+      "@id": "boltic:timestamp",
+      "@type": "schema:DateTime"
+    },
+    "executionCount": "boltic:executionCount",
+    "rowsSynced": "boltic:rowsSynced",
+    "rowCount": "boltic:rowCount",
+    "duration": "boltic:duration",
+    "config": "boltic:config",
+    "properties": "boltic:properties",
+    "frequency": "boltic:frequency",
+    "cronExpression": "boltic:cronExpression"
+  }
+}

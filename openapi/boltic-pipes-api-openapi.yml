@@ -1,0 +1,468 @@
+openapi: 3.0.3
+info:
+  title: Boltic Pipes API
+  description: >-
+    The Boltic Pipes API provides programmatic access to data synchronization
+    pipelines that connect data sources to destinations. Pipes enable real-time
+    data syncing across systems via automated pipelines with zero maintenance.
+    Sources include databases (MongoDB, MySQL, PostgreSQL), SaaS applications
+    via API endpoints, and file storage. The API supports configurable sync
+    frequencies including minutely, hourly, and daily schedules.
+  version: 1.0.0
+  contact:
+    name: Boltic
+    url: https://www.boltic.io
+  license:
+    name: Proprietary
+    url: https://www.boltic.io/terms
+servers:
+  - url: https://api.boltic.io/v1
+    description: Boltic Pipes API
+security:
+  - bearerAuth: []
+tags:
+  - name: Pipes
+    description: Manage data synchronization pipelines
+  - name: Sources
+    description: Manage data sources
+  - name: Destinations
+    description: Manage data destinations
+  - name: Sync Runs
+    description: Monitor and manage sync executions
+paths:
+  /pipes:
+    get:
+      operationId: listPipes
+      summary: List all pipes
+      description: Retrieve a list of all data synchronization pipelines.
+      tags:
+        - Pipes
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 1
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 20
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum: [active, paused, error]
+      responses:
+        '200':
+          description: A list of pipes
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Pipe'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+    post:
+      operationId: createPipe
+      summary: Create a new pipe
+      description: Create a new data synchronization pipeline between a source and destination.
+      tags:
+        - Pipes
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PipeInput'
+      responses:
+        '201':
+          description: Pipe created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pipe'
+  /pipes/{pipeId}:
+    get:
+      operationId: getPipe
+      summary: Get a pipe by ID
+      tags:
+        - Pipes
+      parameters:
+        - name: pipeId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Pipe details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pipe'
+    put:
+      operationId: updatePipe
+      summary: Update a pipe
+      tags:
+        - Pipes
+      parameters:
+        - name: pipeId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PipeInput'
+      responses:
+        '200':
+          description: Pipe updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pipe'
+    delete:
+      operationId: deletePipe
+      summary: Delete a pipe
+      tags:
+        - Pipes
+      parameters:
+        - name: pipeId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Pipe deleted
+  /pipes/{pipeId}/trigger:
+    post:
+      operationId: triggerSync
+      summary: Trigger a manual sync
+      description: Initiate an immediate data synchronization run for a pipe.
+      tags:
+        - Pipes
+      parameters:
+        - name: pipeId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '202':
+          description: Sync triggered
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SyncRun'
+  /pipes/{pipeId}/pause:
+    post:
+      operationId: pausePipe
+      summary: Pause a pipe
+      tags:
+        - Pipes
+      parameters:
+        - name: pipeId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Pipe paused
+  /pipes/{pipeId}/resume:
+    post:
+      operationId: resumePipe
+      summary: Resume a paused pipe
+      tags:
+        - Pipes
+      parameters:
+        - name: pipeId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Pipe resumed
+  /pipes/{pipeId}/runs:
+    get:
+      operationId: listSyncRuns
+      summary: List sync runs for a pipe
+      description: Retrieve the sync execution history for a pipe.
+      tags:
+        - Sync Runs
+      parameters:
+        - name: pipeId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 1
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 20
+      responses:
+        '200':
+          description: A list of sync runs
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/SyncRun'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+  /sources:
+    get:
+      operationId: listSources
+      summary: List available source types
+      tags:
+        - Sources
+      responses:
+        '200':
+          description: A list of source types
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/SourceType'
+  /destinations:
+    get:
+      operationId: listDestinations
+      summary: List available destination types
+      tags:
+        - Destinations
+      responses:
+        '200':
+          description: A list of destination types
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/DestinationType'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    Pipe:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        status:
+          type: string
+          enum: [active, paused, error]
+        source:
+          $ref: '#/components/schemas/SourceConfig'
+        destination:
+          $ref: '#/components/schemas/DestinationConfig'
+        schedule:
+          $ref: '#/components/schemas/Schedule'
+        lastSyncAt:
+          type: string
+          format: date-time
+        rowsSynced:
+          type: integer
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    PipeInput:
+      type: object
+      required:
+        - name
+        - source
+        - destination
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        source:
+          $ref: '#/components/schemas/SourceConfig'
+        destination:
+          $ref: '#/components/schemas/DestinationConfig'
+        schedule:
+          $ref: '#/components/schemas/Schedule'
+    SourceConfig:
+      type: object
+      properties:
+        type:
+          type: string
+          description: Source type identifier (e.g., mongodb, mysql, postgresql, rest-api)
+        connectionConfig:
+          type: object
+          additionalProperties: true
+          description: Connection parameters specific to the source type
+        rootPath:
+          type: string
+          description: Root path for REST API data extraction
+        authType:
+          type: string
+          enum: [none, basic, bearer, oauth2, api-key]
+        authConfig:
+          type: object
+          additionalProperties: true
+    DestinationConfig:
+      type: object
+      properties:
+        type:
+          type: string
+          description: Destination type identifier
+        connectionConfig:
+          type: object
+          additionalProperties: true
+        mappings:
+          type: array
+          items:
+            type: object
+            properties:
+              sourceField:
+                type: string
+              destinationField:
+                type: string
+              transformation:
+                type: string
+    Schedule:
+      type: object
+      properties:
+        frequency:
+          type: string
+          enum: [minutely, hourly, daily, weekly, monthly, custom]
+        interval:
+          type: integer
+          description: Interval value for the frequency
+        cronExpression:
+          type: string
+          description: Cron expression for custom schedules
+        timezone:
+          type: string
+    SyncRun:
+      type: object
+      properties:
+        id:
+          type: string
+        pipeId:
+          type: string
+        status:
+          type: string
+          enum: [running, completed, failed, cancelled]
+        rowsSynced:
+          type: integer
+        rowsFailed:
+          type: integer
+        startedAt:
+          type: string
+          format: date-time
+        completedAt:
+          type: string
+          format: date-time
+        duration:
+          type: integer
+          description: Duration in milliseconds
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+            code:
+              type: string
+    SourceType:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        category:
+          type: string
+          enum: [database, saas, file-storage, api]
+        icon:
+          type: string
+          format: uri
+    DestinationType:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        category:
+          type: string
+        icon:
+          type: string
+          format: uri
+    Pagination:
+      type: object
+      properties:
+        page:
+          type: integer
+        limit:
+          type: integer
+        total:
+          type: integer
+        totalPages:
+          type: integer
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        details:
+          type: string
+  responses:
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'

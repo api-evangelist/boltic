@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/boltic/refs/heads/main/json-schema/boltic-route.json",
+  "title": "Boltic Gateway Route",
+  "description": "A route in the Boltic Gateway that defines how incoming API requests are matched and forwarded to backend services.",
+  "type": "object",
+  "required": ["id", "name", "paths", "serviceId"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the route"
+    },
+    "name": {
+      "type": "string",
+      "description": "Human-readable name for the route"
+    },
+    "methods": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS", "HEAD"]
+      },
+      "description": "HTTP methods this route responds to"
+    },
+    "paths": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "URL paths that match this route"
+    },
+    "serviceId": {
+      "type": "string",
+      "description": "ID of the backend service to route to"
+    },
+    "stripPath": {
+      "type": "boolean",
+      "description": "Whether to strip the matched path prefix before forwarding"
+    },
+    "preserveHost": {
+      "type": "boolean",
+      "description": "Whether to preserve the original Host header"
+    },
+    "protocols": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["http", "https"]
+      }
+    },
+    "plugins": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of plugin IDs applied to this route"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["active", "inactive"]
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

@@ -1,0 +1,129 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/boltic/refs/heads/main/json-schema/boltic-pipe.json",
+  "title": "Boltic Pipe",
+  "description": "A Boltic Pipe is a data synchronization pipeline that connects a data source to a destination with configurable scheduling and field mappings.",
+  "type": "object",
+  "required": ["id", "name", "source", "destination"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the pipe"
+    },
+    "name": {
+      "type": "string",
+      "description": "Human-readable name for the pipe"
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of the data sync pipeline"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["active", "paused", "error"],
+      "description": "Current status of the pipe"
+    },
+    "source": {
+      "$ref": "#/$defs/sourceConfig"
+    },
+    "destination": {
+      "$ref": "#/$defs/destinationConfig"
+    },
+    "schedule": {
+      "$ref": "#/$defs/schedule"
+    },
+    "lastSyncAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp of the last successful sync"
+    },
+    "rowsSynced": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Total rows synced since creation"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "$defs": {
+    "sourceConfig": {
+      "type": "object",
+      "required": ["type"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Source type (e.g., mongodb, mysql, postgresql, rest-api)"
+        },
+        "connectionConfig": {
+          "type": "object",
+          "additionalProperties": true,
+          "description": "Connection parameters specific to the source type"
+        },
+        "rootPath": {
+          "type": "string",
+          "description": "Root path for REST API data extraction"
+        },
+        "authType": {
+          "type": "string",
+          "enum": ["none", "basic", "bearer", "oauth2", "api-key"]
+        },
+        "authConfig": {
+          "type": "object",
+          "additionalProperties": true
+        }
+      }
+    },
+    "destinationConfig": {
+      "type": "object",
+      "required": ["type"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Destination type identifier"
+        },
+        "connectionConfig": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "mappings": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "sourceField": { "type": "string" },
+              "destinationField": { "type": "string" },
+              "transformation": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "schedule": {
+      "type": "object",
+      "properties": {
+        "frequency": {
+          "type": "string",
+          "enum": ["minutely", "hourly", "daily", "weekly", "monthly", "custom"]
+        },
+        "interval": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Interval value for the frequency"
+        },
+        "cronExpression": {
+          "type": "string",
+          "description": "Cron expression for custom schedules"
+        },
+        "timezone": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

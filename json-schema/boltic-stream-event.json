@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/boltic/refs/heads/main/json-schema/boltic-stream-event.json",
+  "title": "Boltic Stream Event",
+  "description": "An event in the Boltic Streams real-time event streaming system, representing a tracked action from a website, mobile app, or server.",
+  "type": "object",
+  "required": ["sourceId", "type"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the event"
+    },
+    "sourceId": {
+      "type": "string",
+      "description": "ID of the stream source that received the event"
+    },
+    "type": {
+      "type": "string",
+      "description": "Event type name (e.g., page_view, purchase, signup)"
+    },
+    "properties": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "Custom event properties"
+    },
+    "context": {
+      "type": "object",
+      "properties": {
+        "ip": {
+          "type": "string",
+          "format": "ipv4"
+        },
+        "userAgent": {
+          "type": "string"
+        },
+        "locale": {
+          "type": "string"
+        },
+        "page": {
+          "type": "object",
+          "properties": {
+            "url": {
+              "type": "string",
+              "format": "uri"
+            },
+            "title": {
+              "type": "string"
+            },
+            "referrer": {
+              "type": "string",
+              "format": "uri"
+            }
+          }
+        }
+      },
+      "description": "Contextual information about the event"
+    },
+    "userId": {
+      "type": "string",
+      "description": "Identified user ID"
+    },
+    "anonymousId": {
+      "type": "string",
+      "description": "Anonymous user identifier"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Client-side timestamp of when the event occurred"
+    },
+    "receivedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Server-side timestamp of when the event was received"
+    }
+  }
+}

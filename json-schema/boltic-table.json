@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/boltic/refs/heads/main/json-schema/boltic-table.json",
+  "title": "Boltic Table",
+  "description": "A Boltic Table is a no-code database entity for storing and managing structured data with a defined column schema.",
+  "type": "object",
+  "required": ["id", "name", "columns"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the table"
+    },
+    "name": {
+      "type": "string",
+      "description": "Human-readable name for the table"
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of the table's purpose"
+    },
+    "columns": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/column"
+      },
+      "description": "Schema definition of the table columns"
+    },
+    "rowCount": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Number of rows in the table"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "$defs": {
+    "column": {
+      "type": "object",
+      "required": ["name", "type"],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string",
+          "description": "Column name"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "text",
+            "number",
+            "boolean",
+            "date",
+            "datetime",
+            "email",
+            "url",
+            "select",
+            "multi-select",
+            "attachment",
+            "relation"
+          ],
+          "description": "Data type of the column"
+        },
+        "required": {
+          "type": "boolean",
+          "default": false,
+          "description": "Whether the column requires a value"
+        },
+        "defaultValue": {
+          "type": "string",
+          "description": "Default value for the column"
+        },
+        "options": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Options for select and multi-select column types"
+        }
+      }
+    }
+  }
+}
