@@ -22,12 +22,12 @@ servers:
 security:
   - bearerAuth: []
 tags:
-  - name: Stream Sources
-    description: Manage stream sources for event ingestion
-  - name: Events
-    description: Send and query events
   - name: Destinations
     description: Manage stream destinations for event delivery
+  - name: Events
+    description: Send and query events
+  - name: Stream Sources
+    description: Manage stream sources for event ingestion
 paths:
   /streams/sources:
     get:

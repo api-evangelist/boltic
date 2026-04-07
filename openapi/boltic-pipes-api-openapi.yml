@@ -21,12 +21,12 @@ servers:
 security:
   - bearerAuth: []
 tags:
+  - name: Destinations
+    description: Manage data destinations
   - name: Pipes
     description: Manage data synchronization pipelines
   - name: Sources
     description: Manage data sources
-  - name: Destinations
-    description: Manage data destinations
   - name: Sync Runs
     description: Monitor and manage sync executions
 paths:

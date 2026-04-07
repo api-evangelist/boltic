@@ -22,12 +22,12 @@ servers:
 security:
   - bearerAuth: []
 tags:
-  - name: Workflows
-    description: Create and manage automation workflows
   - name: Executions
     description: Track and manage workflow executions
   - name: Triggers
     description: Manage workflow triggers
+  - name: Workflows
+    description: Create and manage automation workflows
 paths:
   /workflows:
     get:

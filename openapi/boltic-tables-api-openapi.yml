@@ -21,12 +21,12 @@ servers:
 security:
   - bearerAuth: []
 tags:
-  - name: Tables
-    description: Manage tables and their schemas
-  - name: Rows
-    description: Create, read, update, and delete table rows
   - name: Queries
     description: Execute SQL queries against tables
+  - name: Rows
+    description: Create, read, update, and delete table rows
+  - name: Tables
+    description: Manage tables and their schemas
 paths:
   /tables:
     get:

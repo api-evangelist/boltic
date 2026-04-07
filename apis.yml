@@ -6,9 +6,9 @@ apis:
     name: Boltic Gateway API
     tags:
       - Gateways
+      - Plugins
       - Routing
       - Security
-      - Plugins
     humanURL: https://docs.boltic.io/gateway/intro/
     properties:
       - url: https://docs.boltic.io/gateway/intro/
@@ -28,10 +28,10 @@ apis:
   - aid: boltic:workflow-api
     name: Boltic Workflow API
     tags:
-      - Workflows
       - Automation
-      - Triggers
       - Integrations
+      - Triggers
+      - Workflows
     humanURL: https://www.boltic.io/products/workflow
     properties:
       - url: https://docs.boltic.io/
@@ -50,10 +50,10 @@ apis:
   - aid: boltic:tables-api
     name: Boltic Tables API
     tags:
-      - Databases
-      - Tables
       - CRUD
+      - Databases
       - NoCode
+      - Tables
     humanURL: https://www.boltic.io/products/boltic-tables
     properties:
       - url: https://docs.boltic.io/docs/workflow-builder/activities/tables/
@@ -73,9 +73,9 @@ apis:
     name: Boltic Pipes API
     tags:
       - DataSync
-      - Pipelines
       - ETL
       - Integration
+      - Pipelines
     humanURL: https://docs.boltic.io/docs/pipes/pipe-creation/
     properties:
       - url: https://docs.boltic.io/docs/pipes/pipe-creation/
@@ -95,10 +95,10 @@ apis:
   - aid: boltic:streams-api
     name: Boltic Streams API
     tags:
-      - Streaming
+      - Analytics
       - Events
       - RealTime
-      - Analytics
+      - Streaming
     humanURL: https://www.boltic.io/products/streams
     properties:
       - url: https://docs.boltic.io/docs/streams/intro/
@@ -115,12 +115,12 @@ apis:
       real-time data processing for actionable insights.
 name: Boltic
 tags:
-  - Workflows
   - Automation
-  - Gateways
   - DataSync
-  - Streaming
+  - Gateways
   - NoCode
+  - Streaming
+  - Workflows
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 access: 3rd-Party

@@ -22,16 +22,14 @@ servers:
 security:
   - bearerAuth: []
 tags:
-  - name: Routes
-    description: Manage API routes and request routing rules
-  - name: Services
-    description: Manage backend service configurations
-  - name: Plugins
-    description: Manage gateway plugins for transformation and security
-  - name: Consumers
-    description: Manage API consumers and access credentials
   - name: Certificates
     description: Manage SSL/TLS certificates
+  - name: Consumers
+    description: Manage API consumers and access credentials
+  - name: Plugins
+    description: Manage gateway plugins for transformation and security
+  - name: Routes
+    description: Manage API routes and request routing rules
 paths:
   /routes:
     get:
@@ -161,8 +159,7 @@ paths:
       operationId: listServices
       summary: Boltic List all services
       description: Retrieve a list of all backend services configured in the gateway.
-      tags:
-        - Services
+      tags: []
       parameters:
         - name: page
           in: query
@@ -192,8 +189,7 @@ paths:
       operationId: createService
       summary: Boltic Create a new service
       description: Register a new backend service in the gateway.
-      tags:
-        - Services
+      tags: []
       requestBody:
         required: true
         content:
@@ -211,8 +207,7 @@ paths:
     get:
       operationId: getService
       summary: Boltic Get a service by ID
-      tags:
-        - Services
+      tags: []
       parameters:
         - name: serviceId
           in: path
@@ -229,8 +224,7 @@ paths:
     put:
       operationId: updateService
       summary: Boltic Update a service
-      tags:
-        - Services
+      tags: []
       parameters:
         - name: serviceId
           in: path
@@ -253,8 +247,7 @@ paths:
     delete:
       operationId: deleteService
       summary: Boltic Delete a service
-      tags:
-        - Services
+      tags: []
       parameters:
         - name: serviceId
           in: path
