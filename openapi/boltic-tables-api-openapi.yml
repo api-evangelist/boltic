@@ -31,7 +31,7 @@ paths:
   /tables:
     get:
       operationId: listTables
-      summary: List all tables
+      summary: Boltic List all tables
       description: Retrieve a list of all tables in the workspace.
       tags:
         - Tables
@@ -62,7 +62,7 @@ paths:
                     $ref: '#/components/schemas/Pagination'
     post:
       operationId: createTable
-      summary: Create a new table
+      summary: Boltic Create a new table
       description: Create a new table with a defined schema of columns.
       tags:
         - Tables
@@ -84,7 +84,7 @@ paths:
   /tables/{tableId}:
     get:
       operationId: getTable
-      summary: Get a table by ID
+      summary: Boltic Get a table by ID
       description: Retrieve table metadata and schema.
       tags:
         - Tables
@@ -105,7 +105,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     put:
       operationId: updateTable
-      summary: Update a table
+      summary: Boltic Update a table
       description: Update table metadata or schema definition.
       tags:
         - Tables
@@ -130,7 +130,7 @@ paths:
                 $ref: '#/components/schemas/Table'
     delete:
       operationId: deleteTable
-      summary: Delete a table
+      summary: Boltic Delete a table
       tags:
         - Tables
       parameters:
@@ -145,7 +145,7 @@ paths:
   /tables/{tableId}/rows:
     get:
       operationId: listRows
-      summary: List rows in a table
+      summary: Boltic List rows in a table
       description: Retrieve rows from a table with optional filtering and sorting.
       tags:
         - Rows
@@ -197,7 +197,7 @@ paths:
                     $ref: '#/components/schemas/Pagination'
     post:
       operationId: createRow
-      summary: Add a new row
+      summary: Boltic Add a new row
       description: Insert a new row into the table.
       tags:
         - Rows
@@ -223,7 +223,7 @@ paths:
   /tables/{tableId}/rows/{rowId}:
     get:
       operationId: getRow
-      summary: Get a row by ID
+      summary: Boltic Get a row by ID
       tags:
         - Rows
       parameters:
@@ -246,7 +246,7 @@ paths:
                 $ref: '#/components/schemas/Row'
     put:
       operationId: updateRow
-      summary: Update a row
+      summary: Boltic Update a row
       description: Modify an existing row in the table.
       tags:
         - Rows
@@ -276,7 +276,7 @@ paths:
                 $ref: '#/components/schemas/Row'
     delete:
       operationId: deleteRow
-      summary: Delete a row
+      summary: Boltic Delete a row
       tags:
         - Rows
       parameters:
@@ -296,7 +296,7 @@ paths:
   /tables/{tableId}/query:
     post:
       operationId: queryTable
-      summary: Execute a SQL query
+      summary: Boltic Execute a SQL query
       description: >-
         Run a DML query against the table using the built-in SQL editor.
         Supports AI-powered natural language to SQL generation.

@@ -169,22 +169,11 @@ created: '2026-01-02'
 modified: '2026-03-14'
 position: Consuming
 description: >-
-  Boltic is an AI workflow automation platform that helps businesses streamline
-  operations across customer support, finance, product, and marketing functions.
-  The platform enables companies to build autonomous AI agents, create no-code
-  workflows with drag-and-drop functionality, and connect with over 500
-  integrations including major tools like Salesforce, HubSpot, Shopify, and
-  Google BigQuery. Boltic offers a comprehensive suite of features including
-  an API gateway for service routing and security, serverless computing,
-  real-time data syncing through pipes, event streaming, built-in databases
-  for structured data management, and MCP servers for live AI context and
-  actions. With support for leading AI providers like Perplexity, Hugging Face,
-  Meta, and DeepSeek, the platform has executed over 474 million workflows with
-  99% agentic accuracy, particularly serving industries like retail and
-  e-commerce, healthcare, financial services, and B2B. The platform is
-  enterprise-ready with SOC 2 Type II certification, GDPR compliance,
-  multi-region servers, and a strict policy of never training AI models on
-  customer data.
+  Boltic is an AI workflow automation platform that helps businesses streamline operations
+  across customer support, finance, product, and marketing functions. The platform
+  enables companies to build autonomous AI agents, create no-code workflows with drag-and-drop
+  functionality, and connect with over 500 integrations including major tools like
+  Salesforce, HubSpot, Shopify, and Google BigQuery.
 maintainers:
   - FN: Kin Lane
     email: info@apievangelist.com

@@ -32,7 +32,7 @@ paths:
   /streams/sources:
     get:
       operationId: listStreamSources
-      summary: List all stream sources
+      summary: Boltic List all stream sources
       description: Retrieve a list of all configured stream sources.
       tags:
         - Stream Sources
@@ -50,7 +50,7 @@ paths:
                       $ref: '#/components/schemas/StreamSource'
     post:
       operationId: createStreamSource
-      summary: Create a new stream source
+      summary: Boltic Create a new stream source
       description: Create a new source for ingesting events into the stream.
       tags:
         - Stream Sources
@@ -70,7 +70,7 @@ paths:
   /streams/sources/{sourceId}:
     get:
       operationId: getStreamSource
-      summary: Get a stream source by ID
+      summary: Boltic Get a stream source by ID
       tags:
         - Stream Sources
       parameters:
@@ -88,7 +88,7 @@ paths:
                 $ref: '#/components/schemas/StreamSource'
     delete:
       operationId: deleteStreamSource
-      summary: Delete a stream source
+      summary: Boltic Delete a stream source
       tags:
         - Stream Sources
       parameters:
@@ -103,7 +103,7 @@ paths:
   /streams/sources/{sourceId}/debug:
     get:
       operationId: debugStreamSource
-      summary: Debug a stream source
+      summary: Boltic Debug a stream source
       description: >-
         Access the source debugger to confirm that API calls from your website,
         mobile app, or servers are arriving at the stream source.
@@ -140,7 +140,7 @@ paths:
   /streams/events:
     post:
       operationId: sendEvent
-      summary: Send an event
+      summary: Boltic Send an event
       description: Send a custom event to a stream source for processing.
       tags:
         - Events
@@ -165,7 +165,7 @@ paths:
                     enum: [accepted]
     get:
       operationId: queryEvents
-      summary: Query events
+      summary: Boltic Query events
       description: >-
         Query and analyze events using the event analysis dashboard for
         monitoring event flows.
@@ -226,7 +226,7 @@ paths:
   /streams/destinations:
     get:
       operationId: listStreamDestinations
-      summary: List stream destinations
+      summary: Boltic List stream destinations
       tags:
         - Destinations
       responses:
@@ -243,7 +243,7 @@ paths:
                       $ref: '#/components/schemas/StreamDestination'
     post:
       operationId: createStreamDestination
-      summary: Create a stream destination
+      summary: Boltic Create a stream destination
       description: Configure a destination for delivering stream events.
       tags:
         - Destinations

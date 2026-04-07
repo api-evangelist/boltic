@@ -32,7 +32,7 @@ paths:
   /workflows:
     get:
       operationId: listWorkflows
-      summary: List all workflows
+      summary: Boltic List all workflows
       description: Retrieve a paginated list of all workflows in the workspace.
       tags:
         - Workflows
@@ -70,7 +70,7 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     post:
       operationId: createWorkflow
-      summary: Create a new workflow
+      summary: Boltic Create a new workflow
       description: >-
         Create a new automation workflow with triggers, actions, and
         configuration.
@@ -94,7 +94,7 @@ paths:
   /workflows/{workflowId}:
     get:
       operationId: getWorkflow
-      summary: Get a workflow by ID
+      summary: Boltic Get a workflow by ID
       description: Retrieve the full configuration and status of a specific workflow.
       tags:
         - Workflows
@@ -115,7 +115,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     put:
       operationId: updateWorkflow
-      summary: Update a workflow
+      summary: Boltic Update a workflow
       description: Update the configuration of an existing workflow.
       tags:
         - Workflows
@@ -140,7 +140,7 @@ paths:
                 $ref: '#/components/schemas/Workflow'
     delete:
       operationId: deleteWorkflow
-      summary: Delete a workflow
+      summary: Boltic Delete a workflow
       tags:
         - Workflows
       parameters:
@@ -155,7 +155,7 @@ paths:
   /workflows/{workflowId}/execute:
     post:
       operationId: executeWorkflow
-      summary: Execute a workflow
+      summary: Boltic Execute a workflow
       description: >-
         Trigger immediate execution of a workflow. Supports synchronous
         execution that waits for the workflow to complete before returning
@@ -204,7 +204,7 @@ paths:
   /workflows/{workflowId}/activate:
     post:
       operationId: activateWorkflow
-      summary: Activate a workflow
+      summary: Boltic Activate a workflow
       description: Enable a workflow so it responds to triggers.
       tags:
         - Workflows
@@ -224,7 +224,7 @@ paths:
   /workflows/{workflowId}/deactivate:
     post:
       operationId: deactivateWorkflow
-      summary: Deactivate a workflow
+      summary: Boltic Deactivate a workflow
       description: Disable a workflow so it stops responding to triggers.
       tags:
         - Workflows
@@ -244,7 +244,7 @@ paths:
   /workflows/{workflowId}/executions:
     get:
       operationId: listExecutions
-      summary: List workflow executions
+      summary: Boltic List workflow executions
       description: Retrieve execution history for a specific workflow.
       tags:
         - Executions
@@ -286,7 +286,7 @@ paths:
   /executions/{executionId}:
     get:
       operationId: getExecution
-      summary: Get execution details
+      summary: Boltic Get execution details
       description: Retrieve details and results of a specific workflow execution.
       tags:
         - Executions
@@ -306,7 +306,7 @@ paths:
   /executions/{executionId}/cancel:
     post:
       operationId: cancelExecution
-      summary: Cancel an execution
+      summary: Boltic Cancel an execution
       description: Cancel a running workflow execution.
       tags:
         - Executions
@@ -326,7 +326,7 @@ paths:
   /triggers:
     get:
       operationId: listTriggers
-      summary: List available triggers
+      summary: Boltic List available triggers
       description: Retrieve a list of all available trigger types.
       tags:
         - Triggers

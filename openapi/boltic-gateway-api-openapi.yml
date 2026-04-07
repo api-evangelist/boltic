@@ -36,7 +36,7 @@ paths:
   /routes:
     get:
       operationId: listRoutes
-      summary: List all routes
+      summary: Boltic List all routes
       description: Retrieve a list of all configured API routes in the gateway.
       tags:
         - Routes
@@ -69,7 +69,7 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     post:
       operationId: createRoute
-      summary: Create a new route
+      summary: Boltic Create a new route
       description: Create a new API route with specified routing rules and target service.
       tags:
         - Routes
@@ -93,7 +93,7 @@ paths:
   /routes/{routeId}:
     get:
       operationId: getRoute
-      summary: Get a route by ID
+      summary: Boltic Get a route by ID
       description: Retrieve details of a specific route.
       tags:
         - Routes
@@ -114,7 +114,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     put:
       operationId: updateRoute
-      summary: Update a route
+      summary: Boltic Update a route
       description: Update the configuration of an existing route.
       tags:
         - Routes
@@ -141,7 +141,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     delete:
       operationId: deleteRoute
-      summary: Delete a route
+      summary: Boltic Delete a route
       description: Remove an existing route from the gateway.
       tags:
         - Routes
@@ -159,7 +159,7 @@ paths:
   /services:
     get:
       operationId: listServices
-      summary: List all services
+      summary: Boltic List all services
       description: Retrieve a list of all backend services configured in the gateway.
       tags:
         - Services
@@ -190,7 +190,7 @@ paths:
                     $ref: '#/components/schemas/Pagination'
     post:
       operationId: createService
-      summary: Create a new service
+      summary: Boltic Create a new service
       description: Register a new backend service in the gateway.
       tags:
         - Services
@@ -210,7 +210,7 @@ paths:
   /services/{serviceId}:
     get:
       operationId: getService
-      summary: Get a service by ID
+      summary: Boltic Get a service by ID
       tags:
         - Services
       parameters:
@@ -228,7 +228,7 @@ paths:
                 $ref: '#/components/schemas/Service'
     put:
       operationId: updateService
-      summary: Update a service
+      summary: Boltic Update a service
       tags:
         - Services
       parameters:
@@ -252,7 +252,7 @@ paths:
                 $ref: '#/components/schemas/Service'
     delete:
       operationId: deleteService
-      summary: Delete a service
+      summary: Boltic Delete a service
       tags:
         - Services
       parameters:
@@ -267,7 +267,7 @@ paths:
   /plugins:
     get:
       operationId: listPlugins
-      summary: List all plugins
+      summary: Boltic List all plugins
       description: Retrieve a list of all plugins configured in the gateway.
       tags:
         - Plugins
@@ -285,7 +285,7 @@ paths:
                       $ref: '#/components/schemas/Plugin'
     post:
       operationId: createPlugin
-      summary: Create a new plugin
+      summary: Boltic Create a new plugin
       description: Add a plugin to the gateway for transformation, security, or observability.
       tags:
         - Plugins
@@ -305,7 +305,7 @@ paths:
   /plugins/{pluginId}:
     get:
       operationId: getPlugin
-      summary: Get a plugin by ID
+      summary: Boltic Get a plugin by ID
       tags:
         - Plugins
       parameters:
@@ -323,7 +323,7 @@ paths:
                 $ref: '#/components/schemas/Plugin'
     put:
       operationId: updatePlugin
-      summary: Update a plugin
+      summary: Boltic Update a plugin
       tags:
         - Plugins
       parameters:
@@ -347,7 +347,7 @@ paths:
                 $ref: '#/components/schemas/Plugin'
     delete:
       operationId: deletePlugin
-      summary: Delete a plugin
+      summary: Boltic Delete a plugin
       tags:
         - Plugins
       parameters:
@@ -362,7 +362,7 @@ paths:
   /consumers:
     get:
       operationId: listConsumers
-      summary: List all consumers
+      summary: Boltic List all consumers
       description: Retrieve a list of all API consumers.
       tags:
         - Consumers
@@ -380,7 +380,7 @@ paths:
                       $ref: '#/components/schemas/Consumer'
     post:
       operationId: createConsumer
-      summary: Create a new consumer
+      summary: Boltic Create a new consumer
       tags:
         - Consumers
       requestBody:
@@ -399,7 +399,7 @@ paths:
   /consumers/{consumerId}:
     get:
       operationId: getConsumer
-      summary: Get a consumer by ID
+      summary: Boltic Get a consumer by ID
       tags:
         - Consumers
       parameters:
@@ -417,7 +417,7 @@ paths:
                 $ref: '#/components/schemas/Consumer'
     delete:
       operationId: deleteConsumer
-      summary: Delete a consumer
+      summary: Boltic Delete a consumer
       tags:
         - Consumers
       parameters:
@@ -432,7 +432,7 @@ paths:
   /certificates:
     get:
       operationId: listCertificates
-      summary: List all certificates
+      summary: Boltic List all certificates
       tags:
         - Certificates
       responses:
@@ -449,7 +449,7 @@ paths:
                       $ref: '#/components/schemas/Certificate'
     post:
       operationId: createCertificate
-      summary: Upload a new certificate
+      summary: Boltic Upload a new certificate
       tags:
         - Certificates
       requestBody:

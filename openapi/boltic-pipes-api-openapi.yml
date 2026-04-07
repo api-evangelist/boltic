@@ -33,7 +33,7 @@ paths:
   /pipes:
     get:
       operationId: listPipes
-      summary: List all pipes
+      summary: Boltic List all pipes
       description: Retrieve a list of all data synchronization pipelines.
       tags:
         - Pipes
@@ -69,7 +69,7 @@ paths:
                     $ref: '#/components/schemas/Pagination'
     post:
       operationId: createPipe
-      summary: Create a new pipe
+      summary: Boltic Create a new pipe
       description: Create a new data synchronization pipeline between a source and destination.
       tags:
         - Pipes
@@ -89,7 +89,7 @@ paths:
   /pipes/{pipeId}:
     get:
       operationId: getPipe
-      summary: Get a pipe by ID
+      summary: Boltic Get a pipe by ID
       tags:
         - Pipes
       parameters:
@@ -107,7 +107,7 @@ paths:
                 $ref: '#/components/schemas/Pipe'
     put:
       operationId: updatePipe
-      summary: Update a pipe
+      summary: Boltic Update a pipe
       tags:
         - Pipes
       parameters:
@@ -131,7 +131,7 @@ paths:
                 $ref: '#/components/schemas/Pipe'
     delete:
       operationId: deletePipe
-      summary: Delete a pipe
+      summary: Boltic Delete a pipe
       tags:
         - Pipes
       parameters:
@@ -146,7 +146,7 @@ paths:
   /pipes/{pipeId}/trigger:
     post:
       operationId: triggerSync
-      summary: Trigger a manual sync
+      summary: Boltic Trigger a manual sync
       description: Initiate an immediate data synchronization run for a pipe.
       tags:
         - Pipes
@@ -166,7 +166,7 @@ paths:
   /pipes/{pipeId}/pause:
     post:
       operationId: pausePipe
-      summary: Pause a pipe
+      summary: Boltic Pause a pipe
       tags:
         - Pipes
       parameters:
@@ -181,7 +181,7 @@ paths:
   /pipes/{pipeId}/resume:
     post:
       operationId: resumePipe
-      summary: Resume a paused pipe
+      summary: Boltic Resume a paused pipe
       tags:
         - Pipes
       parameters:
@@ -196,7 +196,7 @@ paths:
   /pipes/{pipeId}/runs:
     get:
       operationId: listSyncRuns
-      summary: List sync runs for a pipe
+      summary: Boltic List sync runs for a pipe
       description: Retrieve the sync execution history for a pipe.
       tags:
         - Sync Runs
@@ -233,7 +233,7 @@ paths:
   /sources:
     get:
       operationId: listSources
-      summary: List available source types
+      summary: Boltic List available source types
       tags:
         - Sources
       responses:
@@ -251,7 +251,7 @@ paths:
   /destinations:
     get:
       operationId: listDestinations
-      summary: List available destination types
+      summary: Boltic List available destination types
       tags:
         - Destinations
       responses:
