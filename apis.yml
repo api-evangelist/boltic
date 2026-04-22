@@ -166,7 +166,7 @@ common:
     url: json-ld/boltic-context.jsonld
     type: JSONLDContext
 created: '2026-01-02'
-modified: '2026-03-14'
+modified: '2026-04-19'
 position: Consuming
 description: >-
   Boltic is an AI workflow automation platform that helps businesses streamline operations
