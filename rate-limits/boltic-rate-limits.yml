@@ -4,7 +4,8 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Boltic
 providerId: boltic
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: false
 tags:
   - Automation
   - DataSync
@@ -13,98 +14,57 @@ tags:
   - Streaming
   - Workflows
   - Rate Limiting
-  - Quotas
-  - Throttling
-description: Machine-readable rate limit definitions for the Boltic API surface. Captures per-tier quotas,
-  burst behavior, response signaling, and recovery semantics. Defaults are scaffold values to be replaced
-  with published provider limits.
-headers:
-  limit: X-RateLimit-Limit
-  remaining: X-RateLimit-Remaining
-  reset: X-RateLimit-Reset
-  retryAfter: Retry-After
-  policy: RateLimit-Policy
+description: Boltic does not publish per-second or per-minute API rate limits in its public documentation
+  or pricing page. The principal published quota is the monthly workflow execution allowance per plan
+  tier. Consumers should treat the per-tier execution count as the binding constraint and apply standard
+  exponential backoff on any 429 or 503 responses.
+sources:
+  - https://www.boltic.io/pricing
+  - https://docs.boltic.io/
+notes: Boltic does not publish HTTP-level rate-limit numbers; documented quotas are monthly workflow executions
+  bound to subscription tier. Reconcile with provider once per-second / burst limits are published.
 responseCodes:
   throttled: 429
-  quotaExceeded: 429
   serviceUnavailable: 503
 limits:
-  - tier: free
-    name: Free Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 10
-    burst: 20
-    timeFrame: minute
-    applies:
-      - Boltic Gateway API
-      - Boltic Workflow API
-      - Boltic Tables API
-      - Boltic Pipes API
-      - Boltic Streams API
-  - tier: free
-    name: Free Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
+  - name: Free plan workflow executions
+    scope: account
+    metric: workflow_executions_per_month
     limit: 1000
     timeFrame: month
-    applies:
-      - Boltic Gateway API
-      - Boltic Workflow API
-      - Boltic Tables API
-      - Boltic Pipes API
-      - Boltic Streams API
-  - tier: professional
-    name: Professional Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 100
-    burst: 200
-    timeFrame: minute
-    applies:
-      - Boltic Gateway API
-      - Boltic Workflow API
-      - Boltic Tables API
-      - Boltic Pipes API
-      - Boltic Streams API
-  - tier: professional
-    name: Professional Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 100000
+    notes: Plan quota, not request rate. 30-day trial.
+  - name: Growth plan workflow executions
+    scope: account
+    metric: workflow_executions_per_month
+    limit: 3000
     timeFrame: month
-    applies:
-      - Boltic Gateway API
-      - Boltic Workflow API
-      - Boltic Tables API
-      - Boltic Pipes API
-      - Boltic Streams API
-  - tier: enterprise
-    name: Enterprise Negotiated Limit
-    scope: contract
-    metric: requests_per_minute
-    limit: 1000
-    burst: 5000
-    timeFrame: minute
-    applies:
-      - Boltic Gateway API
-      - Boltic Workflow API
-      - Boltic Tables API
-      - Boltic Pipes API
-      - Boltic Streams API
+  - name: Business plan workflow executions
+    scope: account
+    metric: workflow_executions_per_month
+    limit: 10000
+    timeFrame: month
+  - name: Enterprise plan workflow executions
+    scope: account
+    metric: workflow_executions_per_month
+    limit: 'custom'
+    notes: Negotiated capacity.
+  - name: HTTP request rate
+    scope: api-key
+    metric: varies
+    limit: 'see provider documentation'
+    notes: Per-second / per-minute HTTP rate limits not publicly documented.
 policies:
   - name: Backoff Strategy
-    description: Clients should implement exponential backoff with jitter, honoring the Retry-After header
-      when present.
-  - name: Burst Handling
-    description: Short bursts above the steady-state limit are tolerated up to the documented burst ceiling
-      before throttling engages.
+    description: Apply exponential backoff with jitter on 429 and 503 responses; honor any Retry-After
+      header when present.
   - name: Quota Reset
-    description: Monthly quotas reset at the start of each calendar month in UTC. Per-minute and per-second
-      windows reset on a sliding-window basis.
+    description: Workflow execution quotas reset on a calendar-month basis aligned with the billing cycle.
+  - name: Tier-Bound Quotas
+    description: Execution capacity scales with the subscription tier (Free, Growth, Business, Enterprise);
+      sustained overage requires upgrade or Enterprise contract.
   - name: Fair Use
-    description: Even on uncapped enterprise tiers, sustained usage that materially impacts shared infrastructure
-      may be subject to fair-use throttling.
+    description: Even on Enterprise tiers, sustained traffic that materially affects shared infrastructure
+      may be subject to fair-use review.
 maintainers:
   - FN: Kin Lane
     email: info@apievangelist.com
