@@ -1,0 +1,176 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Boltic Workflow API — Executions
+  description: 'Boltic Workflow API — Executions. 3 operations. Lead operation: Boltic Get execution details. Self-contained
+    Naftiko capability covering one Boltic business surface.'
+  tags:
+  - Boltic
+  - Executions
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    BOLTIC_API_KEY: BOLTIC_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: workflow-executions
+    baseUri: https://api.boltic.io/v1
+    description: Boltic Workflow API — Executions business capability. Self-contained, no shared references.
+    resources:
+    - name: executions-executionId
+      path: /executions/{executionId}
+      operations:
+      - name: getexecution
+        method: GET
+        description: Boltic Get execution details
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: executionId
+          in: path
+          type: string
+          required: true
+    - name: executions-executionId-cancel
+      path: /executions/{executionId}/cancel
+      operations:
+      - name: cancelexecution
+        method: POST
+        description: Boltic Cancel an execution
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: executionId
+          in: path
+          type: string
+          required: true
+    - name: workflows-workflowId-executions
+      path: /workflows/{workflowId}/executions
+      operations:
+      - name: listexecutions
+        method: GET
+        description: Boltic List workflow executions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workflowId
+          in: path
+          type: string
+          required: true
+        - name: page
+          in: query
+          type: integer
+        - name: limit
+          in: query
+          type: integer
+        - name: status
+          in: query
+          type: string
+    authentication:
+      type: bearer
+      token: '{{env.BOLTIC_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: workflow-executions-rest
+    port: 8080
+    description: REST adapter for Boltic Workflow API — Executions. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/executions/{executionid}
+      name: executions-executionid
+      description: REST surface for executions-executionId.
+      operations:
+      - method: GET
+        name: getexecution
+        description: Boltic Get execution details
+        call: workflow-executions.getexecution
+        with:
+          executionId: rest.executionId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/executions/{executionid}/cancel
+      name: executions-executionid-cancel
+      description: REST surface for executions-executionId-cancel.
+      operations:
+      - method: POST
+        name: cancelexecution
+        description: Boltic Cancel an execution
+        call: workflow-executions.cancelexecution
+        with:
+          executionId: rest.executionId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/workflows/{workflowid}/executions
+      name: workflows-workflowid-executions
+      description: REST surface for workflows-workflowId-executions.
+      operations:
+      - method: GET
+        name: listexecutions
+        description: Boltic List workflow executions
+        call: workflow-executions.listexecutions
+        with:
+          workflowId: rest.workflowId
+          page: rest.page
+          limit: rest.limit
+          status: rest.status
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: workflow-executions-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Boltic Workflow API — Executions. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: boltic-get-execution-details
+      description: Boltic Get execution details
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: workflow-executions.getexecution
+      with:
+        executionId: tools.executionId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: boltic-cancel-execution
+      description: Boltic Cancel an execution
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: workflow-executions.cancelexecution
+      with:
+        executionId: tools.executionId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: boltic-list-workflow-executions
+      description: Boltic List workflow executions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: workflow-executions.listexecutions
+      with:
+        workflowId: tools.workflowId
+        page: tools.page
+        limit: tools.limit
+        status: tools.status
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,105 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Boltic Streams API — Destinations
+  description: 'Boltic Streams API — Destinations. 2 operations. Lead operation: Boltic List stream destinations. Self-contained
+    Naftiko capability covering one Boltic business surface.'
+  tags:
+  - Boltic
+  - Destinations
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    BOLTIC_API_KEY: BOLTIC_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: streams-destinations
+    baseUri: https://api.boltic.io/v1
+    description: Boltic Streams API — Destinations business capability. Self-contained, no shared references.
+    resources:
+    - name: streams-destinations
+      path: /streams/destinations
+      operations:
+      - name: liststreamdestinations
+        method: GET
+        description: Boltic List stream destinations
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createstreamdestination
+        method: POST
+        description: Boltic Create a stream destination
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.BOLTIC_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: streams-destinations-rest
+    port: 8080
+    description: REST adapter for Boltic Streams API — Destinations. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/streams/destinations
+      name: streams-destinations
+      description: REST surface for streams-destinations.
+      operations:
+      - method: GET
+        name: liststreamdestinations
+        description: Boltic List stream destinations
+        call: streams-destinations.liststreamdestinations
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createstreamdestination
+        description: Boltic Create a stream destination
+        call: streams-destinations.createstreamdestination
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: streams-destinations-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Boltic Streams API — Destinations. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: boltic-list-stream-destinations
+      description: Boltic List stream destinations
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: streams-destinations.liststreamdestinations
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: boltic-create-stream-destination
+      description: Boltic Create a stream destination
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: streams-destinations.createstreamdestination
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

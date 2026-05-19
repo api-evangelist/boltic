@@ -1,0 +1,233 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Boltic Gateway API
+  description: 'Boltic Gateway API. 5 operations. Lead operation: Boltic List all services. Self-contained Naftiko capability
+    covering one Boltic business surface.'
+  tags:
+  - Boltic
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    BOLTIC_API_KEY: BOLTIC_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: gateway-general
+    baseUri: https://gateway.boltic.io/v1
+    description: Boltic Gateway API business capability. Self-contained, no shared references.
+    resources:
+    - name: services
+      path: /services
+      operations:
+      - name: listservices
+        method: GET
+        description: Boltic List all services
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: page
+          in: query
+          type: integer
+        - name: limit
+          in: query
+          type: integer
+      - name: createservice
+        method: POST
+        description: Boltic Create a new service
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: services-serviceId
+      path: /services/{serviceId}
+      operations:
+      - name: getservice
+        method: GET
+        description: Boltic Get a service by ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: serviceId
+          in: path
+          type: string
+          required: true
+      - name: updateservice
+        method: PUT
+        description: Boltic Update a service
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: serviceId
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deleteservice
+        method: DELETE
+        description: Boltic Delete a service
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: serviceId
+          in: path
+          type: string
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.BOLTIC_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: gateway-general-rest
+    port: 8080
+    description: REST adapter for Boltic Gateway API. One Spectral-compliant resource per consumed operation, prefixed with
+      /v1.
+    resources:
+    - path: /v1/services
+      name: services
+      description: REST surface for services.
+      operations:
+      - method: GET
+        name: listservices
+        description: Boltic List all services
+        call: gateway-general.listservices
+        with:
+          page: rest.page
+          limit: rest.limit
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createservice
+        description: Boltic Create a new service
+        call: gateway-general.createservice
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/services/{serviceid}
+      name: services-serviceid
+      description: REST surface for services-serviceId.
+      operations:
+      - method: GET
+        name: getservice
+        description: Boltic Get a service by ID
+        call: gateway-general.getservice
+        with:
+          serviceId: rest.serviceId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updateservice
+        description: Boltic Update a service
+        call: gateway-general.updateservice
+        with:
+          serviceId: rest.serviceId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteservice
+        description: Boltic Delete a service
+        call: gateway-general.deleteservice
+        with:
+          serviceId: rest.serviceId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: gateway-general-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Boltic Gateway API. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: boltic-list-all-services
+      description: Boltic List all services
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: gateway-general.listservices
+      with:
+        page: tools.page
+        limit: tools.limit
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: boltic-create-new-service
+      description: Boltic Create a new service
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: gateway-general.createservice
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: boltic-get-service-id
+      description: Boltic Get a service by ID
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: gateway-general.getservice
+      with:
+        serviceId: tools.serviceId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: boltic-update-service
+      description: Boltic Update a service
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: gateway-general.updateservice
+      with:
+        serviceId: tools.serviceId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: boltic-delete-service
+      description: Boltic Delete a service
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: gateway-general.deleteservice
+      with:
+        serviceId: tools.serviceId
+      outputParameters:
+      - type: object
+        mapping: $.

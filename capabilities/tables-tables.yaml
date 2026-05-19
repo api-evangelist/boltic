@@ -1,0 +1,234 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Boltic Tables API — Tables
+  description: 'Boltic Tables API — Tables. 5 operations. Lead operation: Boltic List all tables. Self-contained Naftiko capability
+    covering one Boltic business surface.'
+  tags:
+  - Boltic
+  - Tables
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    BOLTIC_API_KEY: BOLTIC_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: tables-tables
+    baseUri: https://api.boltic.io/v1
+    description: Boltic Tables API — Tables business capability. Self-contained, no shared references.
+    resources:
+    - name: tables
+      path: /tables
+      operations:
+      - name: listtables
+        method: GET
+        description: Boltic List all tables
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: page
+          in: query
+          type: integer
+        - name: limit
+          in: query
+          type: integer
+      - name: createtable
+        method: POST
+        description: Boltic Create a new table
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: tables-tableId
+      path: /tables/{tableId}
+      operations:
+      - name: gettable
+        method: GET
+        description: Boltic Get a table by ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: tableId
+          in: path
+          type: string
+          required: true
+      - name: updatetable
+        method: PUT
+        description: Boltic Update a table
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: tableId
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deletetable
+        method: DELETE
+        description: Boltic Delete a table
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: tableId
+          in: path
+          type: string
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.BOLTIC_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: tables-tables-rest
+    port: 8080
+    description: REST adapter for Boltic Tables API — Tables. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/tables
+      name: tables
+      description: REST surface for tables.
+      operations:
+      - method: GET
+        name: listtables
+        description: Boltic List all tables
+        call: tables-tables.listtables
+        with:
+          page: rest.page
+          limit: rest.limit
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createtable
+        description: Boltic Create a new table
+        call: tables-tables.createtable
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/tables/{tableid}
+      name: tables-tableid
+      description: REST surface for tables-tableId.
+      operations:
+      - method: GET
+        name: gettable
+        description: Boltic Get a table by ID
+        call: tables-tables.gettable
+        with:
+          tableId: rest.tableId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updatetable
+        description: Boltic Update a table
+        call: tables-tables.updatetable
+        with:
+          tableId: rest.tableId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletetable
+        description: Boltic Delete a table
+        call: tables-tables.deletetable
+        with:
+          tableId: rest.tableId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: tables-tables-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Boltic Tables API — Tables. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: boltic-list-all-tables
+      description: Boltic List all tables
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: tables-tables.listtables
+      with:
+        page: tools.page
+        limit: tools.limit
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: boltic-create-new-table
+      description: Boltic Create a new table
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: tables-tables.createtable
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: boltic-get-table-id
+      description: Boltic Get a table by ID
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: tables-tables.gettable
+      with:
+        tableId: tools.tableId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: boltic-update-table
+      description: Boltic Update a table
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: tables-tables.updatetable
+      with:
+        tableId: tools.tableId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: boltic-delete-table
+      description: Boltic Delete a table
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: tables-tables.deletetable
+      with:
+        tableId: tools.tableId
+      outputParameters:
+      - type: object
+        mapping: $.

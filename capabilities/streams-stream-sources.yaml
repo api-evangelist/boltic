@@ -1,0 +1,226 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Boltic Streams API — Stream Sources
+  description: 'Boltic Streams API — Stream Sources. 5 operations. Lead operation: Boltic List all stream sources. Self-contained
+    Naftiko capability covering one Boltic business surface.'
+  tags:
+  - Boltic
+  - Stream Sources
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    BOLTIC_API_KEY: BOLTIC_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: streams-stream-sources
+    baseUri: https://api.boltic.io/v1
+    description: Boltic Streams API — Stream Sources business capability. Self-contained, no shared references.
+    resources:
+    - name: streams-sources
+      path: /streams/sources
+      operations:
+      - name: liststreamsources
+        method: GET
+        description: Boltic List all stream sources
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createstreamsource
+        method: POST
+        description: Boltic Create a new stream source
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: streams-sources-sourceId
+      path: /streams/sources/{sourceId}
+      operations:
+      - name: getstreamsource
+        method: GET
+        description: Boltic Get a stream source by ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: sourceId
+          in: path
+          type: string
+          required: true
+      - name: deletestreamsource
+        method: DELETE
+        description: Boltic Delete a stream source
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: sourceId
+          in: path
+          type: string
+          required: true
+    - name: streams-sources-sourceId-debug
+      path: /streams/sources/{sourceId}/debug
+      operations:
+      - name: debugstreamsource
+        method: GET
+        description: Boltic Debug a stream source
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: sourceId
+          in: path
+          type: string
+          required: true
+        - name: limit
+          in: query
+          type: integer
+    authentication:
+      type: bearer
+      token: '{{env.BOLTIC_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: streams-stream-sources-rest
+    port: 8080
+    description: REST adapter for Boltic Streams API — Stream Sources. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/streams/sources
+      name: streams-sources
+      description: REST surface for streams-sources.
+      operations:
+      - method: GET
+        name: liststreamsources
+        description: Boltic List all stream sources
+        call: streams-stream-sources.liststreamsources
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createstreamsource
+        description: Boltic Create a new stream source
+        call: streams-stream-sources.createstreamsource
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/streams/sources/{sourceid}
+      name: streams-sources-sourceid
+      description: REST surface for streams-sources-sourceId.
+      operations:
+      - method: GET
+        name: getstreamsource
+        description: Boltic Get a stream source by ID
+        call: streams-stream-sources.getstreamsource
+        with:
+          sourceId: rest.sourceId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletestreamsource
+        description: Boltic Delete a stream source
+        call: streams-stream-sources.deletestreamsource
+        with:
+          sourceId: rest.sourceId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/streams/sources/{sourceid}/debug
+      name: streams-sources-sourceid-debug
+      description: REST surface for streams-sources-sourceId-debug.
+      operations:
+      - method: GET
+        name: debugstreamsource
+        description: Boltic Debug a stream source
+        call: streams-stream-sources.debugstreamsource
+        with:
+          sourceId: rest.sourceId
+          limit: rest.limit
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: streams-stream-sources-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Boltic Streams API — Stream Sources. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: boltic-list-all-stream-sources
+      description: Boltic List all stream sources
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: streams-stream-sources.liststreamsources
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: boltic-create-new-stream-source
+      description: Boltic Create a new stream source
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: streams-stream-sources.createstreamsource
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: boltic-get-stream-source-id
+      description: Boltic Get a stream source by ID
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: streams-stream-sources.getstreamsource
+      with:
+        sourceId: tools.sourceId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: boltic-delete-stream-source
+      description: Boltic Delete a stream source
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: streams-stream-sources.deletestreamsource
+      with:
+        sourceId: tools.sourceId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: boltic-debug-stream-source
+      description: Boltic Debug a stream source
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: streams-stream-sources.debugstreamsource
+      with:
+        sourceId: tools.sourceId
+        limit: tools.limit
+      outputParameters:
+      - type: object
+        mapping: $.

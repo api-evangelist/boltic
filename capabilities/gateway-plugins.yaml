@@ -1,0 +1,221 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Boltic Gateway API — Plugins
+  description: 'Boltic Gateway API — Plugins. 5 operations. Lead operation: Boltic List all plugins. Self-contained Naftiko
+    capability covering one Boltic business surface.'
+  tags:
+  - Boltic
+  - Plugins
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    BOLTIC_API_KEY: BOLTIC_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: gateway-plugins
+    baseUri: https://gateway.boltic.io/v1
+    description: Boltic Gateway API — Plugins business capability. Self-contained, no shared references.
+    resources:
+    - name: plugins
+      path: /plugins
+      operations:
+      - name: listplugins
+        method: GET
+        description: Boltic List all plugins
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createplugin
+        method: POST
+        description: Boltic Create a new plugin
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: plugins-pluginId
+      path: /plugins/{pluginId}
+      operations:
+      - name: getplugin
+        method: GET
+        description: Boltic Get a plugin by ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: pluginId
+          in: path
+          type: string
+          required: true
+      - name: updateplugin
+        method: PUT
+        description: Boltic Update a plugin
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: pluginId
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deleteplugin
+        method: DELETE
+        description: Boltic Delete a plugin
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: pluginId
+          in: path
+          type: string
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.BOLTIC_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: gateway-plugins-rest
+    port: 8080
+    description: REST adapter for Boltic Gateway API — Plugins. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/plugins
+      name: plugins
+      description: REST surface for plugins.
+      operations:
+      - method: GET
+        name: listplugins
+        description: Boltic List all plugins
+        call: gateway-plugins.listplugins
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createplugin
+        description: Boltic Create a new plugin
+        call: gateway-plugins.createplugin
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/plugins/{pluginid}
+      name: plugins-pluginid
+      description: REST surface for plugins-pluginId.
+      operations:
+      - method: GET
+        name: getplugin
+        description: Boltic Get a plugin by ID
+        call: gateway-plugins.getplugin
+        with:
+          pluginId: rest.pluginId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updateplugin
+        description: Boltic Update a plugin
+        call: gateway-plugins.updateplugin
+        with:
+          pluginId: rest.pluginId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteplugin
+        description: Boltic Delete a plugin
+        call: gateway-plugins.deleteplugin
+        with:
+          pluginId: rest.pluginId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: gateway-plugins-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Boltic Gateway API — Plugins. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: boltic-list-all-plugins
+      description: Boltic List all plugins
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: gateway-plugins.listplugins
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: boltic-create-new-plugin
+      description: Boltic Create a new plugin
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: gateway-plugins.createplugin
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: boltic-get-plugin-id
+      description: Boltic Get a plugin by ID
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: gateway-plugins.getplugin
+      with:
+        pluginId: tools.pluginId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: boltic-update-plugin
+      description: Boltic Update a plugin
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: gateway-plugins.updateplugin
+      with:
+        pluginId: tools.pluginId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: boltic-delete-plugin
+      description: Boltic Delete a plugin
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: gateway-plugins.deleteplugin
+      with:
+        pluginId: tools.pluginId
+      outputParameters:
+      - type: object
+        mapping: $.

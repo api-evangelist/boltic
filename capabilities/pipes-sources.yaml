@@ -1,0 +1,70 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Boltic Pipes API — Sources
+  description: 'Boltic Pipes API — Sources. 1 operations. Lead operation: Boltic List available source types. Self-contained
+    Naftiko capability covering one Boltic business surface.'
+  tags:
+  - Boltic
+  - Sources
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    BOLTIC_API_KEY: BOLTIC_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: pipes-sources
+    baseUri: https://api.boltic.io/v1
+    description: Boltic Pipes API — Sources business capability. Self-contained, no shared references.
+    resources:
+    - name: sources
+      path: /sources
+      operations:
+      - name: listsources
+        method: GET
+        description: Boltic List available source types
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.BOLTIC_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: pipes-sources-rest
+    port: 8080
+    description: REST adapter for Boltic Pipes API — Sources. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/sources
+      name: sources
+      description: REST surface for sources.
+      operations:
+      - method: GET
+        name: listsources
+        description: Boltic List available source types
+        call: pipes-sources.listsources
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: pipes-sources-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Boltic Pipes API — Sources. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: boltic-list-available-source-types
+      description: Boltic List available source types
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: pipes-sources.listsources
+      outputParameters:
+      - type: object
+        mapping: $.

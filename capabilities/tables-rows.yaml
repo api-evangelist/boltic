@@ -1,0 +1,281 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Boltic Tables API — Rows
+  description: 'Boltic Tables API — Rows. 5 operations. Lead operation: Boltic List rows in a table. Self-contained Naftiko
+    capability covering one Boltic business surface.'
+  tags:
+  - Boltic
+  - Rows
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    BOLTIC_API_KEY: BOLTIC_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: tables-rows
+    baseUri: https://api.boltic.io/v1
+    description: Boltic Tables API — Rows business capability. Self-contained, no shared references.
+    resources:
+    - name: tables-tableId-rows
+      path: /tables/{tableId}/rows
+      operations:
+      - name: listrows
+        method: GET
+        description: Boltic List rows in a table
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: tableId
+          in: path
+          type: string
+          required: true
+        - name: page
+          in: query
+          type: integer
+        - name: limit
+          in: query
+          type: integer
+        - name: filter
+          in: query
+          type: string
+          description: JSON-encoded filter expression
+        - name: sort
+          in: query
+          type: string
+          description: Column name to sort by
+        - name: order
+          in: query
+          type: string
+      - name: createrow
+        method: POST
+        description: Boltic Add a new row
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: tableId
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: tables-tableId-rows-rowId
+      path: /tables/{tableId}/rows/{rowId}
+      operations:
+      - name: getrow
+        method: GET
+        description: Boltic Get a row by ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: tableId
+          in: path
+          type: string
+          required: true
+        - name: rowId
+          in: path
+          type: string
+          required: true
+      - name: updaterow
+        method: PUT
+        description: Boltic Update a row
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: tableId
+          in: path
+          type: string
+          required: true
+        - name: rowId
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deleterow
+        method: DELETE
+        description: Boltic Delete a row
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: tableId
+          in: path
+          type: string
+          required: true
+        - name: rowId
+          in: path
+          type: string
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.BOLTIC_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: tables-rows-rest
+    port: 8080
+    description: REST adapter for Boltic Tables API — Rows. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/tables/{tableid}/rows
+      name: tables-tableid-rows
+      description: REST surface for tables-tableId-rows.
+      operations:
+      - method: GET
+        name: listrows
+        description: Boltic List rows in a table
+        call: tables-rows.listrows
+        with:
+          tableId: rest.tableId
+          page: rest.page
+          limit: rest.limit
+          filter: rest.filter
+          sort: rest.sort
+          order: rest.order
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createrow
+        description: Boltic Add a new row
+        call: tables-rows.createrow
+        with:
+          tableId: rest.tableId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/tables/{tableid}/rows/{rowid}
+      name: tables-tableid-rows-rowid
+      description: REST surface for tables-tableId-rows-rowId.
+      operations:
+      - method: GET
+        name: getrow
+        description: Boltic Get a row by ID
+        call: tables-rows.getrow
+        with:
+          tableId: rest.tableId
+          rowId: rest.rowId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updaterow
+        description: Boltic Update a row
+        call: tables-rows.updaterow
+        with:
+          tableId: rest.tableId
+          rowId: rest.rowId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleterow
+        description: Boltic Delete a row
+        call: tables-rows.deleterow
+        with:
+          tableId: rest.tableId
+          rowId: rest.rowId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: tables-rows-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Boltic Tables API — Rows. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: boltic-list-rows-table
+      description: Boltic List rows in a table
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: tables-rows.listrows
+      with:
+        tableId: tools.tableId
+        page: tools.page
+        limit: tools.limit
+        filter: tools.filter
+        sort: tools.sort
+        order: tools.order
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: boltic-add-new-row
+      description: Boltic Add a new row
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: tables-rows.createrow
+      with:
+        tableId: tools.tableId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: boltic-get-row-id
+      description: Boltic Get a row by ID
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: tables-rows.getrow
+      with:
+        tableId: tools.tableId
+        rowId: tools.rowId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: boltic-update-row
+      description: Boltic Update a row
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: tables-rows.updaterow
+      with:
+        tableId: tools.tableId
+        rowId: tools.rowId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: boltic-delete-row
+      description: Boltic Delete a row
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: tables-rows.deleterow
+      with:
+        tableId: tools.tableId
+        rowId: tools.rowId
+      outputParameters:
+      - type: object
+        mapping: $.

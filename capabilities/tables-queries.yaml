@@ -1,0 +1,86 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Boltic Tables API — Queries
+  description: 'Boltic Tables API — Queries. 1 operations. Lead operation: Boltic Execute a SQL query. Self-contained Naftiko
+    capability covering one Boltic business surface.'
+  tags:
+  - Boltic
+  - Queries
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    BOLTIC_API_KEY: BOLTIC_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: tables-queries
+    baseUri: https://api.boltic.io/v1
+    description: Boltic Tables API — Queries business capability. Self-contained, no shared references.
+    resources:
+    - name: tables-tableId-query
+      path: /tables/{tableId}/query
+      operations:
+      - name: querytable
+        method: POST
+        description: Boltic Execute a SQL query
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: tableId
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.BOLTIC_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: tables-queries-rest
+    port: 8080
+    description: REST adapter for Boltic Tables API — Queries. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/tables/{tableid}/query
+      name: tables-tableid-query
+      description: REST surface for tables-tableId-query.
+      operations:
+      - method: POST
+        name: querytable
+        description: Boltic Execute a SQL query
+        call: tables-queries.querytable
+        with:
+          tableId: rest.tableId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: tables-queries-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Boltic Tables API — Queries. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: boltic-execute-sql-query
+      description: Boltic Execute a SQL query
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: tables-queries.querytable
+      with:
+        tableId: tools.tableId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

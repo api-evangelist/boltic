@@ -1,0 +1,234 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Boltic Gateway API — Routes
+  description: 'Boltic Gateway API — Routes. 5 operations. Lead operation: Boltic List all routes. Self-contained Naftiko
+    capability covering one Boltic business surface.'
+  tags:
+  - Boltic
+  - Routes
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    BOLTIC_API_KEY: BOLTIC_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: gateway-routes
+    baseUri: https://gateway.boltic.io/v1
+    description: Boltic Gateway API — Routes business capability. Self-contained, no shared references.
+    resources:
+    - name: routes
+      path: /routes
+      operations:
+      - name: listroutes
+        method: GET
+        description: Boltic List all routes
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: page
+          in: query
+          type: integer
+        - name: limit
+          in: query
+          type: integer
+      - name: createroute
+        method: POST
+        description: Boltic Create a new route
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: routes-routeId
+      path: /routes/{routeId}
+      operations:
+      - name: getroute
+        method: GET
+        description: Boltic Get a route by ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: routeId
+          in: path
+          type: string
+          required: true
+      - name: updateroute
+        method: PUT
+        description: Boltic Update a route
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: routeId
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deleteroute
+        method: DELETE
+        description: Boltic Delete a route
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: routeId
+          in: path
+          type: string
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.BOLTIC_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: gateway-routes-rest
+    port: 8080
+    description: REST adapter for Boltic Gateway API — Routes. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/routes
+      name: routes
+      description: REST surface for routes.
+      operations:
+      - method: GET
+        name: listroutes
+        description: Boltic List all routes
+        call: gateway-routes.listroutes
+        with:
+          page: rest.page
+          limit: rest.limit
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createroute
+        description: Boltic Create a new route
+        call: gateway-routes.createroute
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/routes/{routeid}
+      name: routes-routeid
+      description: REST surface for routes-routeId.
+      operations:
+      - method: GET
+        name: getroute
+        description: Boltic Get a route by ID
+        call: gateway-routes.getroute
+        with:
+          routeId: rest.routeId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updateroute
+        description: Boltic Update a route
+        call: gateway-routes.updateroute
+        with:
+          routeId: rest.routeId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteroute
+        description: Boltic Delete a route
+        call: gateway-routes.deleteroute
+        with:
+          routeId: rest.routeId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: gateway-routes-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Boltic Gateway API — Routes. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: boltic-list-all-routes
+      description: Boltic List all routes
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: gateway-routes.listroutes
+      with:
+        page: tools.page
+        limit: tools.limit
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: boltic-create-new-route
+      description: Boltic Create a new route
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: gateway-routes.createroute
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: boltic-get-route-id
+      description: Boltic Get a route by ID
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: gateway-routes.getroute
+      with:
+        routeId: tools.routeId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: boltic-update-route
+      description: Boltic Update a route
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: gateway-routes.updateroute
+      with:
+        routeId: tools.routeId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: boltic-delete-route
+      description: Boltic Delete a route
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: gateway-routes.deleteroute
+      with:
+        routeId: tools.routeId
+      outputParameters:
+      - type: object
+        mapping: $.

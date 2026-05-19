@@ -1,0 +1,89 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Boltic Pipes API — Sync Runs
+  description: 'Boltic Pipes API — Sync Runs. 1 operations. Lead operation: Boltic List sync runs for a pipe. Self-contained
+    Naftiko capability covering one Boltic business surface.'
+  tags:
+  - Boltic
+  - Sync Runs
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    BOLTIC_API_KEY: BOLTIC_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: pipes-sync-runs
+    baseUri: https://api.boltic.io/v1
+    description: Boltic Pipes API — Sync Runs business capability. Self-contained, no shared references.
+    resources:
+    - name: pipes-pipeId-runs
+      path: /pipes/{pipeId}/runs
+      operations:
+      - name: listsyncruns
+        method: GET
+        description: Boltic List sync runs for a pipe
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: pipeId
+          in: path
+          type: string
+          required: true
+        - name: page
+          in: query
+          type: integer
+        - name: limit
+          in: query
+          type: integer
+    authentication:
+      type: bearer
+      token: '{{env.BOLTIC_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: pipes-sync-runs-rest
+    port: 8080
+    description: REST adapter for Boltic Pipes API — Sync Runs. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/pipes/{pipeid}/runs
+      name: pipes-pipeid-runs
+      description: REST surface for pipes-pipeId-runs.
+      operations:
+      - method: GET
+        name: listsyncruns
+        description: Boltic List sync runs for a pipe
+        call: pipes-sync-runs.listsyncruns
+        with:
+          pipeId: rest.pipeId
+          page: rest.page
+          limit: rest.limit
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: pipes-sync-runs-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Boltic Pipes API — Sync Runs. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: boltic-list-sync-runs-pipe
+      description: Boltic List sync runs for a pipe
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: pipes-sync-runs.listsyncruns
+      with:
+        pipeId: tools.pipeId
+        page: tools.page
+        limit: tools.limit
+      outputParameters:
+      - type: object
+        mapping: $.

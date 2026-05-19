@@ -1,0 +1,362 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Boltic Pipes API — Pipes
+  description: 'Boltic Pipes API — Pipes. 8 operations. Lead operation: Boltic List all pipes. Self-contained Naftiko capability
+    covering one Boltic business surface.'
+  tags:
+  - Boltic
+  - Pipes
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    BOLTIC_API_KEY: BOLTIC_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: pipes-pipes
+    baseUri: https://api.boltic.io/v1
+    description: Boltic Pipes API — Pipes business capability. Self-contained, no shared references.
+    resources:
+    - name: pipes
+      path: /pipes
+      operations:
+      - name: listpipes
+        method: GET
+        description: Boltic List all pipes
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: page
+          in: query
+          type: integer
+        - name: limit
+          in: query
+          type: integer
+        - name: status
+          in: query
+          type: string
+      - name: createpipe
+        method: POST
+        description: Boltic Create a new pipe
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: pipes-pipeId
+      path: /pipes/{pipeId}
+      operations:
+      - name: getpipe
+        method: GET
+        description: Boltic Get a pipe by ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: pipeId
+          in: path
+          type: string
+          required: true
+      - name: updatepipe
+        method: PUT
+        description: Boltic Update a pipe
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: pipeId
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deletepipe
+        method: DELETE
+        description: Boltic Delete a pipe
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: pipeId
+          in: path
+          type: string
+          required: true
+    - name: pipes-pipeId-pause
+      path: /pipes/{pipeId}/pause
+      operations:
+      - name: pausepipe
+        method: POST
+        description: Boltic Pause a pipe
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: pipeId
+          in: path
+          type: string
+          required: true
+    - name: pipes-pipeId-resume
+      path: /pipes/{pipeId}/resume
+      operations:
+      - name: resumepipe
+        method: POST
+        description: Boltic Resume a paused pipe
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: pipeId
+          in: path
+          type: string
+          required: true
+    - name: pipes-pipeId-trigger
+      path: /pipes/{pipeId}/trigger
+      operations:
+      - name: triggersync
+        method: POST
+        description: Boltic Trigger a manual sync
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: pipeId
+          in: path
+          type: string
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.BOLTIC_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: pipes-pipes-rest
+    port: 8080
+    description: REST adapter for Boltic Pipes API — Pipes. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/pipes
+      name: pipes
+      description: REST surface for pipes.
+      operations:
+      - method: GET
+        name: listpipes
+        description: Boltic List all pipes
+        call: pipes-pipes.listpipes
+        with:
+          page: rest.page
+          limit: rest.limit
+          status: rest.status
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createpipe
+        description: Boltic Create a new pipe
+        call: pipes-pipes.createpipe
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/pipes/{pipeid}
+      name: pipes-pipeid
+      description: REST surface for pipes-pipeId.
+      operations:
+      - method: GET
+        name: getpipe
+        description: Boltic Get a pipe by ID
+        call: pipes-pipes.getpipe
+        with:
+          pipeId: rest.pipeId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updatepipe
+        description: Boltic Update a pipe
+        call: pipes-pipes.updatepipe
+        with:
+          pipeId: rest.pipeId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletepipe
+        description: Boltic Delete a pipe
+        call: pipes-pipes.deletepipe
+        with:
+          pipeId: rest.pipeId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/pipes/{pipeid}/pause
+      name: pipes-pipeid-pause
+      description: REST surface for pipes-pipeId-pause.
+      operations:
+      - method: POST
+        name: pausepipe
+        description: Boltic Pause a pipe
+        call: pipes-pipes.pausepipe
+        with:
+          pipeId: rest.pipeId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/pipes/{pipeid}/resume
+      name: pipes-pipeid-resume
+      description: REST surface for pipes-pipeId-resume.
+      operations:
+      - method: POST
+        name: resumepipe
+        description: Boltic Resume a paused pipe
+        call: pipes-pipes.resumepipe
+        with:
+          pipeId: rest.pipeId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/pipes/{pipeid}/trigger
+      name: pipes-pipeid-trigger
+      description: REST surface for pipes-pipeId-trigger.
+      operations:
+      - method: POST
+        name: triggersync
+        description: Boltic Trigger a manual sync
+        call: pipes-pipes.triggersync
+        with:
+          pipeId: rest.pipeId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: pipes-pipes-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Boltic Pipes API — Pipes. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: boltic-list-all-pipes
+      description: Boltic List all pipes
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: pipes-pipes.listpipes
+      with:
+        page: tools.page
+        limit: tools.limit
+        status: tools.status
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: boltic-create-new-pipe
+      description: Boltic Create a new pipe
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: pipes-pipes.createpipe
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: boltic-get-pipe-id
+      description: Boltic Get a pipe by ID
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: pipes-pipes.getpipe
+      with:
+        pipeId: tools.pipeId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: boltic-update-pipe
+      description: Boltic Update a pipe
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: pipes-pipes.updatepipe
+      with:
+        pipeId: tools.pipeId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: boltic-delete-pipe
+      description: Boltic Delete a pipe
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: pipes-pipes.deletepipe
+      with:
+        pipeId: tools.pipeId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: boltic-pause-pipe
+      description: Boltic Pause a pipe
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: pipes-pipes.pausepipe
+      with:
+        pipeId: tools.pipeId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: boltic-resume-paused-pipe
+      description: Boltic Resume a paused pipe
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: pipes-pipes.resumepipe
+      with:
+        pipeId: tools.pipeId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: boltic-trigger-manual-sync
+      description: Boltic Trigger a manual sync
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: pipes-pipes.triggersync
+      with:
+        pipeId: tools.pipeId
+      outputParameters:
+      - type: object
+        mapping: $.
