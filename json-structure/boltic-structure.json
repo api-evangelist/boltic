@@ -1,0 +1,278 @@
+{
+  "provider": "Boltic",
+  "providerId": "boltic",
+  "kind": "json-structure",
+  "description": "Structural overview of the Boltic API surface; extracted from openapi/.",
+  "schemaCount": 12,
+  "operationCount": 21,
+  "schemas": [
+    {
+      "name": "Route",
+      "type": "object",
+      "propertyCount": 12,
+      "required": []
+    },
+    {
+      "name": "RouteInput",
+      "type": "object",
+      "propertyCount": 9,
+      "required": [
+        "name",
+        "paths",
+        "serviceId"
+      ]
+    },
+    {
+      "name": "Service",
+      "type": "object",
+      "propertyCount": 11,
+      "required": []
+    },
+    {
+      "name": "ServiceInput",
+      "type": "object",
+      "propertyCount": 8,
+      "required": [
+        "name",
+        "type"
+      ]
+    },
+    {
+      "name": "Plugin",
+      "type": "object",
+      "propertyCount": 8,
+      "required": []
+    },
+    {
+      "name": "PluginInput",
+      "type": "object",
+      "propertyCount": 6,
+      "required": [
+        "name",
+        "type"
+      ]
+    },
+    {
+      "name": "Consumer",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "ConsumerInput",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "name"
+      ]
+    },
+    {
+      "name": "Certificate",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "CertificateInput",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "cert",
+        "key"
+      ]
+    },
+    {
+      "name": "Pagination",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "Error",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    }
+  ],
+  "operations": [
+    {
+      "method": "GET",
+      "path": "/routes",
+      "operationId": "listRoutes",
+      "summary": "Boltic List all routes",
+      "tags": [
+        "Routes"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/routes",
+      "operationId": "createRoute",
+      "summary": "Boltic Create a new route",
+      "tags": [
+        "Routes"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/routes/{routeId}",
+      "operationId": "getRoute",
+      "summary": "Boltic Get a route by ID",
+      "tags": [
+        "Routes"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/routes/{routeId}",
+      "operationId": "updateRoute",
+      "summary": "Boltic Update a route",
+      "tags": [
+        "Routes"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/routes/{routeId}",
+      "operationId": "deleteRoute",
+      "summary": "Boltic Delete a route",
+      "tags": [
+        "Routes"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/services",
+      "operationId": "listServices",
+      "summary": "Boltic List all services",
+      "tags": []
+    },
+    {
+      "method": "POST",
+      "path": "/services",
+      "operationId": "createService",
+      "summary": "Boltic Create a new service",
+      "tags": []
+    },
+    {
+      "method": "GET",
+      "path": "/services/{serviceId}",
+      "operationId": "getService",
+      "summary": "Boltic Get a service by ID",
+      "tags": []
+    },
+    {
+      "method": "PUT",
+      "path": "/services/{serviceId}",
+      "operationId": "updateService",
+      "summary": "Boltic Update a service",
+      "tags": []
+    },
+    {
+      "method": "DELETE",
+      "path": "/services/{serviceId}",
+      "operationId": "deleteService",
+      "summary": "Boltic Delete a service",
+      "tags": []
+    },
+    {
+      "method": "GET",
+      "path": "/plugins",
+      "operationId": "listPlugins",
+      "summary": "Boltic List all plugins",
+      "tags": [
+        "Plugins"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/plugins",
+      "operationId": "createPlugin",
+      "summary": "Boltic Create a new plugin",
+      "tags": [
+        "Plugins"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/plugins/{pluginId}",
+      "operationId": "getPlugin",
+      "summary": "Boltic Get a plugin by ID",
+      "tags": [
+        "Plugins"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/plugins/{pluginId}",
+      "operationId": "updatePlugin",
+      "summary": "Boltic Update a plugin",
+      "tags": [
+        "Plugins"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/plugins/{pluginId}",
+      "operationId": "deletePlugin",
+      "summary": "Boltic Delete a plugin",
+      "tags": [
+        "Plugins"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/consumers",
+      "operationId": "listConsumers",
+      "summary": "Boltic List all consumers",
+      "tags": [
+        "Consumers"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/consumers",
+      "operationId": "createConsumer",
+      "summary": "Boltic Create a new consumer",
+      "tags": [
+        "Consumers"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/consumers/{consumerId}",
+      "operationId": "getConsumer",
+      "summary": "Boltic Get a consumer by ID",
+      "tags": [
+        "Consumers"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/consumers/{consumerId}",
+      "operationId": "deleteConsumer",
+      "summary": "Boltic Delete a consumer",
+      "tags": [
+        "Consumers"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/certificates",
+      "operationId": "listCertificates",
+      "summary": "Boltic List all certificates",
+      "tags": [
+        "Certificates"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/certificates",
+      "operationId": "createCertificate",
+      "summary": "Boltic Upload a new certificate",
+      "tags": [
+        "Certificates"
+      ]
+    }
+  ]
+}

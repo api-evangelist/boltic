@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Trigger",
+  "title": "Trigger",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "http",
+        "schedule",
+        "webhook",
+        "copilot",
+        "table-change",
+        "manual"
+      ]
+    },
+    "config": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "Trigger-specific configuration"
+    },
+    "methods": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "GET",
+          "POST",
+          "PUT",
+          "DELETE"
+        ]
+      },
+      "description": "HTTP methods for HTTP triggers"
+    }
+  }
+}

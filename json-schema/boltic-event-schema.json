@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Event",
+  "title": "Event",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "sourceId": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string",
+      "description": "Event type name (e.g., page_view, purchase, signup)"
+    },
+    "properties": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "Custom event properties"
+    },
+    "context": {
+      "type": "object",
+      "properties": {
+        "ip": {
+          "type": "string"
+        },
+        "userAgent": {
+          "type": "string"
+        },
+        "locale": {
+          "type": "string"
+        },
+        "page": {
+          "type": "object",
+          "properties": {
+            "url": {
+              "type": "string"
+            },
+            "title": {
+              "type": "string"
+            },
+            "referrer": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "userId": {
+      "type": "string"
+    },
+    "anonymousId": {
+      "type": "string"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "receivedAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

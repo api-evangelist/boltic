@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/WorkflowInput",
+  "title": "WorkflowInput",
+  "type": "object",
+  "required": [
+    "name",
+    "trigger"
+  ],
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "trigger": {
+      "$ref": "#/components/schemas/TriggerInput"
+    },
+    "nodes": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/NodeInput"
+      }
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

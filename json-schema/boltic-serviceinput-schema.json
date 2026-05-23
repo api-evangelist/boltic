@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ServiceInput",
+  "title": "ServiceInput",
+  "type": "object",
+  "required": [
+    "name",
+    "type"
+  ],
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "serverless",
+        "workflow",
+        "table",
+        "proxy"
+      ]
+    },
+    "url": {
+      "type": "string",
+      "format": "uri"
+    },
+    "retries": {
+      "type": "integer"
+    },
+    "connectTimeout": {
+      "type": "integer"
+    },
+    "readTimeout": {
+      "type": "integer"
+    },
+    "writeTimeout": {
+      "type": "integer"
+    }
+  }
+}

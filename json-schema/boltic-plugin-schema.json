@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Plugin",
+  "title": "Plugin",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "authentication",
+        "transformation",
+        "rate-limiting",
+        "logging",
+        "security",
+        "cors",
+        "custom"
+      ]
+    },
+    "enabled": {
+      "type": "boolean"
+    },
+    "config": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "Plugin-specific configuration"
+    },
+    "routeId": {
+      "type": "string",
+      "description": "Optional route this plugin is scoped to"
+    },
+    "serviceId": {
+      "type": "string",
+      "description": "Optional service this plugin is scoped to"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

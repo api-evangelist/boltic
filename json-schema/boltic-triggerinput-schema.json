@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TriggerInput",
+  "title": "TriggerInput",
+  "type": "object",
+  "required": [
+    "type"
+  ],
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "http",
+        "schedule",
+        "webhook",
+        "copilot",
+        "table-change",
+        "manual"
+      ]
+    },
+    "config": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "methods": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DestinationConfig",
+  "title": "DestinationConfig",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "description": "Destination type identifier"
+    },
+    "connectionConfig": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "mappings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "sourceField": {
+            "type": "string"
+          },
+          "destinationField": {
+            "type": "string"
+          },
+          "transformation": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

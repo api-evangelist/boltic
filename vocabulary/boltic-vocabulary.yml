@@ -1,0 +1,13 @@
+name: Boltic Domain Vocabulary
+provider: Boltic
+providerId: boltic
+description: Tag-derived vocabulary for the Boltic API surface; sourced from openapi/ tags.
+terms:
+- term: Certificates
+  description: Manage SSL/TLS certificates
+- term: Consumers
+  description: Manage API consumers and access credentials
+- term: Plugins
+  description: Manage gateway plugins for transformation and security
+- term: Routes
+  description: Manage API routes and request routing rules

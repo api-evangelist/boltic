@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PipeInput",
+  "title": "PipeInput",
+  "type": "object",
+  "required": [
+    "name",
+    "source",
+    "destination"
+  ],
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "source": {
+      "$ref": "#/components/schemas/SourceConfig"
+    },
+    "destination": {
+      "$ref": "#/components/schemas/DestinationConfig"
+    },
+    "schedule": {
+      "$ref": "#/components/schemas/Schedule"
+    }
+  }
+}

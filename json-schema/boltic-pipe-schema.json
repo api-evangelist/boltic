@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Pipe",
+  "title": "Pipe",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "paused",
+        "error"
+      ]
+    },
+    "source": {
+      "$ref": "#/components/schemas/SourceConfig"
+    },
+    "destination": {
+      "$ref": "#/components/schemas/DestinationConfig"
+    },
+    "schedule": {
+      "$ref": "#/components/schemas/Schedule"
+    },
+    "lastSyncAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "rowsSynced": {
+      "type": "integer"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

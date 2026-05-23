@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Schedule",
+  "title": "Schedule",
+  "type": "object",
+  "properties": {
+    "frequency": {
+      "type": "string",
+      "enum": [
+        "minutely",
+        "hourly",
+        "daily",
+        "weekly",
+        "monthly",
+        "custom"
+      ]
+    },
+    "interval": {
+      "type": "integer",
+      "description": "Interval value for the frequency"
+    },
+    "cronExpression": {
+      "type": "string",
+      "description": "Cron expression for custom schedules"
+    },
+    "timezone": {
+      "type": "string"
+    }
+  }
+}

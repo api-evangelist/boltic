@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PluginInput",
+  "title": "PluginInput",
+  "type": "object",
+  "required": [
+    "name",
+    "type"
+  ],
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string"
+    },
+    "enabled": {
+      "type": "boolean",
+      "default": true
+    },
+    "config": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "routeId": {
+      "type": "string"
+    },
+    "serviceId": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SourceConfig",
+  "title": "SourceConfig",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "description": "Source type identifier (e.g., mongodb, mysql, postgresql, rest-api)"
+    },
+    "connectionConfig": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "Connection parameters specific to the source type"
+    },
+    "rootPath": {
+      "type": "string",
+      "description": "Root path for REST API data extraction"
+    },
+    "authType": {
+      "type": "string",
+      "enum": [
+        "none",
+        "basic",
+        "bearer",
+        "oauth2",
+        "api-key"
+      ]
+    },
+    "authConfig": {
+      "type": "object",
+      "additionalProperties": true
+    }
+  }
+}

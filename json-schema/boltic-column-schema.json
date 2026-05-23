@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Column",
+  "title": "Column",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "text",
+        "number",
+        "boolean",
+        "date",
+        "datetime",
+        "email",
+        "url",
+        "select",
+        "multi-select",
+        "attachment",
+        "relation"
+      ]
+    },
+    "required": {
+      "type": "boolean"
+    },
+    "defaultValue": {
+      "type": "string"
+    },
+    "options": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Options for select and multi-select columns"
+    }
+  }
+}

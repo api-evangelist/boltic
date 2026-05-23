@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Certificate",
+  "title": "Certificate",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "snis": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Server Name Indications for this certificate"
+    },
+    "cert": {
+      "type": "string",
+      "description": "PEM-encoded certificate"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "expired",
+        "revoked"
+      ]
+    },
+    "expiresAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

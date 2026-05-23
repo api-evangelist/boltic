@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/EventInput",
+  "title": "EventInput",
+  "type": "object",
+  "required": [
+    "sourceId",
+    "type"
+  ],
+  "properties": {
+    "sourceId": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string"
+    },
+    "properties": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "userId": {
+      "type": "string"
+    },
+    "anonymousId": {
+      "type": "string"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "context": {
+      "type": "object",
+      "additionalProperties": true
+    }
+  }
+}
