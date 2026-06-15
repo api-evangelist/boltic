@@ -1,0 +1,1106 @@
+{
+  "item": [
+    {
+      "id": "471c9f30-1d47-4b2e-b9a0-f4c8b620beea",
+      "name": "Destinations",
+      "description": {
+        "content": "Manage data destinations",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1b446b90-5f1e-4f95-9326-9027bf8cd068",
+          "name": "Boltic List available destination types",
+          "request": {
+            "name": "Boltic List available destination types",
+            "description": {},
+            "url": {
+              "path": [
+                "destinations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3e92b6ca-173c-4c18-b425-22ac34bb6d6a",
+              "name": "A list of destination types",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "destinations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"category\": \"string\",\n      \"icon\": \"http://WHRWvWqZGBPvhjvIEqZZLNIRGuUHev.pbBR-UgUx\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"category\": \"string\",\n      \"icon\": \"http://uMAddnPJppnrshBLIfyfVnNcMlYXEkZQf.rzVc8TP7NLQrx1bDChTukUToxyX3cHjvFtRoyBpI\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "c57b64b7-fbe8-49d0-8efb-2e1af6a9522e",
+      "name": "Pipes",
+      "description": {
+        "content": "Manage data synchronization pipelines",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "746c47f7-7861-4e5b-9f29-339fd2ab755b",
+          "name": "Boltic List all pipes",
+          "request": {
+            "name": "Boltic List all pipes",
+            "description": {
+              "content": "Retrieve a list of all data synchronization pipelines.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "pipes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1c8b7218-0b81-4d30-9576-84567e981689",
+              "name": "A list of pipes",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pipes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"status\": \"paused\",\n      \"source\": {\n        \"type\": \"string\",\n        \"connectionConfig\": {\n          \"key_0\": 8243.730444304174,\n          \"key_1\": 3855.870500658378,\n          \"key_2\": \"string\",\n          \"key_3\": 9778\n        },\n        \"rootPath\": \"string\",\n        \"authType\": \"oauth2\",\n        \"authConfig\": {\n          \"key_0\": \"string\"\n        }\n      },\n      \"destination\": {\n        \"type\": \"string\",\n        \"connectionConfig\": {\n          \"key_0\": 4831.983390139395\n        },\n        \"mappings\": [\n          {\n            \"sourceField\": \"string\",\n            \"destinationField\": \"string\",\n            \"transformation\": \"string\"\n          },\n          {\n            \"sourceField\": \"string\",\n            \"destinationField\": \"string\",\n            \"transformation\": \"string\"\n          }\n        ]\n      },\n      \"schedule\": {\n        \"frequency\": \"hourly\",\n        \"interval\": 9504,\n        \"cronExpression\": \"string\",\n        \"timezone\": \"string\"\n      },\n      \"lastSyncAt\": \"1949-10-16T01:04:00.233Z\",\n      \"rowsSynced\": 7674,\n      \"createdAt\": \"2019-09-18T15:58:30.024Z\",\n      \"updatedAt\": \"1969-10-03T06:35:03.124Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"status\": \"error\",\n      \"source\": {\n        \"type\": \"string\",\n        \"connectionConfig\": {\n          \"key_0\": 5267.203825617054,\n          \"key_1\": true,\n          \"key_2\": \"string\",\n          \"key_3\": 4696\n        },\n        \"rootPath\": \"string\",\n        \"authType\": \"bearer\",\n        \"authConfig\": {\n          \"key_0\": 1246.7837362865807,\n          \"key_1\": 7951\n        }\n      },\n      \"destination\": {\n        \"type\": \"string\",\n        \"connectionConfig\": {\n          \"key_0\": false\n        },\n        \"mappings\": [\n          {\n            \"sourceField\": \"string\",\n            \"destinationField\": \"string\",\n            \"transformation\": \"string\"\n          },\n          {\n            \"sourceField\": \"string\",\n            \"destinationField\": \"string\",\n            \"transformation\": \"string\"\n          }\n        ]\n      },\n      \"schedule\": {\n        \"frequency\": \"hourly\",\n        \"interval\": 1102,\n        \"cronExpression\": \"string\",\n        \"timezone\": \"string\"\n      },\n      \"lastSyncAt\": \"1948-02-19T02:01:03.514Z\",\n      \"rowsSynced\": 1421,\n      \"createdAt\": \"1978-06-14T19:03:00.006Z\",\n      \"updatedAt\": \"1992-07-31T11:55:06.629Z\"\n    }\n  ],\n  \"pagination\": {\n    \"page\": 9771,\n    \"limit\": 7972,\n    \"total\": 3761,\n    \"totalPages\": 4156\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5929190f-fecd-41d3-8441-54b89005b8dc",
+          "name": "Boltic Create a new pipe",
+          "request": {
+            "name": "Boltic Create a new pipe",
+            "description": {
+              "content": "Create a new data synchronization pipeline between a source and destination.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "pipes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"source\": {\n    \"type\": \"<string>\",\n    \"connectionConfig\": {\n      \"key_0\": 9328\n    },\n    \"rootPath\": \"<string>\",\n    \"authType\": \"<string>\",\n    \"authConfig\": {\n      \"key_0\": 2487.389436823606\n    }\n  },\n  \"destination\": {\n    \"type\": \"<string>\",\n    \"connectionConfig\": {\n      \"key_0\": 8278,\n      \"key_1\": 4324,\n      \"key_2\": true\n    },\n    \"mappings\": [\n      {\n        \"sourceField\": \"<string>\",\n        \"destinationField\": \"<string>\",\n        \"transformation\": \"<string>\"\n      },\n      {\n        \"sourceField\": \"<string>\",\n        \"destinationField\": \"<string>\",\n        \"transformation\": \"<string>\"\n      }\n    ]\n  },\n  \"description\": \"<string>\",\n  \"schedule\": {\n    \"frequency\": \"<string>\",\n    \"interval\": \"<integer>\",\n    \"cronExpression\": \"<string>\",\n    \"timezone\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e48efb26-4451-486e-a8e5-14308bd94778",
+              "name": "Pipe created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pipes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"source\": {\n    \"type\": \"<string>\",\n    \"connectionConfig\": {\n      \"key_0\": 9252.304075929094,\n      \"key_1\": 7231.690427734975,\n      \"key_2\": \"string\"\n    },\n    \"rootPath\": \"<string>\",\n    \"authType\": \"<string>\",\n    \"authConfig\": {\n      \"key_0\": false,\n      \"key_1\": 8534\n    }\n  },\n  \"destination\": {\n    \"type\": \"<string>\",\n    \"connectionConfig\": {\n      \"key_0\": \"string\",\n      \"key_1\": 7134\n    },\n    \"mappings\": [\n      {\n        \"sourceField\": \"<string>\",\n        \"destinationField\": \"<string>\",\n        \"transformation\": \"<string>\"\n      },\n      {\n        \"sourceField\": \"<string>\",\n        \"destinationField\": \"<string>\",\n        \"transformation\": \"<string>\"\n      }\n    ]\n  },\n  \"description\": \"<string>\",\n  \"schedule\": {\n    \"frequency\": \"<string>\",\n    \"interval\": \"<integer>\",\n    \"cronExpression\": \"<string>\",\n    \"timezone\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"status\": \"active\",\n  \"source\": {\n    \"type\": \"<string>\",\n    \"connectionConfig\": {\n      \"key_0\": 7719,\n      \"key_1\": true\n    },\n    \"rootPath\": \"<string>\",\n    \"authType\": \"<string>\",\n    \"authConfig\": {\n      \"key_0\": 2846\n    }\n  },\n  \"destination\": {\n    \"type\": \"<string>\",\n    \"connectionConfig\": {\n      \"key_0\": 1162.29953807794,\n      \"key_1\": false\n    },\n    \"mappings\": [\n      {\n        \"sourceField\": \"<string>\",\n        \"destinationField\": \"<string>\",\n        \"transformation\": \"<string>\"\n      },\n      {\n        \"sourceField\": \"<string>\",\n        \"destinationField\": \"<string>\",\n        \"transformation\": \"<string>\"\n      }\n    ]\n  },\n  \"schedule\": {\n    \"frequency\": \"<string>\",\n    \"interval\": \"<integer>\",\n    \"cronExpression\": \"<string>\",\n    \"timezone\": \"<string>\"\n  },\n  \"lastSyncAt\": \"1950-03-25T18:41:29.421Z\",\n  \"rowsSynced\": 3949,\n  \"createdAt\": \"1977-04-17T05:47:36.633Z\",\n  \"updatedAt\": \"1981-04-23T07:48:53.749Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7ba61d0b-95c3-46af-b770-55f9319ecc5b",
+          "name": "Boltic Get a pipe by ID",
+          "request": {
+            "name": "Boltic Get a pipe by ID",
+            "description": {},
+            "url": {
+              "path": [
+                "pipes",
+                ":pipeId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "pipeId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "368e9ea3-31b3-451e-be92-6acfd27d0afe",
+              "name": "Pipe details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pipes",
+                    ":pipeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "pipeId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"status\": \"active\",\n  \"source\": {\n    \"type\": \"<string>\",\n    \"connectionConfig\": {\n      \"key_0\": 7719,\n      \"key_1\": true\n    },\n    \"rootPath\": \"<string>\",\n    \"authType\": \"<string>\",\n    \"authConfig\": {\n      \"key_0\": 2846\n    }\n  },\n  \"destination\": {\n    \"type\": \"<string>\",\n    \"connectionConfig\": {\n      \"key_0\": 1162.29953807794,\n      \"key_1\": false\n    },\n    \"mappings\": [\n      {\n        \"sourceField\": \"<string>\",\n        \"destinationField\": \"<string>\",\n        \"transformation\": \"<string>\"\n      },\n      {\n        \"sourceField\": \"<string>\",\n        \"destinationField\": \"<string>\",\n        \"transformation\": \"<string>\"\n      }\n    ]\n  },\n  \"schedule\": {\n    \"frequency\": \"<string>\",\n    \"interval\": \"<integer>\",\n    \"cronExpression\": \"<string>\",\n    \"timezone\": \"<string>\"\n  },\n  \"lastSyncAt\": \"1950-03-25T18:41:29.421Z\",\n  \"rowsSynced\": 3949,\n  \"createdAt\": \"1977-04-17T05:47:36.633Z\",\n  \"updatedAt\": \"1981-04-23T07:48:53.749Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1240c596-247c-4878-ba21-89f96f61f625",
+          "name": "Boltic Update a pipe",
+          "request": {
+            "name": "Boltic Update a pipe",
+            "description": {},
+            "url": {
+              "path": [
+                "pipes",
+                ":pipeId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "pipeId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"source\": {\n    \"type\": \"<string>\",\n    \"connectionConfig\": {\n      \"key_0\": 9328\n    },\n    \"rootPath\": \"<string>\",\n    \"authType\": \"<string>\",\n    \"authConfig\": {\n      \"key_0\": 2487.389436823606\n    }\n  },\n  \"destination\": {\n    \"type\": \"<string>\",\n    \"connectionConfig\": {\n      \"key_0\": 8278,\n      \"key_1\": 4324,\n      \"key_2\": true\n    },\n    \"mappings\": [\n      {\n        \"sourceField\": \"<string>\",\n        \"destinationField\": \"<string>\",\n        \"transformation\": \"<string>\"\n      },\n      {\n        \"sourceField\": \"<string>\",\n        \"destinationField\": \"<string>\",\n        \"transformation\": \"<string>\"\n      }\n    ]\n  },\n  \"description\": \"<string>\",\n  \"schedule\": {\n    \"frequency\": \"<string>\",\n    \"interval\": \"<integer>\",\n    \"cronExpression\": \"<string>\",\n    \"timezone\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "20d6f377-0e4f-4c27-9521-1e1403d073b8",
+              "name": "Pipe updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pipes",
+                    ":pipeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "pipeId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"source\": {\n    \"type\": \"<string>\",\n    \"connectionConfig\": {\n      \"key_0\": 9252.304075929094,\n      \"key_1\": 7231.690427734975,\n      \"key_2\": \"string\"\n    },\n    \"rootPath\": \"<string>\",\n    \"authType\": \"<string>\",\n    \"authConfig\": {\n      \"key_0\": false,\n      \"key_1\": 8534\n    }\n  },\n  \"destination\": {\n    \"type\": \"<string>\",\n    \"connectionConfig\": {\n      \"key_0\": \"string\",\n      \"key_1\": 7134\n    },\n    \"mappings\": [\n      {\n        \"sourceField\": \"<string>\",\n        \"destinationField\": \"<string>\",\n        \"transformation\": \"<string>\"\n      },\n      {\n        \"sourceField\": \"<string>\",\n        \"destinationField\": \"<string>\",\n        \"transformation\": \"<string>\"\n      }\n    ]\n  },\n  \"description\": \"<string>\",\n  \"schedule\": {\n    \"frequency\": \"<string>\",\n    \"interval\": \"<integer>\",\n    \"cronExpression\": \"<string>\",\n    \"timezone\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"status\": \"active\",\n  \"source\": {\n    \"type\": \"<string>\",\n    \"connectionConfig\": {\n      \"key_0\": 7719,\n      \"key_1\": true\n    },\n    \"rootPath\": \"<string>\",\n    \"authType\": \"<string>\",\n    \"authConfig\": {\n      \"key_0\": 2846\n    }\n  },\n  \"destination\": {\n    \"type\": \"<string>\",\n    \"connectionConfig\": {\n      \"key_0\": 1162.29953807794,\n      \"key_1\": false\n    },\n    \"mappings\": [\n      {\n        \"sourceField\": \"<string>\",\n        \"destinationField\": \"<string>\",\n        \"transformation\": \"<string>\"\n      },\n      {\n        \"sourceField\": \"<string>\",\n        \"destinationField\": \"<string>\",\n        \"transformation\": \"<string>\"\n      }\n    ]\n  },\n  \"schedule\": {\n    \"frequency\": \"<string>\",\n    \"interval\": \"<integer>\",\n    \"cronExpression\": \"<string>\",\n    \"timezone\": \"<string>\"\n  },\n  \"lastSyncAt\": \"1950-03-25T18:41:29.421Z\",\n  \"rowsSynced\": 3949,\n  \"createdAt\": \"1977-04-17T05:47:36.633Z\",\n  \"updatedAt\": \"1981-04-23T07:48:53.749Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "407074a4-a48a-4583-a47e-074e0f955879",
+          "name": "Boltic Delete a pipe",
+          "request": {
+            "name": "Boltic Delete a pipe",
+            "description": {},
+            "url": {
+              "path": [
+                "pipes",
+                ":pipeId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "pipeId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7a549940-bc75-475c-a5ca-ffc7ed97a5c7",
+              "name": "Pipe deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pipes",
+                    ":pipeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "pipeId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5a6fee2f-9caf-4ec5-87c9-092dfc64a61a",
+          "name": "Boltic Trigger a manual sync",
+          "request": {
+            "name": "Boltic Trigger a manual sync",
+            "description": {
+              "content": "Initiate an immediate data synchronization run for a pipe.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "pipes",
+                ":pipeId",
+                "trigger"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "pipeId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ac0e6699-1d2b-4979-a3f3-15429976adfd",
+              "name": "Sync triggered",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pipes",
+                    ":pipeId",
+                    "trigger"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "pipeId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"pipeId\": \"string\",\n  \"status\": \"cancelled\",\n  \"rowsSynced\": 1818,\n  \"rowsFailed\": 257,\n  \"startedAt\": \"2009-04-14T16:25:24.375Z\",\n  \"completedAt\": \"1952-10-19T04:25:10.587Z\",\n  \"duration\": 3753,\n  \"error\": {\n    \"message\": \"string\",\n    \"code\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "84a524e1-9856-4a02-a647-be48a7d2cf84",
+          "name": "Boltic Pause a pipe",
+          "request": {
+            "name": "Boltic Pause a pipe",
+            "description": {},
+            "url": {
+              "path": [
+                "pipes",
+                ":pipeId",
+                "pause"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "pipeId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "162934c8-8fde-4e9f-a5c2-5563b4bf1dca",
+              "name": "Pipe paused",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pipes",
+                    ":pipeId",
+                    "pause"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "pipeId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c88fe024-3890-4733-bd28-bfbf5e2464f3",
+          "name": "Boltic Resume a paused pipe",
+          "request": {
+            "name": "Boltic Resume a paused pipe",
+            "description": {},
+            "url": {
+              "path": [
+                "pipes",
+                ":pipeId",
+                "resume"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "pipeId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ddec143a-5ba4-47a5-8d41-36f3f47ef805",
+              "name": "Pipe resumed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pipes",
+                    ":pipeId",
+                    "resume"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "pipeId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "654328cd-050d-49b7-90b0-2d5e29f84428",
+      "name": "Sources",
+      "description": {
+        "content": "Manage data sources",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6fdf29b7-d8cc-4aea-9d5c-cc6b9a16668f",
+          "name": "Boltic List available source types",
+          "request": {
+            "name": "Boltic List available source types",
+            "description": {},
+            "url": {
+              "path": [
+                "sources"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "71f4af99-329e-49c1-9219-58dc17496d7c",
+              "name": "A list of source types",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sources"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"category\": \"database\",\n      \"icon\": \"https://bRLelsfRtOKswGeDkaRiUHX.ijadoe6Cv0pntqNQyxh8UQV4jVa8lnOfl.F+KLlYmOeUtaRYDrPLXQP6iPcgOd1pAWv\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"category\": \"api\",\n      \"icon\": \"https://uwYZ.teqrjSZdtfWOQWX,GpHoA1gMT0HaxTo2GEoSuJ+,cIsK\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "94de1ae7-b57e-4e59-87c4-c44fd7fa834a",
+      "name": "Sync Runs",
+      "description": {
+        "content": "Monitor and manage sync executions",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "cc21a846-8a59-4e9e-9fe6-539ff54ee378",
+          "name": "Boltic List sync runs for a pipe",
+          "request": {
+            "name": "Boltic List sync runs for a pipe",
+            "description": {
+              "content": "Retrieve the sync execution history for a pipe.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "pipes",
+                ":pipeId",
+                "runs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "pipeId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "beb94cdd-2a21-4802-9f65-06effceed9ad",
+              "name": "A list of sync runs",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pipes",
+                    ":pipeId",
+                    "runs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "pipeId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"pipeId\": \"string\",\n      \"status\": \"failed\",\n      \"rowsSynced\": 4589,\n      \"rowsFailed\": 2404,\n      \"startedAt\": \"1997-12-25T22:03:19.937Z\",\n      \"completedAt\": \"1987-01-14T05:07:20.048Z\",\n      \"duration\": 7245,\n      \"error\": {\n        \"message\": \"string\",\n        \"code\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"pipeId\": \"string\",\n      \"status\": \"cancelled\",\n      \"rowsSynced\": 9639,\n      \"rowsFailed\": 2453,\n      \"startedAt\": \"2014-04-07T20:55:53.990Z\",\n      \"completedAt\": \"2006-07-11T21:24:36.918Z\",\n      \"duration\": 6216,\n      \"error\": {\n        \"message\": \"string\",\n        \"code\": \"string\"\n      }\n    }\n  ],\n  \"pagination\": {\n    \"page\": 9173,\n    \"limit\": 9746,\n    \"total\": 4200,\n    \"totalPages\": 2474\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.boltic.io/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "fd7989c7-c703-4cf0-a798-bd49a5b43871",
+    "name": "Boltic Pipes API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Boltic Pipes API provides programmatic access to data synchronization pipelines that connect data sources to destinations. Pipes enable real-time data syncing across systems via automated pipelines with zero maintenance. Sources include databases (MongoDB, MySQL, PostgreSQL), SaaS applications via API endpoints, and file storage. The API supports configurable sync frequencies including minutely, hourly, and daily schedules.\n\nContact Support:\n Name: Boltic",
+      "type": "text/plain"
+    }
+  }
+}

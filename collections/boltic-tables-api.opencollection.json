@@ -1,0 +1,298 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Boltic Tables API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Tables",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Boltic List all tables",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.boltic.io/v1/tables",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve a list of all tables in the workspace."
+        },
+        {
+          "info": {
+            "name": "Boltic Create a new table",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.boltic.io/v1/tables",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new table with a defined schema of columns."
+        },
+        {
+          "info": {
+            "name": "Boltic Get a table by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.boltic.io/v1/tables/:tableId",
+            "params": [
+              {
+                "name": "tableId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve table metadata and schema."
+        },
+        {
+          "info": {
+            "name": "Boltic Update a table",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.boltic.io/v1/tables/:tableId",
+            "params": [
+              {
+                "name": "tableId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update table metadata or schema definition."
+        },
+        {
+          "info": {
+            "name": "Boltic Delete a table",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.boltic.io/v1/tables/:tableId",
+            "params": [
+              {
+                "name": "tableId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Boltic Delete a table"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Rows",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Boltic List rows in a table",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.boltic.io/v1/tables/:tableId/rows",
+            "params": [
+              {
+                "name": "tableId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "JSON-encoded filter expression"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Column name to sort by"
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve rows from a table with optional filtering and sorting."
+        },
+        {
+          "info": {
+            "name": "Boltic Add a new row",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.boltic.io/v1/tables/:tableId/rows",
+            "params": [
+              {
+                "name": "tableId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Insert a new row into the table."
+        },
+        {
+          "info": {
+            "name": "Boltic Get a row by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.boltic.io/v1/tables/:tableId/rows/:rowId",
+            "params": [
+              {
+                "name": "tableId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "rowId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Boltic Get a row by ID"
+        },
+        {
+          "info": {
+            "name": "Boltic Update a row",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.boltic.io/v1/tables/:tableId/rows/:rowId",
+            "params": [
+              {
+                "name": "tableId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "rowId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Modify an existing row in the table."
+        },
+        {
+          "info": {
+            "name": "Boltic Delete a row",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.boltic.io/v1/tables/:tableId/rows/:rowId",
+            "params": [
+              {
+                "name": "tableId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "rowId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Boltic Delete a row"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Queries",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Boltic Execute a SQL query",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.boltic.io/v1/tables/:tableId/query",
+            "params": [
+              {
+                "name": "tableId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Run a DML query against the table using the built-in SQL editor. Supports AI-powered natural language to SQL generation."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

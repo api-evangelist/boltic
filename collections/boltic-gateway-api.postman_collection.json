@@ -1,0 +1,2369 @@
+{
+  "item": [
+    {
+      "id": "1ababce0-9a98-4c23-86b5-bdfece5424dd",
+      "name": "Certificates",
+      "description": {
+        "content": "Manage SSL/TLS certificates",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8d84aebe-da6b-4662-8454-f0e75232e38d",
+          "name": "Boltic List all certificates",
+          "request": {
+            "name": "Boltic List all certificates",
+            "description": {},
+            "url": {
+              "path": [
+                "certificates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e12f0bac-ab2f-41bf-96f9-77695e63c54c",
+              "name": "A list of certificates",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "certificates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"snis\": [\n        \"string\",\n        \"string\"\n      ],\n      \"cert\": \"string\",\n      \"status\": \"expired\",\n      \"expiresAt\": \"1982-12-13T19:21:47.333Z\",\n      \"createdAt\": \"1997-06-06T09:24:35.686Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"snis\": [\n        \"string\",\n        \"string\"\n      ],\n      \"cert\": \"string\",\n      \"status\": \"active\",\n      \"expiresAt\": \"1952-03-31T20:17:12.207Z\",\n      \"createdAt\": \"2008-12-11T08:58:24.893Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4b9c17b4-af6e-43d9-a1f3-1270e7cd1ac7",
+          "name": "Boltic Upload a new certificate",
+          "request": {
+            "name": "Boltic Upload a new certificate",
+            "description": {},
+            "url": {
+              "path": [
+                "certificates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"cert\": \"<string>\",\n  \"key\": \"<string>\",\n  \"snis\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6c448bb1-71c8-41ec-80cb-0fd5b1ddad5e",
+              "name": "Certificate created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "certificates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"cert\": \"<string>\",\n  \"key\": \"<string>\",\n  \"snis\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"snis\": [\n    \"string\",\n    \"string\"\n  ],\n  \"cert\": \"string\",\n  \"status\": \"revoked\",\n  \"expiresAt\": \"2008-01-05T11:54:25.950Z\",\n  \"createdAt\": \"1960-12-04T04:55:45.077Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "b9148592-3cc6-465f-b65b-5a76d18ce7e3",
+      "name": "Consumers",
+      "description": {
+        "content": "Manage API consumers and access credentials",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3bc5842b-60fc-4b80-8851-a9da1a09da6a",
+          "name": "Boltic List all consumers",
+          "request": {
+            "name": "Boltic List all consumers",
+            "description": {
+              "content": "Retrieve a list of all API consumers.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "consumers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e11e2e6e-cec7-4b3a-8629-87e5be8fb61e",
+              "name": "A list of consumers",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "consumers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"email\": \"bDL89zq@uoMQBGLnDcOpLvASOriCrmeJd.hf\",\n      \"credentials\": [\n        {\n          \"type\": \"jwt\",\n          \"key\": \"string\"\n        },\n        {\n          \"type\": \"oauth2\",\n          \"key\": \"string\"\n        }\n      ],\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"createdAt\": \"2009-12-29T06:09:06.395Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"email\": \"nEf@LqihFlpEqcPnRrEKxhFkfAdoigDAvP.oc\",\n      \"credentials\": [\n        {\n          \"type\": \"oauth2\",\n          \"key\": \"string\"\n        },\n        {\n          \"type\": \"api-key\",\n          \"key\": \"string\"\n        }\n      ],\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"createdAt\": \"1952-05-09T00:22:51.004Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ad66534d-ffd7-4211-84f8-4520e3f68ac0",
+          "name": "Boltic Create a new consumer",
+          "request": {
+            "name": "Boltic Create a new consumer",
+            "description": {},
+            "url": {
+              "path": [
+                "consumers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"email\": \"<email>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "26d3c04c-9da5-495e-b6cb-a84d4de80030",
+              "name": "Consumer created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "consumers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"email\": \"<email>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"email\": \"NaI6LpIG9y@zHfbyVZpegFjJqYVknBnO.udg\",\n  \"credentials\": [\n    {\n      \"type\": \"oauth2\",\n      \"key\": \"string\"\n    },\n    {\n      \"type\": \"jwt\",\n      \"key\": \"string\"\n    }\n  ],\n  \"tags\": [\n    \"string\",\n    \"string\"\n  ],\n  \"createdAt\": \"1957-04-06T04:37:40.017Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "752d4bcd-6ec7-4ed1-93bb-3e4180f0b62d",
+          "name": "Boltic Get a consumer by ID",
+          "request": {
+            "name": "Boltic Get a consumer by ID",
+            "description": {},
+            "url": {
+              "path": [
+                "consumers",
+                ":consumerId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "consumerId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "76d573e7-a330-4518-a785-e0f1f4d56bf5",
+              "name": "Consumer details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "consumers",
+                    ":consumerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "consumerId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"email\": \"NaI6LpIG9y@zHfbyVZpegFjJqYVknBnO.udg\",\n  \"credentials\": [\n    {\n      \"type\": \"oauth2\",\n      \"key\": \"string\"\n    },\n    {\n      \"type\": \"jwt\",\n      \"key\": \"string\"\n    }\n  ],\n  \"tags\": [\n    \"string\",\n    \"string\"\n  ],\n  \"createdAt\": \"1957-04-06T04:37:40.017Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ca349140-8842-4480-8ce6-e9bf1e91950f",
+          "name": "Boltic Delete a consumer",
+          "request": {
+            "name": "Boltic Delete a consumer",
+            "description": {},
+            "url": {
+              "path": [
+                "consumers",
+                ":consumerId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "consumerId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e8d42e32-4dde-40cb-83b7-6c99d9b222bc",
+              "name": "Consumer deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "consumers",
+                    ":consumerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "consumerId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "9be1c52f-c8f7-414a-b6d5-96979d7afb73",
+      "name": "Plugins",
+      "description": {
+        "content": "Manage gateway plugins for transformation and security",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a0309d65-3002-4eb2-afac-0d7597382f76",
+          "name": "Boltic List all plugins",
+          "request": {
+            "name": "Boltic List all plugins",
+            "description": {
+              "content": "Retrieve a list of all plugins configured in the gateway.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "plugins"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0d09d3dd-14ba-4fa0-8645-5dc3a136a3e2",
+              "name": "A list of plugins",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plugins"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"type\": \"transformation\",\n      \"enabled\": false,\n      \"config\": {\n        \"key_0\": 7972,\n        \"key_1\": 3260,\n        \"key_2\": \"string\"\n      },\n      \"routeId\": \"string\",\n      \"serviceId\": \"string\",\n      \"createdAt\": \"1996-06-30T03:31:38.271Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"type\": \"cors\",\n      \"enabled\": true,\n      \"config\": {\n        \"key_0\": \"string\"\n      },\n      \"routeId\": \"string\",\n      \"serviceId\": \"string\",\n      \"createdAt\": \"1994-05-29T04:54:50.811Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "18de32eb-5afb-4f6f-8616-3d934f1047b3",
+          "name": "Boltic Create a new plugin",
+          "request": {
+            "name": "Boltic Create a new plugin",
+            "description": {
+              "content": "Add a plugin to the gateway for transformation, security, or observability.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "plugins"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"enabled\": true,\n  \"config\": {\n    \"key_0\": false\n  },\n  \"routeId\": \"<string>\",\n  \"serviceId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "51b54dc9-a3a1-4563-a3cd-4d0837680b2c",
+              "name": "Plugin created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plugins"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"enabled\": true,\n  \"config\": {\n    \"key_0\": 7949,\n    \"key_1\": 1574.6253948504395\n  },\n  \"routeId\": \"<string>\",\n  \"serviceId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"type\": \"custom\",\n  \"enabled\": true,\n  \"config\": {\n    \"key_0\": 3789\n  },\n  \"routeId\": \"string\",\n  \"serviceId\": \"string\",\n  \"createdAt\": \"2011-06-01T13:32:47.464Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d50c0d27-826d-45e9-95bf-07684121b42c",
+          "name": "Boltic Get a plugin by ID",
+          "request": {
+            "name": "Boltic Get a plugin by ID",
+            "description": {},
+            "url": {
+              "path": [
+                "plugins",
+                ":pluginId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "pluginId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d78e0efe-fa60-4daa-8892-3639bacd7a49",
+              "name": "Plugin details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plugins",
+                    ":pluginId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "pluginId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"type\": \"custom\",\n  \"enabled\": true,\n  \"config\": {\n    \"key_0\": 3789\n  },\n  \"routeId\": \"string\",\n  \"serviceId\": \"string\",\n  \"createdAt\": \"2011-06-01T13:32:47.464Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "71f82c58-c400-4df6-9e65-8fdfbf3b9c5a",
+          "name": "Boltic Update a plugin",
+          "request": {
+            "name": "Boltic Update a plugin",
+            "description": {},
+            "url": {
+              "path": [
+                "plugins",
+                ":pluginId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "pluginId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"enabled\": true,\n  \"config\": {\n    \"key_0\": false\n  },\n  \"routeId\": \"<string>\",\n  \"serviceId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f1a66814-cc59-4994-81b5-9fb1af8c50a1",
+              "name": "Plugin updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plugins",
+                    ":pluginId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "pluginId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"enabled\": true,\n  \"config\": {\n    \"key_0\": 7949,\n    \"key_1\": 1574.6253948504395\n  },\n  \"routeId\": \"<string>\",\n  \"serviceId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"type\": \"custom\",\n  \"enabled\": true,\n  \"config\": {\n    \"key_0\": 3789\n  },\n  \"routeId\": \"string\",\n  \"serviceId\": \"string\",\n  \"createdAt\": \"2011-06-01T13:32:47.464Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f29f6b08-13ad-44b9-91f2-ee096b5a3269",
+          "name": "Boltic Delete a plugin",
+          "request": {
+            "name": "Boltic Delete a plugin",
+            "description": {},
+            "url": {
+              "path": [
+                "plugins",
+                ":pluginId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "pluginId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5c25f1e5-43f4-428c-8ae4-fdfa46dc1f72",
+              "name": "Plugin deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plugins",
+                    ":pluginId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "pluginId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "d31c49c0-6fe5-42ab-b941-44326e78102f",
+      "name": "Routes",
+      "description": {
+        "content": "Manage API routes and request routing rules",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "62376980-9ef1-499a-ad0c-b514428e0e0a",
+          "name": "Boltic List all routes",
+          "request": {
+            "name": "Boltic List all routes",
+            "description": {
+              "content": "Retrieve a list of all configured API routes in the gateway.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "routes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b3caeeb2-bdea-4c0e-85bb-eb132b8084d3",
+              "name": "A list of routes",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "routes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"methods\": [\n        \"PUT\",\n        \"PUT\"\n      ],\n      \"paths\": [\n        \"string\",\n        \"string\"\n      ],\n      \"serviceId\": \"string\",\n      \"stripPath\": true,\n      \"preserveHost\": true,\n      \"protocols\": [\n        \"http\",\n        \"https\"\n      ],\n      \"plugins\": [\n        \"string\",\n        \"string\"\n      ],\n      \"status\": \"inactive\",\n      \"createdAt\": \"2015-04-14T04:05:52.882Z\",\n      \"updatedAt\": \"1987-06-14T17:12:38.071Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"methods\": [\n        \"HEAD\",\n        \"POST\"\n      ],\n      \"paths\": [\n        \"string\",\n        \"string\"\n      ],\n      \"serviceId\": \"string\",\n      \"stripPath\": true,\n      \"preserveHost\": false,\n      \"protocols\": [\n        \"http\",\n        \"https\"\n      ],\n      \"plugins\": [\n        \"string\",\n        \"string\"\n      ],\n      \"status\": \"active\",\n      \"createdAt\": \"1975-06-05T05:30:12.610Z\",\n      \"updatedAt\": \"2025-12-02T15:11:15.458Z\"\n    }\n  ],\n  \"pagination\": {\n    \"page\": 3671,\n    \"limit\": 5840,\n    \"total\": 2108,\n    \"totalPages\": 3038\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "92cd8fff-4240-448f-90f6-da235546da70",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "routes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5950,\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "362ffaec-cb1c-4104-a3dd-815e5ca7c2f8",
+          "name": "Boltic Create a new route",
+          "request": {
+            "name": "Boltic Create a new route",
+            "description": {
+              "content": "Create a new API route with specified routing rules and target service.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "routes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"paths\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"serviceId\": \"<string>\",\n  \"methods\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"stripPath\": \"<boolean>\",\n  \"preserveHost\": \"<boolean>\",\n  \"protocols\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"plugins\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"status\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8f205365-494d-4192-921b-30c8b4adc584",
+              "name": "Route created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "routes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"paths\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"serviceId\": \"<string>\",\n  \"methods\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"stripPath\": \"<boolean>\",\n  \"preserveHost\": \"<boolean>\",\n  \"protocols\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"plugins\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"status\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"methods\": [\n    \"OPTIONS\",\n    \"GET\"\n  ],\n  \"paths\": [\n    \"string\",\n    \"string\"\n  ],\n  \"serviceId\": \"string\",\n  \"stripPath\": false,\n  \"preserveHost\": false,\n  \"protocols\": [\n    \"http\",\n    \"http\"\n  ],\n  \"plugins\": [\n    \"string\",\n    \"string\"\n  ],\n  \"status\": \"inactive\",\n  \"createdAt\": \"2023-08-22T19:23:49.565Z\",\n  \"updatedAt\": \"2010-12-14T04:24:36.039Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bc513b5c-8213-46f8-b9e0-83cd2bb06b3c",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "routes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"paths\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"serviceId\": \"<string>\",\n  \"methods\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"stripPath\": \"<boolean>\",\n  \"preserveHost\": \"<boolean>\",\n  \"protocols\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"plugins\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"status\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5950,\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d5448638-7416-4b08-ab12-2827bec28ce3",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "routes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"paths\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"serviceId\": \"<string>\",\n  \"methods\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"stripPath\": \"<boolean>\",\n  \"preserveHost\": \"<boolean>\",\n  \"protocols\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"plugins\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"status\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5950,\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d2301cfa-ae00-4178-8d48-5cb3a38abe1b",
+          "name": "Boltic Get a route by ID",
+          "request": {
+            "name": "Boltic Get a route by ID",
+            "description": {
+              "content": "Retrieve details of a specific route.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "routes",
+                ":routeId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "routeId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ab89087d-3dc3-4d87-ab64-ef2094e5155c",
+              "name": "Route details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "routes",
+                    ":routeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "routeId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"methods\": [\n    \"OPTIONS\",\n    \"GET\"\n  ],\n  \"paths\": [\n    \"string\",\n    \"string\"\n  ],\n  \"serviceId\": \"string\",\n  \"stripPath\": false,\n  \"preserveHost\": false,\n  \"protocols\": [\n    \"http\",\n    \"http\"\n  ],\n  \"plugins\": [\n    \"string\",\n    \"string\"\n  ],\n  \"status\": \"inactive\",\n  \"createdAt\": \"2023-08-22T19:23:49.565Z\",\n  \"updatedAt\": \"2010-12-14T04:24:36.039Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "49c77100-aede-478e-9bf6-5618cd3fce92",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "routes",
+                    ":routeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "routeId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5950,\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "42bbec27-5a6d-4528-adb8-7d65665fb5a7",
+          "name": "Boltic Update a route",
+          "request": {
+            "name": "Boltic Update a route",
+            "description": {
+              "content": "Update the configuration of an existing route.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "routes",
+                ":routeId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "routeId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"paths\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"serviceId\": \"<string>\",\n  \"methods\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"stripPath\": \"<boolean>\",\n  \"preserveHost\": \"<boolean>\",\n  \"protocols\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"plugins\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"status\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "75527ea1-6f44-43ba-8796-ca302ea6f4c1",
+              "name": "Route updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "routes",
+                    ":routeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "routeId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"paths\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"serviceId\": \"<string>\",\n  \"methods\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"stripPath\": \"<boolean>\",\n  \"preserveHost\": \"<boolean>\",\n  \"protocols\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"plugins\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"status\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"methods\": [\n    \"OPTIONS\",\n    \"GET\"\n  ],\n  \"paths\": [\n    \"string\",\n    \"string\"\n  ],\n  \"serviceId\": \"string\",\n  \"stripPath\": false,\n  \"preserveHost\": false,\n  \"protocols\": [\n    \"http\",\n    \"http\"\n  ],\n  \"plugins\": [\n    \"string\",\n    \"string\"\n  ],\n  \"status\": \"inactive\",\n  \"createdAt\": \"2023-08-22T19:23:49.565Z\",\n  \"updatedAt\": \"2010-12-14T04:24:36.039Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5c149481-9360-4c03-aea9-9f317e610c6f",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "routes",
+                    ":routeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "routeId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"paths\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"serviceId\": \"<string>\",\n  \"methods\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"stripPath\": \"<boolean>\",\n  \"preserveHost\": \"<boolean>\",\n  \"protocols\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"plugins\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"status\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5950,\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c57286bf-5928-4476-afdd-03795625c259",
+          "name": "Boltic Delete a route",
+          "request": {
+            "name": "Boltic Delete a route",
+            "description": {
+              "content": "Remove an existing route from the gateway.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "routes",
+                ":routeId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "routeId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "731a4b42-95ef-41e8-8d94-12df7439a085",
+              "name": "Route deleted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "routes",
+                    ":routeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "routeId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b2506e5d-e9f2-4a25-afbe-be463920ccf6",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "routes",
+                    ":routeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "routeId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5950,\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "66ecefa7-fb35-49f0-8a92-ec0f4609a3d6",
+      "name": "Boltic List all services",
+      "request": {
+        "name": "Boltic List all services",
+        "description": {
+          "content": "Retrieve a list of all backend services configured in the gateway.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "services"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "page",
+              "value": "1"
+            },
+            {
+              "disabled": false,
+              "key": "limit",
+              "value": "20"
+            }
+          ],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "cbad7649-2912-4b64-a4d9-aec4a8f1b564",
+          "name": "A list of services",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "services"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "20"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: bearer",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Bearer <token>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"type\": \"serverless\",\n      \"url\": \"https://HcYV.snwOY.j8RSDdUhHDRB0QfTh7d4I9FlMSPE+O60jMvwL+AKL,mtZsNd\",\n      \"retries\": 3856,\n      \"connectTimeout\": 5467,\n      \"readTimeout\": 7336,\n      \"writeTimeout\": 935,\n      \"createdAt\": \"1976-10-22T14:48:26.732Z\",\n      \"updatedAt\": \"1954-07-06T13:02:41.663Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"type\": \"proxy\",\n      \"url\": \"http://jgDuCoZKkVitubjWqyjgSL.xgco916TlxZw6X2nH4xlDfdvOYvHniiR9RN7I,or.nRyRvJwhCfHmZRSiaC\",\n      \"retries\": 2279,\n      \"connectTimeout\": 1075,\n      \"readTimeout\": 5583,\n      \"writeTimeout\": 4263,\n      \"createdAt\": \"1978-09-18T06:06:02.107Z\",\n      \"updatedAt\": \"2015-12-08T13:36:15.674Z\"\n    }\n  ],\n  \"pagination\": {\n    \"page\": 7094,\n    \"limit\": 8006,\n    \"total\": 1418,\n    \"totalPages\": 1591\n  }\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "4438491d-19e6-43f7-beff-b63c784d01c6",
+      "name": "Boltic Create a new service",
+      "request": {
+        "name": "Boltic Create a new service",
+        "description": {
+          "content": "Register a new backend service in the gateway.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "services"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"description\": \"<string>\",\n  \"url\": \"<uri>\",\n  \"retries\": \"<integer>\",\n  \"connectTimeout\": \"<integer>\",\n  \"readTimeout\": \"<integer>\",\n  \"writeTimeout\": \"<integer>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "3214c0da-d48b-4f02-ae09-6c1f8753c320",
+          "name": "Service created successfully",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "services"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: bearer",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Bearer <token>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"description\": \"<string>\",\n  \"url\": \"<uri>\",\n  \"retries\": \"<integer>\",\n  \"connectTimeout\": \"<integer>\",\n  \"readTimeout\": \"<integer>\",\n  \"writeTimeout\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Created",
+          "code": 201,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"type\": \"proxy\",\n  \"url\": \"http://Ixfcml.rfkbJdVvH0oo.1Avdft,ccWqWHNCy\",\n  \"retries\": 1545,\n  \"connectTimeout\": 5611,\n  \"readTimeout\": 5564,\n  \"writeTimeout\": 1609,\n  \"createdAt\": \"2020-02-10T14:05:29.330Z\",\n  \"updatedAt\": \"1947-04-16T20:13:14.998Z\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "09a90e75-a879-4f2e-a139-251cf472551e",
+      "name": "Boltic Get a service by ID",
+      "request": {
+        "name": "Boltic Get a service by ID",
+        "description": {},
+        "url": {
+          "path": [
+            "services",
+            ":serviceId"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "serviceId",
+              "description": "(Required) "
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "4e70a64c-d77a-4d6c-b37f-fb2f28590d0f",
+          "name": "Service details",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "services",
+                ":serviceId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "serviceId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: bearer",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Bearer <token>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"type\": \"proxy\",\n  \"url\": \"http://Ixfcml.rfkbJdVvH0oo.1Avdft,ccWqWHNCy\",\n  \"retries\": 1545,\n  \"connectTimeout\": 5611,\n  \"readTimeout\": 5564,\n  \"writeTimeout\": 1609,\n  \"createdAt\": \"2020-02-10T14:05:29.330Z\",\n  \"updatedAt\": \"1947-04-16T20:13:14.998Z\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "e20a72f1-793b-4954-8176-76c16a25ab2d",
+      "name": "Boltic Update a service",
+      "request": {
+        "name": "Boltic Update a service",
+        "description": {},
+        "url": {
+          "path": [
+            "services",
+            ":serviceId"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "serviceId",
+              "description": "(Required) "
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "PUT",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"description\": \"<string>\",\n  \"url\": \"<uri>\",\n  \"retries\": \"<integer>\",\n  \"connectTimeout\": \"<integer>\",\n  \"readTimeout\": \"<integer>\",\n  \"writeTimeout\": \"<integer>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "0b91277e-ea15-4221-89f9-9360c134de8c",
+          "name": "Service updated",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "services",
+                ":serviceId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "serviceId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: bearer",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Bearer <token>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"description\": \"<string>\",\n  \"url\": \"<uri>\",\n  \"retries\": \"<integer>\",\n  \"connectTimeout\": \"<integer>\",\n  \"readTimeout\": \"<integer>\",\n  \"writeTimeout\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"type\": \"proxy\",\n  \"url\": \"http://Ixfcml.rfkbJdVvH0oo.1Avdft,ccWqWHNCy\",\n  \"retries\": 1545,\n  \"connectTimeout\": 5611,\n  \"readTimeout\": 5564,\n  \"writeTimeout\": 1609,\n  \"createdAt\": \"2020-02-10T14:05:29.330Z\",\n  \"updatedAt\": \"1947-04-16T20:13:14.998Z\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "dece75ba-0175-45e3-9171-1fd03fabc915",
+      "name": "Boltic Delete a service",
+      "request": {
+        "name": "Boltic Delete a service",
+        "description": {},
+        "url": {
+          "path": [
+            "services",
+            ":serviceId"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "serviceId",
+              "description": "(Required) "
+            }
+          ]
+        },
+        "method": "DELETE",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "33c6f2f9-1d70-44a0-8b46-c8f80913ee81",
+          "name": "Service deleted",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "services",
+                ":serviceId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "serviceId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: bearer",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Bearer <token>"
+              }
+            ],
+            "method": "DELETE",
+            "body": {}
+          },
+          "status": "No Content",
+          "code": 204,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://gateway.boltic.io/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "e647bde5-61ce-4125-a021-15dacd9fa7e8",
+    "name": "Boltic Gateway API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Boltic Gateway API provides a developer-friendly API gateway designed to simplify and secure how services interact across your platform. It enables seamless request routing, payload transformation, and enforcement of security policies across diverse integration types including serverless functions, workflows, tables, and proxy endpoints. The Gateway supports dynamic URL rewriting, path parameter injection, fine-grained authentication, and real-time observability.\n\nContact Support:\n Name: Boltic",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,941 @@
+{
+  "item": [
+    {
+      "id": "af7a55e1-f5db-4240-8ac7-07eba9485067",
+      "name": "Destinations",
+      "description": {
+        "content": "Manage stream destinations for event delivery",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b90dfdfa-1ccb-402e-9433-49adb42c3581",
+          "name": "Boltic List stream destinations",
+          "request": {
+            "name": "Boltic List stream destinations",
+            "description": {},
+            "url": {
+              "path": [
+                "streams",
+                "destinations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d4e86552-7edd-4cf5-a047-f75ff1586853",
+              "name": "A list of stream destinations",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "streams",
+                    "destinations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"type\": \"string\",\n      \"config\": {\n        \"key_0\": \"string\",\n        \"key_1\": 1556.6652190617358\n      },\n      \"status\": \"active\",\n      \"createdAt\": \"2025-06-23T23:38:00.309Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"type\": \"string\",\n      \"config\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"status\": \"active\",\n      \"createdAt\": \"2008-02-12T13:48:42.932Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ffc5ff40-b631-4b78-92af-8a2e14e8d7e4",
+          "name": "Boltic Create a stream destination",
+          "request": {
+            "name": "Boltic Create a stream destination",
+            "description": {
+              "content": "Configure a destination for delivering stream events.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "streams",
+                "destinations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"config\": {\n    \"key_0\": false\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d5135864-977f-45b2-9b71-3ea3f183e9f8",
+              "name": "Stream destination created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "streams",
+                    "destinations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"config\": {\n    \"key_0\": 6772,\n    \"key_1\": 8908.40867033101\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"type\": \"string\",\n  \"config\": {\n    \"key_0\": 8725.562789299252,\n    \"key_1\": false\n  },\n  \"status\": \"inactive\",\n  \"createdAt\": \"2014-06-12T20:22:30.359Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "0a4f2c91-c792-4199-9ebd-ca695e800bbd",
+      "name": "Events",
+      "description": {
+        "content": "Send and query events",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6c7477b6-2f3b-422e-a8a2-0a7245c2e15b",
+          "name": "Boltic Send an event",
+          "request": {
+            "name": "Boltic Send an event",
+            "description": {
+              "content": "Send a custom event to a stream source for processing.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "streams",
+                "events"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sourceId\": \"<string>\",\n  \"type\": \"<string>\",\n  \"properties\": {\n    \"key_0\": \"string\",\n    \"key_1\": 6472,\n    \"key_2\": 5298.600059530312\n  },\n  \"userId\": \"<string>\",\n  \"anonymousId\": \"<string>\",\n  \"timestamp\": \"<dateTime>\",\n  \"context\": {\n    \"key_0\": 1151\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "03cfda9a-a8b7-4d03-9b11-6430f5f3614e",
+              "name": "Event accepted for processing",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "streams",
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sourceId\": \"<string>\",\n  \"type\": \"<string>\",\n  \"properties\": {\n    \"key_0\": 9598,\n    \"key_1\": \"string\"\n  },\n  \"userId\": \"<string>\",\n  \"anonymousId\": \"<string>\",\n  \"timestamp\": \"<dateTime>\",\n  \"context\": {\n    \"key_0\": 7351.540769163937\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"eventId\": \"string\",\n  \"status\": \"accepted\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9fe1a644-5c3b-4031-a5d0-a978c8df3a1d",
+          "name": "Boltic Query events",
+          "request": {
+            "name": "Boltic Query events",
+            "description": {
+              "content": "Query and analyze events using the event analysis dashboard for monitoring event flows.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "streams",
+                "events"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "sourceId",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "eventType",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "from",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "to",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5342568e-ae95-43d6-b648-f7b0dbb42907",
+              "name": "Event query results",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "streams",
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sourceId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "eventType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"sourceId\": \"string\",\n      \"type\": \"string\",\n      \"properties\": {\n        \"key_0\": 5159,\n        \"key_1\": true\n      },\n      \"context\": {\n        \"ip\": \"string\",\n        \"userAgent\": \"string\",\n        \"locale\": \"string\",\n        \"page\": {\n          \"url\": \"string\",\n          \"title\": \"string\",\n          \"referrer\": \"string\"\n        }\n      },\n      \"userId\": \"string\",\n      \"anonymousId\": \"string\",\n      \"timestamp\": \"2018-02-10T07:42:12.838Z\",\n      \"receivedAt\": \"2021-01-05T08:45:57.249Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"sourceId\": \"string\",\n      \"type\": \"string\",\n      \"properties\": {\n        \"key_0\": false\n      },\n      \"context\": {\n        \"ip\": \"string\",\n        \"userAgent\": \"string\",\n        \"locale\": \"string\",\n        \"page\": {\n          \"url\": \"string\",\n          \"title\": \"string\",\n          \"referrer\": \"string\"\n        }\n      },\n      \"userId\": \"string\",\n      \"anonymousId\": \"string\",\n      \"timestamp\": \"1985-01-26T12:22:36.863Z\",\n      \"receivedAt\": \"1984-07-07T16:06:36.689Z\"\n    }\n  ],\n  \"summary\": {\n    \"totalEvents\": 7824,\n    \"uniqueEventTypes\": 1668,\n    \"timeRange\": {\n      \"from\": \"1948-11-03T14:06:05.484Z\",\n      \"to\": \"1994-11-26T11:21:17.846Z\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "b9240e5d-8126-45ff-b3a8-4194732c8dfb",
+      "name": "Stream Sources",
+      "description": {
+        "content": "Manage stream sources for event ingestion",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "55fa2a98-5107-41b1-8be4-22bc4f31f0ce",
+          "name": "Boltic List all stream sources",
+          "request": {
+            "name": "Boltic List all stream sources",
+            "description": {
+              "content": "Retrieve a list of all configured stream sources.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "streams",
+                "sources"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8e6c9ca9-7d63-46ea-80fd-5200394a0830",
+              "name": "A list of stream sources",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "streams",
+                    "sources"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"type\": \"javascript\",\n      \"writeKey\": \"string\",\n      \"status\": \"active\",\n      \"eventsToday\": 9921,\n      \"createdAt\": \"2016-04-16T17:42:22.980Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"type\": \"mobile\",\n      \"writeKey\": \"string\",\n      \"status\": \"active\",\n      \"eventsToday\": 9722,\n      \"createdAt\": \"2016-10-20T03:23:27.626Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "656e3b3c-18b9-4859-91d7-4cb98cf19e4f",
+          "name": "Boltic Create a new stream source",
+          "request": {
+            "name": "Boltic Create a new stream source",
+            "description": {
+              "content": "Create a new source for ingesting events into the stream.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "streams",
+                "sources"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fae6148f-7c1d-4bd9-b3d1-e11245ed9be9",
+              "name": "Stream source created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "streams",
+                    "sources"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"type\": \"server\",\n  \"writeKey\": \"string\",\n  \"status\": \"active\",\n  \"eventsToday\": 8543,\n  \"createdAt\": \"2025-02-10T02:15:18.342Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e8a3501b-c26f-43cb-a738-845e1630723d",
+          "name": "Boltic Get a stream source by ID",
+          "request": {
+            "name": "Boltic Get a stream source by ID",
+            "description": {},
+            "url": {
+              "path": [
+                "streams",
+                "sources",
+                ":sourceId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "sourceId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0bc140e1-87ad-41e2-bf55-d200d592ba56",
+              "name": "Stream source details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "streams",
+                    "sources",
+                    ":sourceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sourceId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"type\": \"server\",\n  \"writeKey\": \"string\",\n  \"status\": \"active\",\n  \"eventsToday\": 8543,\n  \"createdAt\": \"2025-02-10T02:15:18.342Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f30decca-1bdd-4123-b113-819088544ee5",
+          "name": "Boltic Delete a stream source",
+          "request": {
+            "name": "Boltic Delete a stream source",
+            "description": {},
+            "url": {
+              "path": [
+                "streams",
+                "sources",
+                ":sourceId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "sourceId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4d0c25e4-5ae4-4b43-bdbc-db0e01642a0d",
+              "name": "Stream source deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "streams",
+                    "sources",
+                    ":sourceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sourceId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "60bde634-f927-41fb-8aa3-1f7368e553bf",
+          "name": "Boltic Debug a stream source",
+          "request": {
+            "name": "Boltic Debug a stream source",
+            "description": {
+              "content": "Access the source debugger to confirm that API calls from your website, mobile app, or servers are arriving at the stream source.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "streams",
+                "sources",
+                ":sourceId",
+                "debug"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "50"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "sourceId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cc3ebb9a-794a-4f00-b851-0a2a8a37ffb2",
+              "name": "Recent events received by this source",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "streams",
+                    "sources",
+                    ":sourceId",
+                    "debug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sourceId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"sourceId\": \"string\",\n      \"type\": \"string\",\n      \"properties\": {\n        \"key_0\": \"string\"\n      },\n      \"context\": {\n        \"ip\": \"string\",\n        \"userAgent\": \"string\",\n        \"locale\": \"string\",\n        \"page\": {\n          \"url\": \"string\",\n          \"title\": \"string\",\n          \"referrer\": \"string\"\n        }\n      },\n      \"userId\": \"string\",\n      \"anonymousId\": \"string\",\n      \"timestamp\": \"2014-09-04T17:26:48.234Z\",\n      \"receivedAt\": \"1951-06-27T01:41:23.401Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"sourceId\": \"string\",\n      \"type\": \"string\",\n      \"properties\": {\n        \"key_0\": 4735.02238637568,\n        \"key_1\": \"string\"\n      },\n      \"context\": {\n        \"ip\": \"string\",\n        \"userAgent\": \"string\",\n        \"locale\": \"string\",\n        \"page\": {\n          \"url\": \"string\",\n          \"title\": \"string\",\n          \"referrer\": \"string\"\n        }\n      },\n      \"userId\": \"string\",\n      \"anonymousId\": \"string\",\n      \"timestamp\": \"2023-03-17T17:24:51.680Z\",\n      \"receivedAt\": \"1964-07-22T11:07:33.807Z\"\n    }\n  ],\n  \"connected\": false,\n  \"lastEventAt\": \"2013-05-25T07:02:06.917Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.boltic.io/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "2f92fb94-d7c6-4c86-8587-11e9ed9cdf79",
+    "name": "Boltic Streams API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Boltic Streams API provides real-time event streaming capabilities for tracking custom events and streaming data from websites, mobile apps, and servers. It includes source debugger tools for confirming API call delivery, an event analysis dashboard for monitoring event flows, and real-time data processing for actionable insights. Streams centralize, process, and enable analysis of streaming data for better decision-making and performance optimization.\n\nContact Support:\n Name: Boltic",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,204 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Boltic Streams API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Stream Sources",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Boltic List all stream sources",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.boltic.io/v1/streams/sources"
+          },
+          "docs": "Retrieve a list of all configured stream sources."
+        },
+        {
+          "info": {
+            "name": "Boltic Create a new stream source",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.boltic.io/v1/streams/sources",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new source for ingesting events into the stream."
+        },
+        {
+          "info": {
+            "name": "Boltic Get a stream source by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.boltic.io/v1/streams/sources/:sourceId",
+            "params": [
+              {
+                "name": "sourceId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Boltic Get a stream source by ID"
+        },
+        {
+          "info": {
+            "name": "Boltic Delete a stream source",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.boltic.io/v1/streams/sources/:sourceId",
+            "params": [
+              {
+                "name": "sourceId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Boltic Delete a stream source"
+        },
+        {
+          "info": {
+            "name": "Boltic Debug a stream source",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.boltic.io/v1/streams/sources/:sourceId/debug",
+            "params": [
+              {
+                "name": "sourceId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Access the source debugger to confirm that API calls from your website, mobile app, or servers are arriving at the stream source."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Events",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Boltic Query events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.boltic.io/v1/streams/events",
+            "params": [
+              {
+                "name": "sourceId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "eventType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "from",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Query and analyze events using the event analysis dashboard for monitoring event flows."
+        },
+        {
+          "info": {
+            "name": "Boltic Send an event",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.boltic.io/v1/streams/events",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Send a custom event to a stream source for processing."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Destinations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Boltic List stream destinations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.boltic.io/v1/streams/destinations"
+          },
+          "docs": "Boltic List stream destinations"
+        },
+        {
+          "info": {
+            "name": "Boltic Create a stream destination",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.boltic.io/v1/streams/destinations",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Configure a destination for delivering stream events."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
