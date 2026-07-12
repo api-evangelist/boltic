@@ -1,0 +1,18 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/boltic-gateway-api-openapi.yml, openapi/boltic-pipes-api-openapi.yml, openapi/boltic-streams-api-openapi.yml,
+  openapi/boltic-tables-api-openapi.yml, openapi/boltic-workflow-api-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  bearerFormat: JWT
+  sources:
+  - openapi/boltic-gateway-api-openapi.yml
+  - openapi/boltic-pipes-api-openapi.yml
+  - openapi/boltic-streams-api-openapi.yml
+  - openapi/boltic-tables-api-openapi.yml
+  - openapi/boltic-workflow-api-openapi.yml
