@@ -1,13 +1,7 @@
 openapi: 3.0.3
 info:
-  title: Boltic Pipes API
-  description: >-
-    The Boltic Pipes API provides programmatic access to data synchronization
-    pipelines that connect data sources to destinations. Pipes enable real-time
-    data syncing across systems via automated pipelines with zero maintenance.
-    Sources include databases (MongoDB, MySQL, PostgreSQL), SaaS applications
-    via API endpoints, and file storage. The API supports configurable sync
-    frequencies including minutely, hourly, and daily schedules.
+  title: Boltic Gateway Certificates Pipes API
+  description: The Boltic Gateway API provides a developer-friendly API gateway designed to simplify and secure how services interact across your platform. It enables seamless request routing, payload transformation, and enforcement of security policies across diverse integration types including serverless functions, workflows, tables, and proxy endpoints. The Gateway supports dynamic URL rewriting, path parameter injection, fine-grained authentication, and real-time observability.
   version: 1.0.0
   contact:
     name: Boltic
@@ -16,19 +10,13 @@ info:
     name: Proprietary
     url: https://www.boltic.io/terms
 servers:
-  - url: https://api.boltic.io/v1
-    description: Boltic Pipes API
+- url: https://gateway.boltic.io/v1
+  description: Boltic Gateway API
 security:
-  - bearerAuth: []
+- bearerAuth: []
 tags:
-  - name: Destinations
-    description: Manage data destinations
-  - name: Pipes
-    description: Manage data synchronization pipelines
-  - name: Sources
-    description: Manage data sources
-  - name: Sync Runs
-    description: Monitor and manage sync executions
+- name: Pipes
+  description: Manage data synchronization pipelines
 paths:
   /pipes:
     get:
@@ -36,23 +24,26 @@ paths:
       summary: Boltic List all pipes
       description: Retrieve a list of all data synchronization pipelines.
       tags:
-        - Pipes
+      - Pipes
       parameters:
-        - name: page
-          in: query
-          schema:
-            type: integer
-            default: 1
-        - name: limit
-          in: query
-          schema:
-            type: integer
-            default: 20
-        - name: status
-          in: query
-          schema:
-            type: string
-            enum: [active, paused, error]
+      - name: page
+        in: query
+        schema:
+          type: integer
+          default: 1
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          default: 20
+      - name: status
+        in: query
+        schema:
+          type: string
+          enum:
+          - active
+          - paused
+          - error
       responses:
         '200':
           description: A list of pipes
@@ -72,7 +63,7 @@ paths:
       summary: Boltic Create a new pipe
       description: Create a new data synchronization pipeline between a source and destination.
       tags:
-        - Pipes
+      - Pipes
       requestBody:
         required: true
         content:
@@ -91,13 +82,13 @@ paths:
       operationId: getPipe
       summary: Boltic Get a pipe by ID
       tags:
-        - Pipes
+      - Pipes
       parameters:
-        - name: pipeId
-          in: path
-          required: true
-          schema:
-            type: string
+      - name: pipeId
+        in: path
+        required: true
+        schema:
+          type: string
       responses:
         '200':
           description: Pipe details
@@ -109,13 +100,13 @@ paths:
       operationId: updatePipe
       summary: Boltic Update a pipe
       tags:
-        - Pipes
+      - Pipes
       parameters:
-        - name: pipeId
-          in: path
-          required: true
-          schema:
-            type: string
+      - name: pipeId
+        in: path
+        required: true
+        schema:
+          type: string
       requestBody:
         required: true
         content:
@@ -133,13 +124,13 @@ paths:
       operationId: deletePipe
       summary: Boltic Delete a pipe
       tags:
-        - Pipes
+      - Pipes
       parameters:
-        - name: pipeId
-          in: path
-          required: true
-          schema:
-            type: string
+      - name: pipeId
+        in: path
+        required: true
+        schema:
+          type: string
       responses:
         '204':
           description: Pipe deleted
@@ -149,13 +140,13 @@ paths:
       summary: Boltic Trigger a manual sync
       description: Initiate an immediate data synchronization run for a pipe.
       tags:
-        - Pipes
+      - Pipes
       parameters:
-        - name: pipeId
-          in: path
-          required: true
-          schema:
-            type: string
+      - name: pipeId
+        in: path
+        required: true
+        schema:
+          type: string
       responses:
         '202':
           description: Sync triggered
@@ -168,13 +159,13 @@ paths:
       operationId: pausePipe
       summary: Boltic Pause a pipe
       tags:
-        - Pipes
+      - Pipes
       parameters:
-        - name: pipeId
-          in: path
-          required: true
-          schema:
-            type: string
+      - name: pipeId
+        in: path
+        required: true
+        schema:
+          type: string
       responses:
         '200':
           description: Pipe paused
@@ -183,131 +174,24 @@ paths:
       operationId: resumePipe
       summary: Boltic Resume a paused pipe
       tags:
-        - Pipes
+      - Pipes
       parameters:
-        - name: pipeId
-          in: path
-          required: true
-          schema:
-            type: string
+      - name: pipeId
+        in: path
+        required: true
+        schema:
+          type: string
       responses:
         '200':
           description: Pipe resumed
-  /pipes/{pipeId}/runs:
-    get:
-      operationId: listSyncRuns
-      summary: Boltic List sync runs for a pipe
-      description: Retrieve the sync execution history for a pipe.
-      tags:
-        - Sync Runs
-      parameters:
-        - name: pipeId
-          in: path
-          required: true
-          schema:
-            type: string
-        - name: page
-          in: query
-          schema:
-            type: integer
-            default: 1
-        - name: limit
-          in: query
-          schema:
-            type: integer
-            default: 20
-      responses:
-        '200':
-          description: A list of sync runs
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  data:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/SyncRun'
-                  pagination:
-                    $ref: '#/components/schemas/Pagination'
-  /sources:
-    get:
-      operationId: listSources
-      summary: Boltic List available source types
-      tags:
-        - Sources
-      responses:
-        '200':
-          description: A list of source types
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  data:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/SourceType'
-  /destinations:
-    get:
-      operationId: listDestinations
-      summary: Boltic List available destination types
-      tags:
-        - Destinations
-      responses:
-        '200':
-          description: A list of destination types
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  data:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/DestinationType'
 components:
-  securitySchemes:
-    bearerAuth:
-      type: http
-      scheme: bearer
-      bearerFormat: JWT
   schemas:
-    Pipe:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        status:
-          type: string
-          enum: [active, paused, error]
-        source:
-          $ref: '#/components/schemas/SourceConfig'
-        destination:
-          $ref: '#/components/schemas/DestinationConfig'
-        schedule:
-          $ref: '#/components/schemas/Schedule'
-        lastSyncAt:
-          type: string
-          format: date-time
-        rowsSynced:
-          type: integer
-        createdAt:
-          type: string
-          format: date-time
-        updatedAt:
-          type: string
-          format: date-time
     PipeInput:
       type: object
       required:
-        - name
-        - source
-        - destination
+      - name
+      - source
+      - destination
       properties:
         name:
           type: string
@@ -319,25 +203,17 @@ components:
           $ref: '#/components/schemas/DestinationConfig'
         schedule:
           $ref: '#/components/schemas/Schedule'
-    SourceConfig:
+    Pagination:
       type: object
       properties:
-        type:
-          type: string
-          description: Source type identifier (e.g., mongodb, mysql, postgresql, rest-api)
-        connectionConfig:
-          type: object
-          additionalProperties: true
-          description: Connection parameters specific to the source type
-        rootPath:
-          type: string
-          description: Root path for REST API data extraction
-        authType:
-          type: string
-          enum: [none, basic, bearer, oauth2, api-key]
-        authConfig:
-          type: object
-          additionalProperties: true
+        page:
+          type: integer
+        limit:
+          type: integer
+        total:
+          type: integer
+        totalPages:
+          type: integer
     DestinationConfig:
       type: object
       properties:
@@ -363,7 +239,13 @@ components:
       properties:
         frequency:
           type: string
-          enum: [minutely, hourly, daily, weekly, monthly, custom]
+          enum:
+          - minutely
+          - hourly
+          - daily
+          - weekly
+          - monthly
+          - custom
         interval:
           type: integer
           description: Interval value for the frequency
@@ -381,7 +263,11 @@ components:
           type: string
         status:
           type: string
-          enum: [running, completed, failed, cancelled]
+          enum:
+          - running
+          - completed
+          - failed
+          - cancelled
         rowsSynced:
           type: integer
         rowsFailed:
@@ -402,67 +288,64 @@ components:
               type: string
             code:
               type: string
-    SourceType:
+    Pipe:
       type: object
       properties:
         id:
           type: string
         name:
           type: string
-        category:
+        description:
           type: string
-          enum: [database, saas, file-storage, api]
-        icon:
+        status:
           type: string
-          format: uri
-    DestinationType:
+          enum:
+          - active
+          - paused
+          - error
+        source:
+          $ref: '#/components/schemas/SourceConfig'
+        destination:
+          $ref: '#/components/schemas/DestinationConfig'
+        schedule:
+          $ref: '#/components/schemas/Schedule'
+        lastSyncAt:
+          type: string
+          format: date-time
+        rowsSynced:
+          type: integer
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    SourceConfig:
       type: object
       properties:
-        id:
+        type:
           type: string
-        name:
+          description: Source type identifier (e.g., mongodb, mysql, postgresql, rest-api)
+        connectionConfig:
+          type: object
+          additionalProperties: true
+          description: Connection parameters specific to the source type
+        rootPath:
           type: string
-        category:
+          description: Root path for REST API data extraction
+        authType:
           type: string
-        icon:
-          type: string
-          format: uri
-    Pagination:
-      type: object
-      properties:
-        page:
-          type: integer
-        limit:
-          type: integer
-        total:
-          type: integer
-        totalPages:
-          type: integer
-    Error:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-        details:
-          type: string
-  responses:
-    BadRequest:
-      description: Bad request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Unauthorized
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+          enum:
+          - none
+          - basic
+          - bearer
+          - oauth2
+          - api-key
+        authConfig:
+          type: object
+          additionalProperties: true
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
