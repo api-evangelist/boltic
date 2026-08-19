@@ -1,7 +1,7 @@
 {
   "opencollection": "1.0.0",
   "info": {
-    "name": "Boltic Gateway Certificates Tables API",
+    "name": "Boltic Gateway Certificates Routes API",
     "version": "1.0.0"
   },
   "request": {
@@ -13,18 +13,18 @@
   "items": [
     {
       "info": {
-        "name": "Tables",
+        "name": "Routes",
         "type": "folder"
       },
       "items": [
         {
           "info": {
-            "name": "Boltic List all tables",
+            "name": "Boltic List all routes",
             "type": "http"
           },
           "http": {
             "method": "GET",
-            "url": "https://gateway.boltic.io/v1/tables",
+            "url": "https://gateway.boltic.io/v1/routes",
             "params": [
               {
                 "name": "page",
@@ -38,52 +38,52 @@
               }
             ]
           },
-          "docs": "Retrieve a list of all tables in the workspace."
+          "docs": "Retrieve a list of all configured API routes in the gateway."
         },
         {
           "info": {
-            "name": "Boltic Create a new table",
+            "name": "Boltic Create a new route",
             "type": "http"
           },
           "http": {
             "method": "POST",
-            "url": "https://gateway.boltic.io/v1/tables",
+            "url": "https://gateway.boltic.io/v1/routes",
             "body": {
               "type": "json",
               "data": "{}"
             }
           },
-          "docs": "Create a new table with a defined schema of columns."
+          "docs": "Create a new API route with specified routing rules and target service."
         },
         {
           "info": {
-            "name": "Boltic Get a table by ID",
+            "name": "Boltic Get a route by ID",
             "type": "http"
           },
           "http": {
             "method": "GET",
-            "url": "https://gateway.boltic.io/v1/tables/:tableId",
+            "url": "https://gateway.boltic.io/v1/routes/:routeId",
             "params": [
               {
-                "name": "tableId",
+                "name": "routeId",
                 "value": "",
                 "type": "path"
               }
             ]
           },
-          "docs": "Retrieve table metadata and schema."
+          "docs": "Retrieve details of a specific route."
         },
         {
           "info": {
-            "name": "Boltic Update a table",
+            "name": "Boltic Update a route",
             "type": "http"
           },
           "http": {
             "method": "PUT",
-            "url": "https://gateway.boltic.io/v1/tables/:tableId",
+            "url": "https://gateway.boltic.io/v1/routes/:routeId",
             "params": [
               {
-                "name": "tableId",
+                "name": "routeId",
                 "value": "",
                 "type": "path"
               }
@@ -93,25 +93,25 @@
               "data": "{}"
             }
           },
-          "docs": "Update table metadata or schema definition."
+          "docs": "Update the configuration of an existing route."
         },
         {
           "info": {
-            "name": "Boltic Delete a table",
+            "name": "Boltic Delete a route",
             "type": "http"
           },
           "http": {
             "method": "DELETE",
-            "url": "https://gateway.boltic.io/v1/tables/:tableId",
+            "url": "https://gateway.boltic.io/v1/routes/:routeId",
             "params": [
               {
-                "name": "tableId",
+                "name": "routeId",
                 "value": "",
                 "type": "path"
               }
             ]
           },
-          "docs": "Boltic Delete a table"
+          "docs": "Remove an existing route from the gateway."
         }
       ]
     }

@@ -1,0 +1,77 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Boltic Gateway Certificates Events API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Events",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Boltic Query events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://gateway.boltic.io/v1/streams/events",
+            "params": [
+              {
+                "name": "sourceId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "eventType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "from",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Query and analyze events using the event analysis dashboard for monitoring event flows."
+        },
+        {
+          "info": {
+            "name": "Boltic Send an event",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://gateway.boltic.io/v1/streams/events",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Send a custom event to a stream source for processing."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

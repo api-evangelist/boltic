@@ -1,0 +1,46 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Boltic Gateway Certificates Queries API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Queries",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Boltic Execute a SQL query",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://gateway.boltic.io/v1/tables/:tableId/query",
+            "params": [
+              {
+                "name": "tableId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Run a DML query against the table using the built-in SQL editor. Supports AI-powered natural language to SQL generation."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

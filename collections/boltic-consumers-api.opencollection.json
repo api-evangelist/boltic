@@ -1,0 +1,86 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Boltic Gateway Certificates Consumers API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Consumers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Boltic List all consumers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://gateway.boltic.io/v1/consumers"
+          },
+          "docs": "Retrieve a list of all API consumers."
+        },
+        {
+          "info": {
+            "name": "Boltic Create a new consumer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://gateway.boltic.io/v1/consumers",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Boltic Create a new consumer"
+        },
+        {
+          "info": {
+            "name": "Boltic Get a consumer by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://gateway.boltic.io/v1/consumers/:consumerId",
+            "params": [
+              {
+                "name": "consumerId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Boltic Get a consumer by ID"
+        },
+        {
+          "info": {
+            "name": "Boltic Delete a consumer",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://gateway.boltic.io/v1/consumers/:consumerId",
+            "params": [
+              {
+                "name": "consumerId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Boltic Delete a consumer"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,109 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Boltic Gateway Certificates Stream Sources API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Stream Sources",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Boltic List all stream sources",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://gateway.boltic.io/v1/streams/sources"
+          },
+          "docs": "Retrieve a list of all configured stream sources."
+        },
+        {
+          "info": {
+            "name": "Boltic Create a new stream source",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://gateway.boltic.io/v1/streams/sources",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new source for ingesting events into the stream."
+        },
+        {
+          "info": {
+            "name": "Boltic Get a stream source by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://gateway.boltic.io/v1/streams/sources/:sourceId",
+            "params": [
+              {
+                "name": "sourceId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Boltic Get a stream source by ID"
+        },
+        {
+          "info": {
+            "name": "Boltic Delete a stream source",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://gateway.boltic.io/v1/streams/sources/:sourceId",
+            "params": [
+              {
+                "name": "sourceId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Boltic Delete a stream source"
+        },
+        {
+          "info": {
+            "name": "Boltic Debug a stream source",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://gateway.boltic.io/v1/streams/sources/:sourceId/debug",
+            "params": [
+              {
+                "name": "sourceId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Access the source debugger to confirm that API calls from your website, mobile app, or servers are arriving at the stream source."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

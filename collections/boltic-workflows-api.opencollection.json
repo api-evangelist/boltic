@@ -1,7 +1,7 @@
 {
   "opencollection": "1.0.0",
   "info": {
-    "name": "Boltic Gateway Certificates Pipes API",
+    "name": "Boltic Gateway Certificates Workflows API",
     "version": "1.0.0"
   },
   "request": {
@@ -13,18 +13,18 @@
   "items": [
     {
       "info": {
-        "name": "Pipes",
+        "name": "Workflows",
         "type": "folder"
       },
       "items": [
         {
           "info": {
-            "name": "Boltic List all pipes",
+            "name": "Boltic List all workflows",
             "type": "http"
           },
           "http": {
             "method": "GET",
-            "url": "https://gateway.boltic.io/v1/pipes",
+            "url": "https://gateway.boltic.io/v1/workflows",
             "params": [
               {
                 "name": "page",
@@ -43,52 +43,52 @@
               }
             ]
           },
-          "docs": "Retrieve a list of all data synchronization pipelines."
+          "docs": "Retrieve a paginated list of all workflows in the workspace."
         },
         {
           "info": {
-            "name": "Boltic Create a new pipe",
+            "name": "Boltic Create a new workflow",
             "type": "http"
           },
           "http": {
             "method": "POST",
-            "url": "https://gateway.boltic.io/v1/pipes",
+            "url": "https://gateway.boltic.io/v1/workflows",
             "body": {
               "type": "json",
               "data": "{}"
             }
           },
-          "docs": "Create a new data synchronization pipeline between a source and destination."
+          "docs": "Create a new automation workflow with triggers, actions, and configuration."
         },
         {
           "info": {
-            "name": "Boltic Get a pipe by ID",
+            "name": "Boltic Get a workflow by ID",
             "type": "http"
           },
           "http": {
             "method": "GET",
-            "url": "https://gateway.boltic.io/v1/pipes/:pipeId",
+            "url": "https://gateway.boltic.io/v1/workflows/:workflowId",
             "params": [
               {
-                "name": "pipeId",
+                "name": "workflowId",
                 "value": "",
                 "type": "path"
               }
             ]
           },
-          "docs": "Boltic Get a pipe by ID"
+          "docs": "Retrieve the full configuration and status of a specific workflow."
         },
         {
           "info": {
-            "name": "Boltic Update a pipe",
+            "name": "Boltic Update a workflow",
             "type": "http"
           },
           "http": {
             "method": "PUT",
-            "url": "https://gateway.boltic.io/v1/pipes/:pipeId",
+            "url": "https://gateway.boltic.io/v1/workflows/:workflowId",
             "params": [
               {
-                "name": "pipeId",
+                "name": "workflowId",
                 "value": "",
                 "type": "path"
               }
@@ -98,79 +98,83 @@
               "data": "{}"
             }
           },
-          "docs": "Boltic Update a pipe"
+          "docs": "Update the configuration of an existing workflow."
         },
         {
           "info": {
-            "name": "Boltic Delete a pipe",
+            "name": "Boltic Delete a workflow",
             "type": "http"
           },
           "http": {
             "method": "DELETE",
-            "url": "https://gateway.boltic.io/v1/pipes/:pipeId",
+            "url": "https://gateway.boltic.io/v1/workflows/:workflowId",
             "params": [
               {
-                "name": "pipeId",
+                "name": "workflowId",
                 "value": "",
                 "type": "path"
               }
             ]
           },
-          "docs": "Boltic Delete a pipe"
+          "docs": "Boltic Delete a workflow"
         },
         {
           "info": {
-            "name": "Boltic Trigger a manual sync",
+            "name": "Boltic Execute a workflow",
             "type": "http"
           },
           "http": {
             "method": "POST",
-            "url": "https://gateway.boltic.io/v1/pipes/:pipeId/trigger",
+            "url": "https://gateway.boltic.io/v1/workflows/:workflowId/execute",
             "params": [
               {
-                "name": "pipeId",
+                "name": "workflowId",
                 "value": "",
                 "type": "path"
               }
-            ]
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
           },
-          "docs": "Initiate an immediate data synchronization run for a pipe."
+          "docs": "Trigger immediate execution of a workflow. Supports synchronous execution that waits for the workflow to complete before returning a response."
         },
         {
           "info": {
-            "name": "Boltic Pause a pipe",
+            "name": "Boltic Activate a workflow",
             "type": "http"
           },
           "http": {
             "method": "POST",
-            "url": "https://gateway.boltic.io/v1/pipes/:pipeId/pause",
+            "url": "https://gateway.boltic.io/v1/workflows/:workflowId/activate",
             "params": [
               {
-                "name": "pipeId",
+                "name": "workflowId",
                 "value": "",
                 "type": "path"
               }
             ]
           },
-          "docs": "Boltic Pause a pipe"
+          "docs": "Enable a workflow so it responds to triggers."
         },
         {
           "info": {
-            "name": "Boltic Resume a paused pipe",
+            "name": "Boltic Deactivate a workflow",
             "type": "http"
           },
           "http": {
             "method": "POST",
-            "url": "https://gateway.boltic.io/v1/pipes/:pipeId/resume",
+            "url": "https://gateway.boltic.io/v1/workflows/:workflowId/deactivate",
             "params": [
               {
-                "name": "pipeId",
+                "name": "workflowId",
                 "value": "",
                 "type": "path"
               }
             ]
           },
-          "docs": "Boltic Resume a paused pipe"
+          "docs": "Disable a workflow so it stops responding to triggers."
         }
       ]
     }

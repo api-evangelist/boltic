@@ -1,25 +1,27 @@
 {
   "item": [
     {
-      "id": "8d70b7e8-689c-446a-a083-dd647546f0f3",
-      "name": "Tables",
+      "id": "36db3a81-34c0-4ab9-a8ae-3c18ad6b83a1",
+      "name": "Rows",
       "description": {
-        "content": "Manage tables and their schemas",
+        "content": "Create, read, update, and delete table rows",
         "type": "text/plain"
       },
       "item": [
         {
-          "id": "ffec9483-3765-4237-9638-cc240f1ff49e",
-          "name": "Boltic List all tables",
+          "id": "baf95050-c283-4c80-8bf0-abbf142e5aad",
+          "name": "Boltic List rows in a table",
           "request": {
-            "name": "Boltic List all tables",
+            "name": "Boltic List rows in a table",
             "description": {
-              "content": "Retrieve a list of all tables in the workspace.",
+              "content": "Retrieve rows from a table with optional filtering and sorting.",
               "type": "text/plain"
             },
             "url": {
               "path": [
-                "tables"
+                "tables",
+                ":tableId",
+                "rows"
               ],
               "host": [
                 "{{baseUrl}}"
@@ -33,247 +35,26 @@
                 {
                   "disabled": false,
                   "key": "limit",
-                  "value": "20"
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "719ea362-01b3-4a01-8385-06eb8809128a",
-              "name": "A list of tables",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "tables"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "page",
-                      "value": "1"
-                    },
-                    {
-                      "key": "limit",
-                      "value": "20"
-                    }
-                  ],
-                  "variable": []
+                  "value": "50"
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"columns\": [\n        {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"type\": \"number\",\n          \"required\": false,\n          \"defaultValue\": \"string\",\n          \"options\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"type\": \"text\",\n          \"required\": true,\n          \"defaultValue\": \"string\",\n          \"options\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ],\n      \"rowCount\": 4285,\n      \"createdAt\": \"2000-05-03T20:20:18.265Z\",\n      \"updatedAt\": \"1949-12-04T06:33:18.693Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"columns\": [\n        {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"type\": \"datetime\",\n          \"required\": false,\n          \"defaultValue\": \"string\",\n          \"options\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"type\": \"select\",\n          \"required\": true,\n          \"defaultValue\": \"string\",\n          \"options\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ],\n      \"rowCount\": 2989,\n      \"createdAt\": \"1973-03-22T22:18:39.903Z\",\n      \"updatedAt\": \"1999-11-04T01:10:33.399Z\"\n    }\n  ],\n  \"pagination\": {\n    \"page\": 3498,\n    \"limit\": 3135,\n    \"total\": 9739,\n    \"totalPages\": 9833\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "6ed5319e-205d-45a3-a905-e17bbb45dfcc",
-          "name": "Boltic Create a new table",
-          "request": {
-            "name": "Boltic Create a new table",
-            "description": {
-              "content": "Create a new table with a defined schema of columns.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "tables"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"name\": \"<string>\",\n  \"columns\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"required\": false,\n      \"defaultValue\": \"<string>\",\n      \"options\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"required\": false,\n      \"defaultValue\": \"<string>\",\n      \"options\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"description\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "ca6efe4d-bade-43b5-ac61-0c9f934589c4",
-              "name": "Table created",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "tables"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>",
+                  "description": "JSON-encoded filter expression"
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"name\": \"<string>\",\n  \"columns\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"required\": false,\n      \"defaultValue\": \"<string>\",\n      \"options\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"required\": false,\n      \"defaultValue\": \"<string>\",\n      \"options\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"description\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Created",
-              "code": 201,
-              "header": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"columns\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"type\": \"text\",\n      \"required\": true,\n      \"defaultValue\": \"string\",\n      \"options\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"type\": \"date\",\n      \"required\": true,\n      \"defaultValue\": \"string\",\n      \"options\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ],\n  \"rowCount\": 113,\n  \"createdAt\": \"2005-10-26T19:22:59.005Z\",\n  \"updatedAt\": \"2008-05-03T11:15:33.208Z\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "8bd2f9b2-38d6-4c20-b4f8-544082d567c0",
-              "name": "Bad request",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "tables"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Column name to sort by"
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"name\": \"<string>\",\n  \"columns\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"required\": false,\n      \"defaultValue\": \"<string>\",\n      \"options\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"required\": false,\n      \"defaultValue\": \"<string>\",\n      \"options\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"description\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "disabled": false,
+                  "key": "order",
+                  "value": "asc"
                 }
               ],
-              "body": "{\n  \"code\": 9497,\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "89249f73-29b3-4c8e-98ac-9315b32525a7",
-          "name": "Boltic Get a table by ID",
-          "request": {
-            "name": "Boltic Get a table by ID",
-            "description": {
-              "content": "Retrieve table metadata and schema.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "tables",
-                ":tableId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
               "variable": [
                 {
                   "disabled": false,
@@ -295,18 +76,40 @@
           },
           "response": [
             {
-              "id": "fe664465-cc8b-4626-a69f-c2c7d64e8fd8",
-              "name": "Table details",
+              "id": "67d0edac-0b98-4c2f-b1df-cd6593a317aa",
+              "name": "A list of rows",
               "originalRequest": {
                 "url": {
                   "path": [
                     "tables",
-                    ":tableId"
+                    ":tableId",
+                    "rows"
                   ],
                   "host": [
                     "{{baseUrl}}"
                   ],
-                  "query": [],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    }
+                  ],
                   "variable": [
                     {
                       "disabled": false,
@@ -342,18 +145,77 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"columns\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"type\": \"text\",\n      \"required\": true,\n      \"defaultValue\": \"string\",\n      \"options\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"type\": \"date\",\n      \"required\": true,\n      \"defaultValue\": \"string\",\n      \"options\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ],\n  \"rowCount\": 113,\n  \"createdAt\": \"2005-10-26T19:22:59.005Z\",\n  \"updatedAt\": \"2008-05-03T11:15:33.208Z\"\n}",
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"fields\": {\n        \"key_0\": 950\n      },\n      \"createdAt\": \"2022-09-17T02:45:32.803Z\",\n      \"updatedAt\": \"2002-12-03T14:31:36.350Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"fields\": {\n        \"key_0\": 5970,\n        \"key_1\": 2566\n      },\n      \"createdAt\": \"2012-05-30T00:44:03.825Z\",\n      \"updatedAt\": \"1991-08-26T06:58:16.107Z\"\n    }\n  ],\n  \"pagination\": {\n    \"page\": 2981,\n    \"limit\": 4412,\n    \"total\": 6779,\n    \"totalPages\": 2922\n  }\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5f8ce55a-12dd-4075-8979-941dc01cd0bd",
+          "name": "Boltic Add a new row",
+          "request": {
+            "name": "Boltic Add a new row",
+            "description": {
+              "content": "Insert a new row into the table.",
+              "type": "text/plain"
             },
+            "url": {
+              "path": [
+                "tables",
+                ":tableId",
+                "rows"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "tableId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fields\": {\n    \"key_0\": \"string\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
             {
-              "id": "44e224b0-1a74-4ae6-b82c-b47417558a8e",
-              "name": "Resource not found",
+              "id": "2f409032-2b83-42af-ace4-a10279b58fd5",
+              "name": "Row created",
               "originalRequest": {
                 "url": {
                   "path": [
                     "tables",
-                    ":tableId"
+                    ":tableId",
+                    "rows"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -383,18 +245,26 @@
                     "value": "application/json"
                   }
                 ],
-                "method": "GET",
-                "body": {}
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fields\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
               },
-              "status": "Not Found",
-              "code": 404,
+              "status": "Created",
+              "code": 201,
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"code\": 9497,\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "body": "{\n  \"id\": \"string\",\n  \"fields\": {\n    \"key_0\": false,\n    \"key_1\": false,\n    \"key_2\": 8248.523685061029,\n    \"key_3\": \"string\"\n  },\n  \"createdAt\": \"1973-03-11T09:42:53.085Z\",\n  \"updatedAt\": \"2008-11-01T11:22:04.134Z\"\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -405,18 +275,17 @@
           }
         },
         {
-          "id": "48939952-0a0d-40f4-82a3-86332a3aa87f",
-          "name": "Boltic Update a table",
+          "id": "35ae1a1c-dcfd-4085-a5f2-fd9154af94f2",
+          "name": "Boltic Get a row by ID",
           "request": {
-            "name": "Boltic Update a table",
-            "description": {
-              "content": "Update table metadata or schema definition.",
-              "type": "text/plain"
-            },
+            "name": "Boltic Get a row by ID",
+            "description": {},
             "url": {
               "path": [
                 "tables",
-                ":tableId"
+                ":tableId",
+                "rows",
+                ":rowId"
               ],
               "host": [
                 "{{baseUrl}}"
@@ -428,6 +297,127 @@
                   "type": "any",
                   "value": "<string>",
                   "key": "tableId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "rowId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8a6e82b6-3dca-478d-8dad-02c7334cf6dc",
+              "name": "Row details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tables",
+                    ":tableId",
+                    "rows",
+                    ":rowId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tableId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "rowId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"fields\": {\n    \"key_0\": false,\n    \"key_1\": false,\n    \"key_2\": 8248.523685061029,\n    \"key_3\": \"string\"\n  },\n  \"createdAt\": \"1973-03-11T09:42:53.085Z\",\n  \"updatedAt\": \"2008-11-01T11:22:04.134Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c33d793b-387b-4f62-b500-e126ac892c17",
+          "name": "Boltic Update a row",
+          "request": {
+            "name": "Boltic Update a row",
+            "description": {
+              "content": "Modify an existing row in the table.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tables",
+                ":tableId",
+                "rows",
+                ":rowId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "tableId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "rowId",
                   "description": "(Required) "
                 }
               ]
@@ -446,7 +436,7 @@
             "auth": null,
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"name\": \"<string>\",\n  \"columns\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"required\": false,\n      \"defaultValue\": \"<string>\",\n      \"options\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"required\": false,\n      \"defaultValue\": \"<string>\",\n      \"options\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"description\": \"<string>\"\n}",
+              "raw": "{\n  \"fields\": {\n    \"key_0\": \"string\"\n  }\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -456,13 +446,15 @@
           },
           "response": [
             {
-              "id": "6b8f95a4-0c8b-48aa-935f-9ba1d207dbdc",
-              "name": "Table updated",
+              "id": "f716aa19-0669-426f-89ce-7bf8767a3b8b",
+              "name": "Row updated",
               "originalRequest": {
                 "url": {
                   "path": [
                     "tables",
-                    ":tableId"
+                    ":tableId",
+                    "rows",
+                    ":rowId"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -474,6 +466,13 @@
                       "type": "any",
                       "value": "<string>",
                       "key": "tableId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "rowId",
                       "description": "(Required) "
                     }
                   ]
@@ -495,7 +494,7 @@
                 "method": "PUT",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"name\": \"<string>\",\n  \"columns\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"required\": false,\n      \"defaultValue\": \"<string>\",\n      \"options\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"required\": false,\n      \"defaultValue\": \"<string>\",\n      \"options\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"description\": \"<string>\"\n}",
+                  "raw": "{\n  \"fields\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  }\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -511,7 +510,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"columns\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"type\": \"text\",\n      \"required\": true,\n      \"defaultValue\": \"string\",\n      \"options\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"type\": \"date\",\n      \"required\": true,\n      \"defaultValue\": \"string\",\n      \"options\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ],\n  \"rowCount\": 113,\n  \"createdAt\": \"2005-10-26T19:22:59.005Z\",\n  \"updatedAt\": \"2008-05-03T11:15:33.208Z\"\n}",
+              "body": "{\n  \"id\": \"string\",\n  \"fields\": {\n    \"key_0\": false,\n    \"key_1\": false,\n    \"key_2\": 8248.523685061029,\n    \"key_3\": \"string\"\n  },\n  \"createdAt\": \"1973-03-11T09:42:53.085Z\",\n  \"updatedAt\": \"2008-11-01T11:22:04.134Z\"\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -522,15 +521,17 @@
           }
         },
         {
-          "id": "8aa707ee-90f1-406e-89b6-e14f44a29cfa",
-          "name": "Boltic Delete a table",
+          "id": "55790522-b879-4ccc-9ff2-7c80b0f5dfe9",
+          "name": "Boltic Delete a row",
           "request": {
-            "name": "Boltic Delete a table",
+            "name": "Boltic Delete a row",
             "description": {},
             "url": {
               "path": [
                 "tables",
-                ":tableId"
+                ":tableId",
+                "rows",
+                ":rowId"
               ],
               "host": [
                 "{{baseUrl}}"
@@ -543,6 +544,13 @@
                   "value": "<string>",
                   "key": "tableId",
                   "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "rowId",
+                  "description": "(Required) "
                 }
               ]
             },
@@ -551,13 +559,15 @@
           },
           "response": [
             {
-              "id": "ff6f7546-a55f-4be4-9429-ea41fe4a214d",
-              "name": "Table deleted",
+              "id": "18404589-5f95-4e2a-8486-44790fc848ab",
+              "name": "Row deleted",
               "originalRequest": {
                 "url": {
                   "path": [
                     "tables",
-                    ":tableId"
+                    ":tableId",
+                    "rows",
+                    ":rowId"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -569,6 +579,13 @@
                       "type": "any",
                       "value": "<string>",
                       "key": "tableId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "rowId",
                       "description": "(Required) "
                     }
                   ]
@@ -626,8 +643,8 @@
     ]
   },
   "info": {
-    "_postman_id": "1ccbf61c-eeca-4508-8ba4-c0e257602a9a",
-    "name": "Boltic Gateway Certificates Tables API",
+    "_postman_id": "0d273ef0-8745-4d53-bead-37140b9821e3",
+    "name": "Boltic Gateway Certificates Rows API",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "description": {
       "content": "The Boltic Gateway API provides a developer-friendly API gateway designed to simplify and secure how services interact across your platform. It enables seamless request routing, payload transformation, and enforcement of security policies across diverse integration types including serverless functions, workflows, tables, and proxy endpoints. The Gateway supports dynamic URL rewriting, path parameter injection, fine-grained authentication, and real-time observability.\n\nContact Support:\n Name: Boltic",

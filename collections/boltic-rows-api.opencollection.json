@@ -1,0 +1,164 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Boltic Gateway Certificates Rows API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Rows",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Boltic List rows in a table",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://gateway.boltic.io/v1/tables/:tableId/rows",
+            "params": [
+              {
+                "name": "tableId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "JSON-encoded filter expression"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Column name to sort by"
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve rows from a table with optional filtering and sorting."
+        },
+        {
+          "info": {
+            "name": "Boltic Add a new row",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://gateway.boltic.io/v1/tables/:tableId/rows",
+            "params": [
+              {
+                "name": "tableId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Insert a new row into the table."
+        },
+        {
+          "info": {
+            "name": "Boltic Get a row by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://gateway.boltic.io/v1/tables/:tableId/rows/:rowId",
+            "params": [
+              {
+                "name": "tableId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "rowId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Boltic Get a row by ID"
+        },
+        {
+          "info": {
+            "name": "Boltic Update a row",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://gateway.boltic.io/v1/tables/:tableId/rows/:rowId",
+            "params": [
+              {
+                "name": "tableId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "rowId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Modify an existing row in the table."
+        },
+        {
+          "info": {
+            "name": "Boltic Delete a row",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://gateway.boltic.io/v1/tables/:tableId/rows/:rowId",
+            "params": [
+              {
+                "name": "tableId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "rowId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Boltic Delete a row"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,93 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Boltic Gateway Certificates Executions API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Executions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Boltic List workflow executions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://gateway.boltic.io/v1/workflows/:workflowId/executions",
+            "params": [
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve execution history for a specific workflow."
+        },
+        {
+          "info": {
+            "name": "Boltic Get execution details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://gateway.boltic.io/v1/executions/:executionId",
+            "params": [
+              {
+                "name": "executionId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve details and results of a specific workflow execution."
+        },
+        {
+          "info": {
+            "name": "Boltic Cancel an execution",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://gateway.boltic.io/v1/executions/:executionId/cancel",
+            "params": [
+              {
+                "name": "executionId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Cancel a running workflow execution."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

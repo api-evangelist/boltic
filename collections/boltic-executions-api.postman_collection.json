@@ -1,0 +1,362 @@
+{
+  "item": [
+    {
+      "id": "af70764c-0e6c-4437-9638-dd68276551b5",
+      "name": "Executions",
+      "description": {
+        "content": "Track and manage workflow executions",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "117ff851-c170-4f06-acf6-a7cca73d445d",
+          "name": "Boltic List workflow executions",
+          "request": {
+            "name": "Boltic List workflow executions",
+            "description": {
+              "content": "Retrieve execution history for a specific workflow.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "workflows",
+                ":workflowId",
+                "executions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workflowId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f8917bc3-1107-4a1b-beb5-3e4f069bd015",
+              "name": "A list of executions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows",
+                    ":workflowId",
+                    "executions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"workflowId\": \"string\",\n      \"status\": \"cancelled\",\n      \"input\": {\n        \"key_0\": \"string\"\n      },\n      \"output\": {\n        \"key_0\": true,\n        \"key_1\": 3616,\n        \"key_2\": true\n      },\n      \"error\": {\n        \"message\": \"string\",\n        \"nodeId\": \"string\",\n        \"code\": \"string\"\n      },\n      \"startedAt\": \"1995-07-02T13:28:16.094Z\",\n      \"completedAt\": \"1963-03-06T05:06:18.774Z\",\n      \"duration\": 5422,\n      \"nodeResults\": [\n        {\n          \"nodeId\": \"string\",\n          \"status\": \"string\",\n          \"output\": {\n            \"key_0\": 4761\n          },\n          \"duration\": 4918\n        },\n        {\n          \"nodeId\": \"string\",\n          \"status\": \"string\",\n          \"output\": {\n            \"key_0\": false,\n            \"key_1\": false\n          },\n          \"duration\": 898\n        }\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"workflowId\": \"string\",\n      \"status\": \"cancelled\",\n      \"input\": {\n        \"key_0\": \"string\",\n        \"key_1\": 6809,\n        \"key_2\": 4899,\n        \"key_3\": 3723.777796715684,\n        \"key_4\": 8280\n      },\n      \"output\": {\n        \"key_0\": 769\n      },\n      \"error\": {\n        \"message\": \"string\",\n        \"nodeId\": \"string\",\n        \"code\": \"string\"\n      },\n      \"startedAt\": \"1948-02-25T16:25:09.692Z\",\n      \"completedAt\": \"1981-12-19T00:33:00.283Z\",\n      \"duration\": 4683,\n      \"nodeResults\": [\n        {\n          \"nodeId\": \"string\",\n          \"status\": \"string\",\n          \"output\": {\n            \"key_0\": \"string\",\n            \"key_1\": 8598.263721278958\n          },\n          \"duration\": 9307\n        },\n        {\n          \"nodeId\": \"string\",\n          \"status\": \"string\",\n          \"output\": {\n            \"key_0\": 3293\n          },\n          \"duration\": 2194\n        }\n      ]\n    }\n  ],\n  \"pagination\": {\n    \"page\": 7469,\n    \"limit\": 3764,\n    \"total\": 9366,\n    \"totalPages\": 4418\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "adf25b6f-497a-483d-8787-34ac6791a203",
+          "name": "Boltic Get execution details",
+          "request": {
+            "name": "Boltic Get execution details",
+            "description": {
+              "content": "Retrieve details and results of a specific workflow execution.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "executions",
+                ":executionId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "executionId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a1cad797-91e7-4a3a-a554-aaaa0bf48df1",
+              "name": "Execution details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "executions",
+                    ":executionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "executionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"workflowId\": \"string\",\n  \"status\": \"queued\",\n  \"input\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": 8565.768966071173\n  },\n  \"output\": {\n    \"key_0\": 3452.117901953714\n  },\n  \"error\": {\n    \"message\": \"string\",\n    \"nodeId\": \"string\",\n    \"code\": \"string\"\n  },\n  \"startedAt\": \"1968-01-21T04:17:53.504Z\",\n  \"completedAt\": \"1959-10-11T19:25:50.949Z\",\n  \"duration\": 164,\n  \"nodeResults\": [\n    {\n      \"nodeId\": \"string\",\n      \"status\": \"string\",\n      \"output\": {\n        \"key_0\": \"string\",\n        \"key_1\": false\n      },\n      \"duration\": 3139\n    },\n    {\n      \"nodeId\": \"string\",\n      \"status\": \"string\",\n      \"output\": {\n        \"key_0\": 7231.991092394769,\n        \"key_1\": 3287.5366744725698\n      },\n      \"duration\": 548\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b765b117-656b-40a0-8630-14ab0fdcd3f1",
+          "name": "Boltic Cancel an execution",
+          "request": {
+            "name": "Boltic Cancel an execution",
+            "description": {
+              "content": "Cancel a running workflow execution.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "executions",
+                ":executionId",
+                "cancel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "executionId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5f10b84f-025a-4b3a-a4b0-14acb5201314",
+              "name": "Execution cancelled",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "executions",
+                    ":executionId",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "executionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"workflowId\": \"string\",\n  \"status\": \"queued\",\n  \"input\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": 8565.768966071173\n  },\n  \"output\": {\n    \"key_0\": 3452.117901953714\n  },\n  \"error\": {\n    \"message\": \"string\",\n    \"nodeId\": \"string\",\n    \"code\": \"string\"\n  },\n  \"startedAt\": \"1968-01-21T04:17:53.504Z\",\n  \"completedAt\": \"1959-10-11T19:25:50.949Z\",\n  \"duration\": 164,\n  \"nodeResults\": [\n    {\n      \"nodeId\": \"string\",\n      \"status\": \"string\",\n      \"output\": {\n        \"key_0\": \"string\",\n        \"key_1\": false\n      },\n      \"duration\": 3139\n    },\n    {\n      \"nodeId\": \"string\",\n      \"status\": \"string\",\n      \"output\": {\n        \"key_0\": 7231.991092394769,\n        \"key_1\": 3287.5366744725698\n      },\n      \"duration\": 548\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://gateway.boltic.io/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "dc1c5a0a-efe9-43c8-98fb-c89b6d247e61",
+    "name": "Boltic Gateway Certificates Executions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Boltic Gateway API provides a developer-friendly API gateway designed to simplify and secure how services interact across your platform. It enables seamless request routing, payload transformation, and enforcement of security policies across diverse integration types including serverless functions, workflows, tables, and proxy endpoints. The Gateway supports dynamic URL rewriting, path parameter injection, fine-grained authentication, and real-time observability.\n\nContact Support:\n Name: Boltic",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,7 +1,7 @@
 {
   "opencollection": "1.0.0",
   "info": {
-    "name": "Boltic Gateway Certificates Tables API",
+    "name": "Boltic Gateway Certificates Plugins API",
     "version": "1.0.0"
   },
   "request": {
@@ -13,77 +13,65 @@
   "items": [
     {
       "info": {
-        "name": "Tables",
+        "name": "Plugins",
         "type": "folder"
       },
       "items": [
         {
           "info": {
-            "name": "Boltic List all tables",
+            "name": "Boltic List all plugins",
             "type": "http"
           },
           "http": {
             "method": "GET",
-            "url": "https://gateway.boltic.io/v1/tables",
-            "params": [
-              {
-                "name": "page",
-                "value": "",
-                "type": "query"
-              },
-              {
-                "name": "limit",
-                "value": "",
-                "type": "query"
-              }
-            ]
+            "url": "https://gateway.boltic.io/v1/plugins"
           },
-          "docs": "Retrieve a list of all tables in the workspace."
+          "docs": "Retrieve a list of all plugins configured in the gateway."
         },
         {
           "info": {
-            "name": "Boltic Create a new table",
+            "name": "Boltic Create a new plugin",
             "type": "http"
           },
           "http": {
             "method": "POST",
-            "url": "https://gateway.boltic.io/v1/tables",
+            "url": "https://gateway.boltic.io/v1/plugins",
             "body": {
               "type": "json",
               "data": "{}"
             }
           },
-          "docs": "Create a new table with a defined schema of columns."
+          "docs": "Add a plugin to the gateway for transformation, security, or observability."
         },
         {
           "info": {
-            "name": "Boltic Get a table by ID",
+            "name": "Boltic Get a plugin by ID",
             "type": "http"
           },
           "http": {
             "method": "GET",
-            "url": "https://gateway.boltic.io/v1/tables/:tableId",
+            "url": "https://gateway.boltic.io/v1/plugins/:pluginId",
             "params": [
               {
-                "name": "tableId",
+                "name": "pluginId",
                 "value": "",
                 "type": "path"
               }
             ]
           },
-          "docs": "Retrieve table metadata and schema."
+          "docs": "Boltic Get a plugin by ID"
         },
         {
           "info": {
-            "name": "Boltic Update a table",
+            "name": "Boltic Update a plugin",
             "type": "http"
           },
           "http": {
             "method": "PUT",
-            "url": "https://gateway.boltic.io/v1/tables/:tableId",
+            "url": "https://gateway.boltic.io/v1/plugins/:pluginId",
             "params": [
               {
-                "name": "tableId",
+                "name": "pluginId",
                 "value": "",
                 "type": "path"
               }
@@ -93,25 +81,25 @@
               "data": "{}"
             }
           },
-          "docs": "Update table metadata or schema definition."
+          "docs": "Boltic Update a plugin"
         },
         {
           "info": {
-            "name": "Boltic Delete a table",
+            "name": "Boltic Delete a plugin",
             "type": "http"
           },
           "http": {
             "method": "DELETE",
-            "url": "https://gateway.boltic.io/v1/tables/:tableId",
+            "url": "https://gateway.boltic.io/v1/plugins/:pluginId",
             "params": [
               {
-                "name": "tableId",
+                "name": "pluginId",
                 "value": "",
                 "type": "path"
               }
             ]
           },
-          "docs": "Boltic Delete a table"
+          "docs": "Boltic Delete a plugin"
         }
       ]
     }

@@ -1,7 +1,7 @@
 {
   "opencollection": "1.0.0",
   "info": {
-    "name": "Boltic Gateway Certificates Tables API",
+    "name": "Boltic Gateway Certificates Services API",
     "version": "1.0.0"
   },
   "request": {
@@ -13,18 +13,18 @@
   "items": [
     {
       "info": {
-        "name": "Tables",
+        "name": "Services",
         "type": "folder"
       },
       "items": [
         {
           "info": {
-            "name": "Boltic List all tables",
+            "name": "Boltic List all services",
             "type": "http"
           },
           "http": {
             "method": "GET",
-            "url": "https://gateway.boltic.io/v1/tables",
+            "url": "https://gateway.boltic.io/v1/services",
             "params": [
               {
                 "name": "page",
@@ -38,52 +38,52 @@
               }
             ]
           },
-          "docs": "Retrieve a list of all tables in the workspace."
+          "docs": "Retrieve a list of all backend services configured in the gateway."
         },
         {
           "info": {
-            "name": "Boltic Create a new table",
+            "name": "Boltic Create a new service",
             "type": "http"
           },
           "http": {
             "method": "POST",
-            "url": "https://gateway.boltic.io/v1/tables",
+            "url": "https://gateway.boltic.io/v1/services",
             "body": {
               "type": "json",
               "data": "{}"
             }
           },
-          "docs": "Create a new table with a defined schema of columns."
+          "docs": "Register a new backend service in the gateway."
         },
         {
           "info": {
-            "name": "Boltic Get a table by ID",
+            "name": "Boltic Get a service by ID",
             "type": "http"
           },
           "http": {
             "method": "GET",
-            "url": "https://gateway.boltic.io/v1/tables/:tableId",
+            "url": "https://gateway.boltic.io/v1/services/:serviceId",
             "params": [
               {
-                "name": "tableId",
+                "name": "serviceId",
                 "value": "",
                 "type": "path"
               }
             ]
           },
-          "docs": "Retrieve table metadata and schema."
+          "docs": "Boltic Get a service by ID"
         },
         {
           "info": {
-            "name": "Boltic Update a table",
+            "name": "Boltic Update a service",
             "type": "http"
           },
           "http": {
             "method": "PUT",
-            "url": "https://gateway.boltic.io/v1/tables/:tableId",
+            "url": "https://gateway.boltic.io/v1/services/:serviceId",
             "params": [
               {
-                "name": "tableId",
+                "name": "serviceId",
                 "value": "",
                 "type": "path"
               }
@@ -93,25 +93,25 @@
               "data": "{}"
             }
           },
-          "docs": "Update table metadata or schema definition."
+          "docs": "Boltic Update a service"
         },
         {
           "info": {
-            "name": "Boltic Delete a table",
+            "name": "Boltic Delete a service",
             "type": "http"
           },
           "http": {
             "method": "DELETE",
-            "url": "https://gateway.boltic.io/v1/tables/:tableId",
+            "url": "https://gateway.boltic.io/v1/services/:serviceId",
             "params": [
               {
-                "name": "tableId",
+                "name": "serviceId",
                 "value": "",
                 "type": "path"
               }
             ]
           },
-          "docs": "Boltic Delete a table"
+          "docs": "Boltic Delete a service"
         }
       ]
     }
