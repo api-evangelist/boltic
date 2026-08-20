@@ -6,6 +6,11 @@ apis:
   tags:
   - CRUD
   - Databases
+  - No-Code
+  - Tables
+  tags_raw:
+  - CRUD
+  - Databases
   - NoCode
   - Tables
   humanURL: https://www.boltic.io/products/boltic-tables
@@ -24,6 +29,11 @@ apis:
 - aid: boltic:pipes-api
   name: Boltic Pipes API
   tags:
+  - Data Sync
+  - ETL
+  - Integration
+  - Pipelines
+  tags_raw:
   - DataSync
   - ETL
   - Integration
@@ -110,6 +120,8 @@ apis:
   description: Send and query events
   humanURL: https://docs.boltic.io/gateway/intro/
   tags:
+  - Event
+  tags_raw:
   - Events
   properties:
   - type: OpenAPI
@@ -131,6 +143,8 @@ apis:
   description: Track and manage workflow executions
   humanURL: https://docs.boltic.io/gateway/intro/
   tags:
+  - Execution
+  tags_raw:
   - Executions
   properties:
   - type: OpenAPI
@@ -173,6 +187,8 @@ apis:
   description: Execute SQL queries against tables
   humanURL: https://docs.boltic.io/gateway/intro/
   tags:
+  - Query
+  tags_raw:
   - Queries
   properties:
   - type: OpenAPI
@@ -359,6 +375,13 @@ apis:
     url: json-schema/boltic-stream-event.json
 name: Boltic
 tags:
+  - Automation
+  - Data Sync
+  - Gateways
+  - No-Code
+  - Streaming
+  - Workflows
+tags_raw:
   - Automation
   - DataSync
   - Gateways
