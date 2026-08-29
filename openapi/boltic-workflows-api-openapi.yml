@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Boltic Gateway Certificates Workflows API
-  description: The Boltic Gateway API provides a developer-friendly API gateway designed to simplify and secure how services interact across your platform. It enables seamless request routing, payload transformation, and enforcement of security policies across diverse integration types including serverless functions, workflows, tables, and proxy endpoints. The Gateway supports dynamic URL rewriting, path parameter injection, fine-grained authentication, and real-time observability.
+  title: Boltic Workflow Workflows API
+  description: The Boltic Workflow API enables programmatic creation, management, and execution of automation workflows. Workflows are visual, no-code automation sequences that connect triggers with actions across 500+ integrations. The API supports HTTP-triggered workflows with customizable responses, scheduled executions, and webhook-based triggers. Workflows can incorporate integration, transformation, and destination actions with support for multiple AI providers.
   version: 1.0.0
   contact:
     name: Boltic
@@ -10,8 +10,8 @@ info:
     name: Proprietary
     url: https://www.boltic.io/terms
 servers:
-- url: https://gateway.boltic.io/v1
-  description: Boltic Gateway API
+- url: https://api.boltic.io/v1
+  description: Boltic Workflow API
 security:
 - bearerAuth: []
 tags:
@@ -230,38 +230,72 @@ paths:
               schema:
                 $ref: '#/components/schemas/Workflow'
 components:
+  responses:
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
-    NodeInput:
+    Error:
       type: object
-      required:
-      - type
-      - name
       properties:
-        type:
+        code:
+          type: integer
+        message:
+          type: string
+        details:
+          type: string
+    Workflow:
+      type: object
+      properties:
+        id:
           type: string
         name:
           type: string
-        integrationId:
+        description:
           type: string
-        config:
-          type: object
-          additionalProperties: true
-        position:
-          type: object
-          properties:
-            x:
-              type: number
-            y:
-              type: number
-        connections:
+        status:
+          type: string
+          enum:
+          - active
+          - inactive
+          - draft
+        trigger:
+          $ref: '#/components/schemas/Trigger'
+        nodes:
           type: array
           items:
-            type: object
-            properties:
-              targetNodeId:
-                type: string
-              condition:
-                type: string
+            $ref: '#/components/schemas/Node'
+        tags:
+          type: array
+          items:
+            type: string
+        executionCount:
+          type: integer
+          description: Total number of times this workflow has been executed
+        lastExecutedAt:
+          type: string
+          format: date-time
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
     Trigger:
       type: object
       properties:
@@ -290,54 +324,27 @@ components:
             - PUT
             - DELETE
           description: HTTP methods for HTTP triggers
-    Pagination:
+    TriggerInput:
       type: object
+      required:
+      - type
       properties:
-        page:
-          type: integer
-        limit:
-          type: integer
-        total:
-          type: integer
-        totalPages:
-          type: integer
-    Node:
-      type: object
-      properties:
-        id:
-          type: string
         type:
           type: string
           enum:
-          - integration
-          - transformation
-          - destination
-          - condition
-          - loop
-          - ai
-        name:
-          type: string
-        integrationId:
-          type: string
+          - http
+          - schedule
+          - webhook
+          - copilot
+          - table-change
+          - manual
         config:
           type: object
           additionalProperties: true
-        position:
-          type: object
-          properties:
-            x:
-              type: number
-            y:
-              type: number
-        connections:
+        methods:
           type: array
           items:
-            type: object
-            properties:
-              targetNodeId:
-                type: string
-              condition:
-                type: string
+            type: string
     Execution:
       type: object
       properties:
@@ -391,36 +398,85 @@ components:
                 additionalProperties: true
               duration:
                 type: integer
-    TriggerInput:
+    NodeInput:
       type: object
       required:
       - type
+      - name
       properties:
         type:
           type: string
-          enum:
-          - http
-          - schedule
-          - webhook
-          - copilot
-          - table-change
-          - manual
+        name:
+          type: string
+        integrationId:
+          type: string
         config:
           type: object
           additionalProperties: true
-        methods:
+        position:
+          type: object
+          properties:
+            x:
+              type: number
+            y:
+              type: number
+        connections:
           type: array
           items:
-            type: string
-    Error:
+            type: object
+            properties:
+              targetNodeId:
+                type: string
+              condition:
+                type: string
+    Node:
       type: object
       properties:
-        code:
+        id:
+          type: string
+        type:
+          type: string
+          enum:
+          - integration
+          - transformation
+          - destination
+          - condition
+          - loop
+          - ai
+        name:
+          type: string
+        integrationId:
+          type: string
+        config:
+          type: object
+          additionalProperties: true
+        position:
+          type: object
+          properties:
+            x:
+              type: number
+            y:
+              type: number
+        connections:
+          type: array
+          items:
+            type: object
+            properties:
+              targetNodeId:
+                type: string
+              condition:
+                type: string
+    Pagination:
+      type: object
+      properties:
+        page:
           type: integer
-        message:
-          type: string
-        details:
-          type: string
+        limit:
+          type: integer
+        total:
+          type: integer
+        totalPages:
+          type: integer
     WorkflowInput:
       type: object
       required:
@@ -441,62 +497,6 @@ components:
           type: array
           items:
             type: string
-    Workflow:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        status:
-          type: string
-          enum:
-          - active
-          - inactive
-          - draft
-        trigger:
-          $ref: '#/components/schemas/Trigger'
-        nodes:
-          type: array
-          items:
-            $ref: '#/components/schemas/Node'
-        tags:
-          type: array
-          items:
-            type: string
-        executionCount:
-          type: integer
-          description: Total number of times this workflow has been executed
-        lastExecutedAt:
-          type: string
-          format: date-time
-        createdAt:
-          type: string
-          format: date-time
-        updatedAt:
-          type: string
-          format: date-time
-  responses:
-    Unauthorized:
-      description: Unauthorized
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Bad request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   securitySchemes:
     bearerAuth:
       type: http

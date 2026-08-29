@@ -1,57 +1,6 @@
 aid: boltic
 url: https://raw.githubusercontent.com/api-evangelist/boltic/refs/heads/main/apis.yml
 apis:
-- aid: boltic:tables-api
-  name: Boltic Tables API
-  tags:
-  - CRUD
-  - Databases
-  - No-Code
-  - Tables
-  tags_raw:
-  - CRUD
-  - Databases
-  - NoCode
-  - Tables
-  humanURL: https://www.boltic.io/products/boltic-tables
-  properties:
-  - url: https://docs.boltic.io/docs/workflow-builder/activities/tables/
-    type: Documentation
-  - url: openapi/boltic-tables-api-openapi.yml
-    type: OpenAPI
-  - url: json-schema/boltic-table.json
-    type: JSONSchema
-  description: >-
-    The Boltic Tables API provides programmatic access to Boltic Tables, a no-code database for teams
-    to organize, manage, and automate structured data workflows. The API supports full CRUD operations
-    on tables and rows, SQL query execution via a built-in SQL editor with AI-powered query generation,
-    and integration with workflows for automated data processing triggered by table changes.
-- aid: boltic:pipes-api
-  name: Boltic Pipes API
-  tags:
-  - Data Sync
-  - ETL
-  - Integration
-  - Pipelines
-  tags_raw:
-  - DataSync
-  - ETL
-  - Integration
-  - Pipelines
-  humanURL: https://docs.boltic.io/docs/pipes/pipe-creation/
-  properties:
-  - url: https://docs.boltic.io/docs/pipes/pipe-creation/
-    type: Documentation
-  - url: openapi/boltic-pipes-api-openapi.yml
-    type: OpenAPI
-  - url: json-schema/boltic-pipe.json
-    type: JSONSchema
-  description: >-
-    The Boltic Pipes API provides programmatic access to data synchronization pipelines that connect data
-    sources to destinations. Pipes enable real-time data syncing across systems via automated pipelines
-    with zero maintenance. Sources include databases such as MongoDB, MySQL, and PostgreSQL, SaaS applications
-    via API endpoints, and file storage. The API supports configurable sync frequencies including minutely,
-    hourly, and daily schedules.
 - aid: boltic:boltic-certificates-api
   name: Boltic Certificates API
   description: Manage SSL/TLS certificates
@@ -182,29 +131,6 @@ apis:
     url: https://docs.boltic.io/docs/streams/intro/
   - type: JSONSchema
     url: json-schema/boltic-stream-event.json
-- aid: boltic:boltic-queries-api
-  name: Boltic Queries API
-  description: Execute SQL queries against tables
-  humanURL: https://docs.boltic.io/gateway/intro/
-  tags:
-  - Query
-  tags_raw:
-  - Queries
-  properties:
-  - type: OpenAPI
-    url: openapi/boltic-queries-api-openapi.yml
-  - type: Documentation
-    url: https://docs.boltic.io/gateway/intro/
-  - type: JSONSchema
-    url: json-schema/boltic-route.json
-  - type: Documentation
-    url: https://docs.boltic.io/
-  - type: JSONSchema
-    url: json-schema/boltic-workflow.json
-  - type: Documentation
-    url: https://docs.boltic.io/docs/streams/intro/
-  - type: JSONSchema
-    url: json-schema/boltic-stream-event.json
 - aid: boltic:boltic-routes-api
   name: Boltic Routes API
   description: Manage API routes and request routing rules
@@ -214,27 +140,6 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/boltic-routes-api-openapi.yml
-  - type: Documentation
-    url: https://docs.boltic.io/gateway/intro/
-  - type: JSONSchema
-    url: json-schema/boltic-route.json
-  - type: Documentation
-    url: https://docs.boltic.io/
-  - type: JSONSchema
-    url: json-schema/boltic-workflow.json
-  - type: Documentation
-    url: https://docs.boltic.io/docs/streams/intro/
-  - type: JSONSchema
-    url: json-schema/boltic-stream-event.json
-- aid: boltic:boltic-rows-api
-  name: Boltic Rows API
-  description: Create, read, update, and delete table rows
-  humanURL: https://docs.boltic.io/gateway/intro/
-  tags:
-  - Rows
-  properties:
-  - type: OpenAPI
-    url: openapi/boltic-rows-api-openapi.yml
   - type: Documentation
     url: https://docs.boltic.io/gateway/intro/
   - type: JSONSchema
@@ -268,27 +173,6 @@ apis:
     url: https://docs.boltic.io/docs/streams/intro/
   - type: JSONSchema
     url: json-schema/boltic-stream-event.json
-- aid: boltic:boltic-sources-api
-  name: Boltic Sources API
-  description: Manage data sources
-  humanURL: https://docs.boltic.io/gateway/intro/
-  tags:
-  - Sources
-  properties:
-  - type: OpenAPI
-    url: openapi/boltic-sources-api-openapi.yml
-  - type: Documentation
-    url: https://docs.boltic.io/gateway/intro/
-  - type: JSONSchema
-    url: json-schema/boltic-route.json
-  - type: Documentation
-    url: https://docs.boltic.io/
-  - type: JSONSchema
-    url: json-schema/boltic-workflow.json
-  - type: Documentation
-    url: https://docs.boltic.io/docs/streams/intro/
-  - type: JSONSchema
-    url: json-schema/boltic-stream-event.json
 - aid: boltic:boltic-stream-sources-api
   name: Boltic Stream Sources API
   description: Manage stream sources for event ingestion
@@ -298,27 +182,6 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/boltic-stream-sources-api-openapi.yml
-  - type: Documentation
-    url: https://docs.boltic.io/gateway/intro/
-  - type: JSONSchema
-    url: json-schema/boltic-route.json
-  - type: Documentation
-    url: https://docs.boltic.io/
-  - type: JSONSchema
-    url: json-schema/boltic-workflow.json
-  - type: Documentation
-    url: https://docs.boltic.io/docs/streams/intro/
-  - type: JSONSchema
-    url: json-schema/boltic-stream-event.json
-- aid: boltic:boltic-sync-runs-api
-  name: Boltic Sync Runs API
-  description: Monitor and manage sync executions
-  humanURL: https://docs.boltic.io/gateway/intro/
-  tags:
-  - Sync Runs
-  properties:
-  - type: OpenAPI
-    url: openapi/boltic-sync-runs-api-openapi.yml
   - type: Documentation
     url: https://docs.boltic.io/gateway/intro/
   - type: JSONSchema

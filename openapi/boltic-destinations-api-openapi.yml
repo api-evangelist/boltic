@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Boltic Gateway Certificates Destinations API
-  description: The Boltic Gateway API provides a developer-friendly API gateway designed to simplify and secure how services interact across your platform. It enables seamless request routing, payload transformation, and enforcement of security policies across diverse integration types including serverless functions, workflows, tables, and proxy endpoints. The Gateway supports dynamic URL rewriting, path parameter injection, fine-grained authentication, and real-time observability.
+  title: Boltic Streams Destinations API
+  description: The Boltic Streams API provides real-time event streaming capabilities for tracking custom events and streaming data from websites, mobile apps, and servers. It includes source debugger tools for confirming API call delivery, an event analysis dashboard for monitoring event flows, and real-time data processing for actionable insights. Streams centralize, process, and enable analysis of streaming data for better decision-making and performance optimization.
   version: 1.0.0
   contact:
     name: Boltic
@@ -10,32 +10,14 @@ info:
     name: Proprietary
     url: https://www.boltic.io/terms
 servers:
-- url: https://gateway.boltic.io/v1
-  description: Boltic Gateway API
+- url: https://api.boltic.io/v1
+  description: Boltic Streams API
 security:
 - bearerAuth: []
 tags:
 - name: Destinations
-  description: Manage data destinations
+  description: Manage stream destinations for event delivery
 paths:
-  /destinations:
-    get:
-      operationId: listDestinations
-      summary: Boltic List available destination types
-      tags:
-      - Destinations
-      responses:
-        '200':
-          description: A list of destination types
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  data:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/DestinationType'
   /streams/destinations:
     get:
       operationId: listStreamDestinations
@@ -75,32 +57,6 @@ paths:
                 $ref: '#/components/schemas/StreamDestination'
 components:
   schemas:
-    DestinationType:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        category:
-          type: string
-        icon:
-          type: string
-          format: uri
-    StreamDestinationInput:
-      type: object
-      required:
-      - name
-      - type
-      - config
-      properties:
-        name:
-          type: string
-        type:
-          type: string
-        config:
-          type: object
-          additionalProperties: true
     StreamDestination:
       type: object
       properties:
@@ -121,6 +77,20 @@ components:
         createdAt:
           type: string
           format: date-time
+    StreamDestinationInput:
+      type: object
+      required:
+      - name
+      - type
+      - config
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+        config:
+          type: object
+          additionalProperties: true
   securitySchemes:
     bearerAuth:
       type: http
