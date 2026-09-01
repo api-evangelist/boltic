@@ -239,9 +239,9 @@ apis:
 name: Boltic
 tags:
   - Automation
-  - DataSync
+  - Data Sync
   - Gateways
-  - NoCode
+  - No-Code
   - Streaming
   - Workflows
 tags_raw:
