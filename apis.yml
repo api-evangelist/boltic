@@ -48,6 +48,8 @@ apis:
   description: Manage data destinations
   humanURL: https://docs.boltic.io/gateway/intro/
   tags:
+  - Destination
+  tags_raw:
   - Destinations
   properties:
   - type: OpenAPI
