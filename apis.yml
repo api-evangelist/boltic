@@ -1,5 +1,8 @@
 aid: boltic
 url: https://raw.githubusercontent.com/api-evangelist/boltic/refs/heads/main/apis.yml
+x-docs-platform: docusaurus
+x-docs-platform-confidence: medium
+x-docs-platform-checked: 2026-09-20
 apis:
 - aid: boltic:boltic-certificates-api
   name: Boltic Certificates API
