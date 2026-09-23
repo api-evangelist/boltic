@@ -31,7 +31,8 @@
     "boltic-gateway-api-openapi.yml: tagged paths DELETE /services/{serviceId} -> Services",
     "boltic-gateway-api-openapi.yml: declared missing tag: Services",
     "boltic-streams-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "boltic-workflow-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0"
+    "boltic-workflow-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
   ],
   "skipped": [
     "boltic-certificates-api-openapi.yml: previously refined output, superseded by openapi/_original/",
@@ -39,16 +40,10 @@
     "boltic-destinations-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "boltic-events-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "boltic-executions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "boltic-pipes-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "boltic-plugins-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "boltic-queries-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "boltic-routes-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "boltic-rows-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "boltic-services-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "boltic-sources-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "boltic-stream-sources-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "boltic-sync-runs-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "boltic-tables-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "boltic-triggers-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "boltic-workflows-api-openapi.yml: previously refined output, superseded by openapi/_original/"
   ]

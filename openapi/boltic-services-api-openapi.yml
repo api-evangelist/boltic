@@ -127,33 +127,16 @@ paths:
           description: Service deleted
 components:
   schemas:
-    ServiceInput:
+    Pagination:
       type: object
-      required:
-      - name
-      - type
       properties:
-        name:
-          type: string
-        description:
-          type: string
-        type:
-          type: string
-          enum:
-          - serverless
-          - workflow
-          - table
-          - proxy
-        url:
-          type: string
-          format: uri
-        retries:
+        page:
           type: integer
-        connectTimeout:
+        limit:
           type: integer
-        readTimeout:
+        total:
           type: integer
-        writeTimeout:
+        totalPages:
           type: integer
     Service:
       type: object
@@ -194,16 +177,33 @@ components:
         updatedAt:
           type: string
           format: date-time
-    Pagination:
+    ServiceInput:
       type: object
+      required:
+      - name
+      - type
       properties:
-        page:
+        name:
+          type: string
+        description:
+          type: string
+        type:
+          type: string
+          enum:
+          - serverless
+          - workflow
+          - table
+          - proxy
+        url:
+          type: string
+          format: uri
+        retries:
           type: integer
-        limit:
+        connectTimeout:
           type: integer
-        total:
+        readTimeout:
           type: integer
-        totalPages:
+        writeTimeout:
           type: integer
   securitySchemes:
     bearerAuth:

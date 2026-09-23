@@ -105,29 +105,6 @@ paths:
                             format: date-time
 components:
   schemas:
-    EventInput:
-      type: object
-      required:
-      - sourceId
-      - type
-      properties:
-        sourceId:
-          type: string
-        type:
-          type: string
-        properties:
-          type: object
-          additionalProperties: true
-        userId:
-          type: string
-        anonymousId:
-          type: string
-        timestamp:
-          type: string
-          format: date-time
-        context:
-          type: object
-          additionalProperties: true
     Event:
       type: object
       properties:
@@ -170,6 +147,29 @@ components:
         receivedAt:
           type: string
           format: date-time
+    EventInput:
+      type: object
+      required:
+      - sourceId
+      - type
+      properties:
+        sourceId:
+          type: string
+        type:
+          type: string
+        properties:
+          type: object
+          additionalProperties: true
+        userId:
+          type: string
+        anonymousId:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+        context:
+          type: object
+          additionalProperties: true
   securitySchemes:
     bearerAuth:
       type: http
