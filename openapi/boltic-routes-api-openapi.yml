@@ -142,63 +142,26 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
-    RouteInput:
-      type: object
-      required:
-      - name
-      - paths
-      - serviceId
-      properties:
-        name:
-          type: string
-        methods:
-          type: array
-          items:
-            type: string
-        paths:
-          type: array
-          items:
-            type: string
-        serviceId:
-          type: string
-        stripPath:
-          type: boolean
-        preserveHost:
-          type: boolean
-        protocols:
-          type: array
-          items:
-            type: string
-        plugins:
-          type: array
-          items:
-            type: string
-        status:
-          type: string
-          enum:
-          - active
-          - inactive
-    Error:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-        details:
-          type: string
-    Pagination:
-      type: object
-      properties:
-        page:
-          type: integer
-        limit:
-          type: integer
-        total:
-          type: integer
-        totalPages:
-          type: integer
     Route:
       type: object
       properties:
@@ -258,25 +221,62 @@ components:
         updatedAt:
           type: string
           format: date-time
-  responses:
-    Unauthorized:
-      description: Unauthorized
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Bad request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+    RouteInput:
+      type: object
+      required:
+      - name
+      - paths
+      - serviceId
+      properties:
+        name:
+          type: string
+        methods:
+          type: array
+          items:
+            type: string
+        paths:
+          type: array
+          items:
+            type: string
+        serviceId:
+          type: string
+        stripPath:
+          type: boolean
+        preserveHost:
+          type: boolean
+        protocols:
+          type: array
+          items:
+            type: string
+        plugins:
+          type: array
+          items:
+            type: string
+        status:
+          type: string
+          enum:
+          - active
+          - inactive
+    Pagination:
+      type: object
+      properties:
+        page:
+          type: integer
+        limit:
+          type: integer
+        total:
+          type: integer
+        totalPages:
+          type: integer
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        details:
+          type: string
   securitySchemes:
     bearerAuth:
       type: http

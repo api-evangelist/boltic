@@ -56,6 +56,20 @@ paths:
                 $ref: '#/components/schemas/Certificate'
 components:
   schemas:
+    CertificateInput:
+      type: object
+      required:
+      - cert
+      - key
+      properties:
+        cert:
+          type: string
+        key:
+          type: string
+        snis:
+          type: array
+          items:
+            type: string
     Certificate:
       type: object
       properties:
@@ -81,20 +95,6 @@ components:
         createdAt:
           type: string
           format: date-time
-    CertificateInput:
-      type: object
-      required:
-      - cert
-      - key
-      properties:
-        cert:
-          type: string
-        key:
-          type: string
-        snis:
-          type: array
-          items:
-            type: string
   securitySchemes:
     bearerAuth:
       type: http

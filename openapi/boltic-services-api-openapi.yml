@@ -127,17 +127,6 @@ paths:
           description: Service deleted
 components:
   schemas:
-    Pagination:
-      type: object
-      properties:
-        page:
-          type: integer
-        limit:
-          type: integer
-        total:
-          type: integer
-        totalPages:
-          type: integer
     Service:
       type: object
       properties:
@@ -204,6 +193,17 @@ components:
         readTimeout:
           type: integer
         writeTimeout:
+          type: integer
+    Pagination:
+      type: object
+      properties:
+        page:
+          type: integer
+        limit:
+          type: integer
+        total:
+          type: integer
+        totalPages:
           type: integer
   securitySchemes:
     bearerAuth:
