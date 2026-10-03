@@ -230,6 +230,25 @@ paths:
               schema:
                 $ref: '#/components/schemas/Workflow'
 components:
+  responses:
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
     Error:
       type: object
@@ -240,11 +259,11 @@ components:
           type: string
         details:
           type: string
-    TriggerInput:
+    Trigger:
       type: object
-      required:
-      - type
       properties:
+        id:
+          type: string
         type:
           type: string
           enum:
@@ -257,7 +276,71 @@ components:
         config:
           type: object
           additionalProperties: true
+          description: Trigger-specific configuration
         methods:
+          type: array
+          items:
+            type: string
+            enum:
+            - GET
+            - POST
+            - PUT
+            - DELETE
+          description: HTTP methods for HTTP triggers
+    Node:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          enum:
+          - integration
+          - transformation
+          - destination
+          - condition
+          - loop
+          - ai
+        name:
+          type: string
+        integrationId:
+          type: string
+        config:
+          type: object
+          additionalProperties: true
+        position:
+          type: object
+          properties:
+            x:
+              type: number
+            y:
+              type: number
+        connections:
+          type: array
+          items:
+            type: object
+            properties:
+              targetNodeId:
+                type: string
+              condition:
+                type: string
+    WorkflowInput:
+      type: object
+      required:
+      - name
+      - trigger
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        trigger:
+          $ref: '#/components/schemas/TriggerInput'
+        nodes:
+          type: array
+          items:
+            $ref: '#/components/schemas/NodeInput'
+        tags:
           type: array
           items:
             type: string
@@ -292,34 +375,6 @@ components:
                 type: string
               condition:
                 type: string
-    Trigger:
-      type: object
-      properties:
-        id:
-          type: string
-        type:
-          type: string
-          enum:
-          - http
-          - schedule
-          - webhook
-          - copilot
-          - table-change
-          - manual
-        config:
-          type: object
-          additionalProperties: true
-          description: Trigger-specific configuration
-        methods:
-          type: array
-          items:
-            type: string
-            enum:
-            - GET
-            - POST
-            - PUT
-            - DELETE
-          description: HTTP methods for HTTP triggers
     Execution:
       type: object
       properties:
@@ -373,74 +428,6 @@ components:
                 additionalProperties: true
               duration:
                 type: integer
-    Node:
-      type: object
-      properties:
-        id:
-          type: string
-        type:
-          type: string
-          enum:
-          - integration
-          - transformation
-          - destination
-          - condition
-          - loop
-          - ai
-        name:
-          type: string
-        integrationId:
-          type: string
-        config:
-          type: object
-          additionalProperties: true
-        position:
-          type: object
-          properties:
-            x:
-              type: number
-            y:
-              type: number
-        connections:
-          type: array
-          items:
-            type: object
-            properties:
-              targetNodeId:
-                type: string
-              condition:
-                type: string
-    Pagination:
-      type: object
-      properties:
-        page:
-          type: integer
-        limit:
-          type: integer
-        total:
-          type: integer
-        totalPages:
-          type: integer
-    WorkflowInput:
-      type: object
-      required:
-      - name
-      - trigger
-      properties:
-        name:
-          type: string
-        description:
-          type: string
-        trigger:
-          $ref: '#/components/schemas/TriggerInput'
-        nodes:
-          type: array
-          items:
-            $ref: '#/components/schemas/NodeInput'
-        tags:
-          type: array
-          items:
-            type: string
     Workflow:
       type: object
       properties:
@@ -478,25 +465,38 @@ components:
         updatedAt:
           type: string
           format: date-time
-  responses:
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Unauthorized
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Bad request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+    Pagination:
+      type: object
+      properties:
+        page:
+          type: integer
+        limit:
+          type: integer
+        total:
+          type: integer
+        totalPages:
+          type: integer
+    TriggerInput:
+      type: object
+      required:
+      - type
+      properties:
+        type:
+          type: string
+          enum:
+          - http
+          - schedule
+          - webhook
+          - copilot
+          - table-change
+          - manual
+        config:
+          type: object
+          additionalProperties: true
+        methods:
+          type: array
+          items:
+            type: string
   securitySchemes:
     bearerAuth:
       type: http

@@ -127,45 +127,6 @@ paths:
           description: Service deleted
 components:
   schemas:
-    Service:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        type:
-          type: string
-          enum:
-          - serverless
-          - workflow
-          - table
-          - proxy
-          description: The type of backend service
-        url:
-          type: string
-          format: uri
-          description: Target URL for proxy services
-        retries:
-          type: integer
-          description: Number of retries on failure
-        connectTimeout:
-          type: integer
-          description: Connection timeout in milliseconds
-        readTimeout:
-          type: integer
-          description: Read timeout in milliseconds
-        writeTimeout:
-          type: integer
-          description: Write timeout in milliseconds
-        createdAt:
-          type: string
-          format: date-time
-        updatedAt:
-          type: string
-          format: date-time
     ServiceInput:
       type: object
       required:
@@ -205,6 +166,45 @@ components:
           type: integer
         totalPages:
           type: integer
+    Service:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        type:
+          type: string
+          enum:
+          - serverless
+          - workflow
+          - table
+          - proxy
+          description: The type of backend service
+        url:
+          type: string
+          format: uri
+          description: Target URL for proxy services
+        retries:
+          type: integer
+          description: Number of retries on failure
+        connectTimeout:
+          type: integer
+          description: Connection timeout in milliseconds
+        readTimeout:
+          type: integer
+          description: Read timeout in milliseconds
+        writeTimeout:
+          type: integer
+          description: Write timeout in milliseconds
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
   securitySchemes:
     bearerAuth:
       type: http

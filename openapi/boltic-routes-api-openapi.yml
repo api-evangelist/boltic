@@ -143,14 +143,14 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   responses:
-    NotFound:
-      description: Resource not found
+    Unauthorized:
+      description: Unauthorized
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Unauthorized
+    NotFound:
+      description: Resource not found
       content:
         application/json:
           schema:
@@ -162,6 +162,15 @@ components:
           schema:
             $ref: '#/components/schemas/Error'
   schemas:
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        details:
+          type: string
     Route:
       type: object
       properties:
@@ -221,6 +230,17 @@ components:
         updatedAt:
           type: string
           format: date-time
+    Pagination:
+      type: object
+      properties:
+        page:
+          type: integer
+        limit:
+          type: integer
+        total:
+          type: integer
+        totalPages:
+          type: integer
     RouteInput:
       type: object
       required:
@@ -257,26 +277,6 @@ components:
           enum:
           - active
           - inactive
-    Pagination:
-      type: object
-      properties:
-        page:
-          type: integer
-        limit:
-          type: integer
-        total:
-          type: integer
-        totalPages:
-          type: integer
-    Error:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-        details:
-          type: string
   securitySchemes:
     bearerAuth:
       type: http

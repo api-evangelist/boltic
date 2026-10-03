@@ -90,6 +90,20 @@ paths:
           description: Consumer deleted
 components:
   schemas:
+    ConsumerInput:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+          format: email
+        tags:
+          type: array
+          items:
+            type: string
     Consumer:
       type: object
       properties:
@@ -121,20 +135,6 @@ components:
         createdAt:
           type: string
           format: date-time
-    ConsumerInput:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-        email:
-          type: string
-          format: email
-        tags:
-          type: array
-          items:
-            type: string
   securitySchemes:
     bearerAuth:
       type: http
