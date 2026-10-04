@@ -126,48 +126,6 @@ paths:
                     format: date-time
 components:
   schemas:
-    StreamSourceInput:
-      type: object
-      required:
-      - name
-      - type
-      properties:
-        name:
-          type: string
-        type:
-          type: string
-          enum:
-          - javascript
-          - server
-          - mobile
-          - webhook
-    StreamSource:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        type:
-          type: string
-          enum:
-          - javascript
-          - server
-          - mobile
-          - webhook
-        writeKey:
-          type: string
-          description: API key for sending events to this source
-        status:
-          type: string
-          enum:
-          - active
-          - inactive
-        eventsToday:
-          type: integer
-        createdAt:
-          type: string
-          format: date-time
     Event:
       type: object
       properties:
@@ -208,6 +166,48 @@ components:
           type: string
           format: date-time
         receivedAt:
+          type: string
+          format: date-time
+    StreamSourceInput:
+      type: object
+      required:
+      - name
+      - type
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+          enum:
+          - javascript
+          - server
+          - mobile
+          - webhook
+    StreamSource:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+          enum:
+          - javascript
+          - server
+          - mobile
+          - webhook
+        writeKey:
+          type: string
+          description: API key for sending events to this source
+        status:
+          type: string
+          enum:
+          - active
+          - inactive
+        eventsToday:
+          type: integer
+        createdAt:
           type: string
           format: date-time
   securitySchemes:

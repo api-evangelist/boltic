@@ -230,35 +230,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Workflow'
 components:
-  responses:
-    Unauthorized:
-      description: Unauthorized
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Bad request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
-    Error:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-        details:
-          type: string
     Trigger:
       type: object
       properties:
@@ -287,94 +259,15 @@ components:
             - PUT
             - DELETE
           description: HTTP methods for HTTP triggers
-    Node:
+    Error:
       type: object
       properties:
-        id:
+        code:
+          type: integer
+        message:
           type: string
-        type:
+        details:
           type: string
-          enum:
-          - integration
-          - transformation
-          - destination
-          - condition
-          - loop
-          - ai
-        name:
-          type: string
-        integrationId:
-          type: string
-        config:
-          type: object
-          additionalProperties: true
-        position:
-          type: object
-          properties:
-            x:
-              type: number
-            y:
-              type: number
-        connections:
-          type: array
-          items:
-            type: object
-            properties:
-              targetNodeId:
-                type: string
-              condition:
-                type: string
-    WorkflowInput:
-      type: object
-      required:
-      - name
-      - trigger
-      properties:
-        name:
-          type: string
-        description:
-          type: string
-        trigger:
-          $ref: '#/components/schemas/TriggerInput'
-        nodes:
-          type: array
-          items:
-            $ref: '#/components/schemas/NodeInput'
-        tags:
-          type: array
-          items:
-            type: string
-    NodeInput:
-      type: object
-      required:
-      - type
-      - name
-      properties:
-        type:
-          type: string
-        name:
-          type: string
-        integrationId:
-          type: string
-        config:
-          type: object
-          additionalProperties: true
-        position:
-          type: object
-          properties:
-            x:
-              type: number
-            y:
-              type: number
-        connections:
-          type: array
-          items:
-            type: object
-            properties:
-              targetNodeId:
-                type: string
-              condition:
-                type: string
     Execution:
       type: object
       properties:
@@ -428,6 +321,27 @@ components:
                 additionalProperties: true
               duration:
                 type: integer
+    TriggerInput:
+      type: object
+      required:
+      - type
+      properties:
+        type:
+          type: string
+          enum:
+          - http
+          - schedule
+          - webhook
+          - copilot
+          - table-change
+          - manual
+        config:
+          type: object
+          additionalProperties: true
+        methods:
+          type: array
+          items:
+            type: string
     Workflow:
       type: object
       properties:
@@ -476,27 +390,113 @@ components:
           type: integer
         totalPages:
           type: integer
-    TriggerInput:
+    NodeInput:
       type: object
       required:
       - type
+      - name
       properties:
         type:
           type: string
-          enum:
-          - http
-          - schedule
-          - webhook
-          - copilot
-          - table-change
-          - manual
+        name:
+          type: string
+        integrationId:
+          type: string
         config:
           type: object
           additionalProperties: true
-        methods:
+        position:
+          type: object
+          properties:
+            x:
+              type: number
+            y:
+              type: number
+        connections:
+          type: array
+          items:
+            type: object
+            properties:
+              targetNodeId:
+                type: string
+              condition:
+                type: string
+    WorkflowInput:
+      type: object
+      required:
+      - name
+      - trigger
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        trigger:
+          $ref: '#/components/schemas/TriggerInput'
+        nodes:
+          type: array
+          items:
+            $ref: '#/components/schemas/NodeInput'
+        tags:
           type: array
           items:
             type: string
+    Node:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          enum:
+          - integration
+          - transformation
+          - destination
+          - condition
+          - loop
+          - ai
+        name:
+          type: string
+        integrationId:
+          type: string
+        config:
+          type: object
+          additionalProperties: true
+        position:
+          type: object
+          properties:
+            x:
+              type: number
+            y:
+              type: number
+        connections:
+          type: array
+          items:
+            type: object
+            properties:
+              targetNodeId:
+                type: string
+              condition:
+                type: string
+  responses:
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     bearerAuth:
       type: http
