@@ -285,6 +285,12 @@ accessModel:
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/boltic.png
 access: 3rd-Party
 common:
+  - type: Plans
+    url: plans/boltic-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/boltic-rate-limits.yml
+  - type: FinOps
+    url: finops/boltic-finops.yml
   - type: AgenticAccess
     url: agentic-access/boltic-agentic-access.yml
   - type: DomainSecurity
