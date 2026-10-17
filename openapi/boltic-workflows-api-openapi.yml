@@ -230,44 +230,57 @@ paths:
               schema:
                 $ref: '#/components/schemas/Workflow'
 components:
+  responses:
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
-    Trigger:
+    Pagination:
       type: object
       properties:
-        id:
+        page:
+          type: integer
+        limit:
+          type: integer
+        total:
+          type: integer
+        totalPages:
+          type: integer
+    WorkflowInput:
+      type: object
+      required:
+      - name
+      - trigger
+      properties:
+        name:
           type: string
-        type:
+        description:
           type: string
-          enum:
-          - http
-          - schedule
-          - webhook
-          - copilot
-          - table-change
-          - manual
-        config:
-          type: object
-          additionalProperties: true
-          description: Trigger-specific configuration
-        methods:
+        trigger:
+          $ref: '#/components/schemas/TriggerInput'
+        nodes:
+          type: array
+          items:
+            $ref: '#/components/schemas/NodeInput'
+        tags:
           type: array
           items:
             type: string
-            enum:
-            - GET
-            - POST
-            - PUT
-            - DELETE
-          description: HTTP methods for HTTP triggers
-    Error:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-        details:
-          type: string
     Execution:
       type: object
       properties:
@@ -342,6 +355,15 @@ components:
           type: array
           items:
             type: string
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        details:
+          type: string
     Workflow:
       type: object
       properties:
@@ -379,17 +401,6 @@ components:
         updatedAt:
           type: string
           format: date-time
-    Pagination:
-      type: object
-      properties:
-        page:
-          type: integer
-        limit:
-          type: integer
-        total:
-          type: integer
-        totalPages:
-          type: integer
     NodeInput:
       type: object
       required:
@@ -421,26 +432,34 @@ components:
                 type: string
               condition:
                 type: string
-    WorkflowInput:
+    Trigger:
       type: object
-      required:
-      - name
-      - trigger
       properties:
-        name:
+        id:
           type: string
-        description:
+        type:
           type: string
-        trigger:
-          $ref: '#/components/schemas/TriggerInput'
-        nodes:
-          type: array
-          items:
-            $ref: '#/components/schemas/NodeInput'
-        tags:
+          enum:
+          - http
+          - schedule
+          - webhook
+          - copilot
+          - table-change
+          - manual
+        config:
+          type: object
+          additionalProperties: true
+          description: Trigger-specific configuration
+        methods:
           type: array
           items:
             type: string
+            enum:
+            - GET
+            - POST
+            - PUT
+            - DELETE
+          description: HTTP methods for HTTP triggers
     Node:
       type: object
       properties:
@@ -478,25 +497,6 @@ components:
                 type: string
               condition:
                 type: string
-  responses:
-    Unauthorized:
-      description: Unauthorized
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Bad request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   securitySchemes:
     bearerAuth:
       type: http

@@ -106,6 +106,17 @@ paths:
                 $ref: '#/components/schemas/Execution'
 components:
   schemas:
+    Pagination:
+      type: object
+      properties:
+        page:
+          type: integer
+        limit:
+          type: integer
+        total:
+          type: integer
+        totalPages:
+          type: integer
     Execution:
       type: object
       properties:
@@ -159,17 +170,6 @@ components:
                 additionalProperties: true
               duration:
                 type: integer
-    Pagination:
-      type: object
-      properties:
-        page:
-          type: integer
-        limit:
-          type: integer
-        total:
-          type: integer
-        totalPages:
-          type: integer
   securitySchemes:
     bearerAuth:
       type: http

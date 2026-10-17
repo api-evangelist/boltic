@@ -57,20 +57,6 @@ paths:
                 $ref: '#/components/schemas/StreamDestination'
 components:
   schemas:
-    StreamDestinationInput:
-      type: object
-      required:
-      - name
-      - type
-      - config
-      properties:
-        name:
-          type: string
-        type:
-          type: string
-        config:
-          type: object
-          additionalProperties: true
     StreamDestination:
       type: object
       properties:
@@ -91,6 +77,20 @@ components:
         createdAt:
           type: string
           format: date-time
+    StreamDestinationInput:
+      type: object
+      required:
+      - name
+      - type
+      - config
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+        config:
+          type: object
+          additionalProperties: true
   securitySchemes:
     bearerAuth:
       type: http
