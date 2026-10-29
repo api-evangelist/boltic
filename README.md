@@ -1,4 +1,4 @@
-# Boltic (boltic)
+# Boltic
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,151 +66,201 @@
 
 Boltic is an AI workflow automation platform that helps businesses streamline operations across customer support, finance, product, and marketing functions. The platform enables companies to build autonomous AI agents, create no-code workflows with drag-and-drop functionality, and connect with over 500 integrations including major tools like Salesforce, HubSpot, Shopify, and Google BigQuery.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/boltic/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/boltic/refs/heads/main/apis.yml)
+**Areas:** Automation · Data Sync · Gateways · No-Code · Streaming · Workflows
 
-## Scope
+## Boltic on APIs.io
 
-- **Type:** Index
-- **Position:** Consuming
-- **Access:** 3rd-Party
+Everything profiled for Boltic is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/boltic/](https://apis.io/providers/boltic/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (11)
 
-- Automation
-- DataSync
-- Gateways
-- NoCode
-- Streaming
-- Workflows
+- [Boltic Certificates API](https://apis.io/apis/boltic/boltic-certificates-api/) — Manage SSL/TLS certificates
+- [Boltic Consumers API](https://apis.io/apis/boltic/boltic-consumers-api/) — Manage API consumers and access credentials
+- [Boltic Destinations API](https://apis.io/apis/boltic/boltic-destinations-api/) — Manage data destinations
+- [Boltic Events API](https://apis.io/apis/boltic/boltic-events-api/) — Send and query events
+- [Boltic Executions API](https://apis.io/apis/boltic/boltic-executions-api/) — Track and manage workflow executions
+- [Boltic Plugins API](https://apis.io/apis/boltic/boltic-plugins-api/) — Manage gateway plugins for transformation and security
+- [Boltic Routes API](https://apis.io/apis/boltic/boltic-routes-api/) — Manage API routes and request routing rules
+- [Boltic Services API](https://apis.io/apis/boltic/boltic-services-api/) — The Services API from Boltic — 2 operation(s) for services.
+- [Boltic Stream Sources API](https://apis.io/apis/boltic/boltic-stream-sources-api/) — Manage stream sources for event ingestion
+- [Boltic Triggers API](https://apis.io/apis/boltic/boltic-triggers-api/) — Manage workflow triggers
+- [Boltic Workflows API](https://apis.io/apis/boltic/boltic-workflows-api/) — Create and manage automation workflows
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-01-02
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Agentic access (1)
 
-### Boltic Gateway API
+Which operations an agent can call, which act, and which need a human in the loop.
 
-The Boltic Gateway API provides a developer-friendly API gateway designed to simplify and secure how services interact across your platform. It enables seamless request routing, payload transformation, and enforcement of security policies across diverse integration types including serverless functions, workflows, tables, and proxy endpoints. The Gateway supports dynamic URL rewriting, path parameter injection, fine-grained authentication, and real-time observability.
+- [Boltic Agentic Access](https://apis.io/agentic-access/boltic/boltic-agentic-access/)
 
-- **Human URL:** [https://docs.boltic.io/gateway/intro/](https://docs.boltic.io/gateway/intro/)
+#### JSON Schema (40)
 
-#### Tags
+The data models the API reads and writes.
 
-- Gateways
-- Plugins
-- Routing
-- Security
+- [Certificate](https://apis.io/schemas/boltic/boltic-certificate/)
+- [CertificateInput](https://apis.io/schemas/boltic/boltic-certificateinput/)
+- [Column](https://apis.io/schemas/boltic/boltic-column/)
+- [ColumnInput](https://apis.io/schemas/boltic/boltic-columninput/)
+- [Consumer](https://apis.io/schemas/boltic/boltic-consumer/)
+- [ConsumerInput](https://apis.io/schemas/boltic/boltic-consumerinput/)
+- [DestinationConfig](https://apis.io/schemas/boltic/boltic-destinationconfig/)
+- [DestinationType](https://apis.io/schemas/boltic/boltic-destinationtype/)
+- [Error](https://apis.io/schemas/boltic/boltic-error/)
+- [Event](https://apis.io/schemas/boltic/boltic-event/)
+- [EventInput](https://apis.io/schemas/boltic/boltic-eventinput/)
+- [Execution](https://apis.io/schemas/boltic/boltic-execution/)
+- [Node](https://apis.io/schemas/boltic/boltic-node/)
+- [NodeInput](https://apis.io/schemas/boltic/boltic-nodeinput/)
+- [Pagination](https://apis.io/schemas/boltic/boltic-pagination/)
+- [Boltic Pipe](https://apis.io/schemas/boltic/boltic-pipe/)
+- [PipeInput](https://apis.io/schemas/boltic/boltic-pipeinput/)
+- [Plugin](https://apis.io/schemas/boltic/boltic-plugin/)
+- [PluginInput](https://apis.io/schemas/boltic/boltic-plugininput/)
+- [Boltic Gateway Route](https://apis.io/schemas/boltic/boltic-route/)
+- [RouteInput](https://apis.io/schemas/boltic/boltic-routeinput/)
+- [Row](https://apis.io/schemas/boltic/boltic-row/)
+- [RowInput](https://apis.io/schemas/boltic/boltic-rowinput/)
+- [Schedule](https://apis.io/schemas/boltic/boltic-schedule/)
+- [Service](https://apis.io/schemas/boltic/boltic-service/)
+- …and 15 more published on APIs.io
 
-#### Properties
+#### JSON Structure (1)
 
-- [Documentation](https://docs.boltic.io/gateway/intro/)
-- [OpenAPI](openapi/boltic-gateway-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/boltic-gateway-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/boltic-gateway-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/boltic-route.json) — [JSON Schema](https://json-schema.org/specification)
+Data models expressed in JSON Structure.
 
-### Boltic Workflow API
+- [Boltic Structure](https://apis.io/json-structure/boltic/boltic-structure/)
 
-The Boltic Workflow API enables programmatic creation, management, and execution of automation workflows. Workflows are visual, no-code automation sequences that connect triggers with actions across 500+ integrations. The API supports HTTP-triggered workflows with customizable responses, scheduled executions, webhook-based triggers, and integration with AI providers including Perplexity, Hugging Face, Meta, and DeepSeek.
+#### JSON-LD (1)
 
-- **Human URL:** [https://www.boltic.io/products/workflow](https://www.boltic.io/products/workflow)
+Linked-data contexts for the provider's vocabulary.
 
-#### Tags
+- [Boltic Context](https://apis.io/jsonld/boltic/boltic-context/)
 
-- Automation
-- Integrations
-- Triggers
-- Workflows
+#### Vocabulary (1)
 
-#### Properties
+The provider's domain terms, defined.
 
-- [Documentation](https://docs.boltic.io/)
-- [OpenAPI](openapi/boltic-workflow-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/boltic-workflow-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/boltic-workflow-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/boltic-workflow.json) — [JSON Schema](https://json-schema.org/specification)
+- [Boltic Domain Vocabulary](https://apis.io/vocabularies/boltic/boltic-vocabulary/)
 
-### Boltic Tables API
+#### Collections (20)
 
-The Boltic Tables API provides programmatic access to Boltic Tables, a no-code database for teams to organize, manage, and automate structured data workflows. The API supports full CRUD operations on tables and rows, SQL query execution via a built-in SQL editor with AI-powered query generation, and integration with workflows for automated data processing triggered by table changes.
+Postman and Open Collection request collections.
 
-- **Human URL:** [https://www.boltic.io/products/boltic-tables](https://www.boltic.io/products/boltic-tables)
+- [Boltic Gateway Certificates API](https://apis.io/collections/boltic/open-boltic-certificates-api/)
+- [Boltic Gateway Certificates Consumers API](https://apis.io/collections/boltic/open-boltic-consumers-api/)
+- [Boltic Gateway Certificates Destinations API](https://apis.io/collections/boltic/open-boltic-destinations-api/)
+- [Boltic Gateway Certificates Events API](https://apis.io/collections/boltic/open-boltic-events-api/)
+- [Boltic Gateway Certificates Executions API](https://apis.io/collections/boltic/open-boltic-executions-api/)
+- [Boltic Gateway API](https://apis.io/collections/boltic/open-boltic-gateway-api/)
+- [Boltic Gateway Certificates Pipes API](https://apis.io/collections/boltic/open-boltic-pipes-api/)
+- [Boltic Gateway Certificates Plugins API](https://apis.io/collections/boltic/open-boltic-plugins-api/)
+- [Boltic Gateway Certificates Queries API](https://apis.io/collections/boltic/open-boltic-queries-api/)
+- [Boltic Gateway Certificates Routes API](https://apis.io/collections/boltic/open-boltic-routes-api/)
+- [Boltic Gateway Certificates Rows API](https://apis.io/collections/boltic/open-boltic-rows-api/)
+- [Boltic Gateway Certificates Services API](https://apis.io/collections/boltic/open-boltic-services-api/)
+- [Boltic Gateway Certificates Sources API](https://apis.io/collections/boltic/open-boltic-sources-api/)
+- [Boltic Gateway Certificates Stream Sources API](https://apis.io/collections/boltic/open-boltic-stream-sources-api/)
+- [Boltic Streams API](https://apis.io/collections/boltic/open-boltic-streams-api/)
+- [Boltic Gateway Certificates Sync Runs API](https://apis.io/collections/boltic/open-boltic-sync-runs-api/)
+- [Boltic Gateway Certificates Tables API](https://apis.io/collections/boltic/open-boltic-tables-api/)
+- [Boltic Gateway Certificates Triggers API](https://apis.io/collections/boltic/open-boltic-triggers-api/)
+- [Boltic Workflow API](https://apis.io/collections/boltic/open-boltic-workflow-api/)
+- [Boltic Gateway Certificates Workflows API](https://apis.io/collections/boltic/open-boltic-workflows-api/)
 
-#### Tags
+#### Governance rules (1)
 
-- CRUD
-- Databases
-- NoCode
-- Tables
+Spectral rulesets for the provider's contracts.
 
-#### Properties
+- [Boltic — jsonschema rules](https://apis.io/rules/boltic/boltic-jsonschema-spectral-rules/)
 
-- [Documentation](https://docs.boltic.io/docs/workflow-builder/activities/tables/)
-- [OpenAPI](openapi/boltic-tables-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/boltic-tables-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/boltic-tables-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/boltic-table.json) — [JSON Schema](https://json-schema.org/specification)
+#### Security (2)
 
-### Boltic Pipes API
+Authentication, trust centre, and vulnerability disclosure.
 
-The Boltic Pipes API provides programmatic access to data synchronization pipelines that connect data sources to destinations. Pipes enable real-time data syncing across systems via automated pipelines with zero maintenance. Sources include databases such as MongoDB, MySQL, and PostgreSQL, SaaS applications via API endpoints, and file storage. The API supports configurable sync frequencies including minutely, hourly, and daily schedules.
+- [Boltic Authentication](https://apis.io/security/boltic/boltic-authentication/)
+- [Boltic Domain Security](https://apis.io/security/boltic/boltic-domain-security/)
 
-- **Human URL:** [https://docs.boltic.io/docs/pipes/pipe-creation/](https://docs.boltic.io/docs/pipes/pipe-creation/)
+#### Plans and pricing (1)
 
-#### Tags
+Published plans, tiers and prices.
 
-- DataSync
-- ETL
-- Integration
-- Pipelines
+- [Boltic Plans Pricing](https://apis.io/plans/boltic/boltic-plans-pricing/)
 
-#### Properties
+#### Rate limits (1)
 
-- [Documentation](https://docs.boltic.io/docs/pipes/pipe-creation/)
-- [OpenAPI](openapi/boltic-pipes-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/boltic-pipes-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/boltic-pipes-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/boltic-pipe.json) — [JSON Schema](https://json-schema.org/specification)
+Published request limits.
 
-### Boltic Streams API
+- [Boltic Rate Limits](https://apis.io/rate-limits/boltic/boltic-rate-limits/)
 
-The Boltic Streams API provides real-time event streaming capabilities for tracking custom events and streaming data from websites, mobile apps, and servers. It includes source debugger tools for confirming API call delivery, an event analysis dashboard for monitoring event flows, and real-time data processing for actionable insights.
+#### FinOps (1)
 
-- **Human URL:** [https://www.boltic.io/products/streams](https://www.boltic.io/products/streams)
+What the API costs to run, by operation.
 
-#### Tags
+- [Boltic Finops](https://apis.io/finops/boltic/boltic-finops/)
 
-- Analytics
-- Events
-- RealTime
-- Streaming
+## Where to find this API
 
-#### Properties
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-- [Documentation](https://docs.boltic.io/docs/streams/intro/)
-- [OpenAPI](openapi/boltic-streams-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/boltic-streams-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/boltic-streams-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/boltic-stream-event.json) — [JSON Schema](https://json-schema.org/specification)
-
-## Common Properties
-
-- [GitHub Organization](https://github.com/bolticio)
-- [LinkedIn](https://www.linkedin.com/company/officialboltic)
 - [Website](https://www.boltic.io/)
 - [Documentation](https://docs.boltic.io/)
-- [Templates](https://www.boltic.io/templates)
-- [Integrations](https://www.boltic.io/integrations)
 - [Pricing](https://www.boltic.io/pricing)
-- [About](https://www.boltic.io/about-us)
-- [Partners](https://www.boltic.io/partners)
-- [Blog](https://www.boltic.io/blog)
 - [Changelog](https://www.boltic.io/changelog)
-- [J S O N L D Context](json-ld/boltic-context.jsonld)
+- [Blog](https://www.boltic.io/blog)
+- [GitHub](https://github.com/bolticio)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** info@apievangelist.com
+**Kin Score 34.1** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 62.5 |
+| Contract quality | 61.1 |
+| Contract governance | 9.8 |
+| Operational transparency | 26.3 |
+| Developer ergonomics | 23.8 |
+| Access clarity | 18.4 |
+
+**Agent readiness 19.6** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | documented (partial credit) |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 16.7** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/boltic/](https://apis.io/providers/boltic/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Boltic: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/boltic/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
